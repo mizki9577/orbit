@@ -15,11 +15,13 @@ class App extends Component {
     }
 
     this.handleResize = ::this.handleResize
+
+    this.handleResize()
   }
 
-  componentWillMount() {
-    this.handleResize()
+  componentDidMount() {
     window.addEventListener('resize', this.handleResize)
+    window.requestAnimationFrame(this.handleFrame)
   }
 
   componentWillUnmount() {
@@ -31,6 +33,9 @@ class App extends Component {
       width : window.innerWidth,
       height: window.innerHeight,
     })
+  }
+
+  handleFrame() {
   }
 
   render() {
