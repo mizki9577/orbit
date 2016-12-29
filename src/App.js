@@ -1,10 +1,22 @@
+/* @flow */
+
+import type { Body } from './store'
+
 import React, { Component } from 'react'
 import { Container } from 'flux/utils'
 
 import store from './store'
 import { update } from './actions'
 
+type State = {
+  width: number,
+  height: number,
+  bodies: Body[],
+};
+
 class App extends Component {
+  state: State;
+
   static style = {
     position: 'absolute',
   }
@@ -23,26 +35,20 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      width : null,
-      height: null,
+      width : 0,
+      height: 0,
 
       bodies: [],
     }
-
-    this.handleResize = ::this.handleResize
   }
 
   componentWillMount() {
     this.handleResize()
-    window.addEventListener('resize', this.handleResize)
+    window.addEventListener('resize', this.handleResize.bind(this))
   }
 
   componentDidMount() {
-    window.requestAnimationFrame(::this.handleFrame)
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.handleResize)
+    window.requestAnimationFrame(this.handleFrame.bind(this))
   }
 
   handleResize() {
@@ -54,7 +60,7 @@ class App extends Component {
 
   handleFrame() {
     update()
-    window.requestAnimationFrame(::this.handleFrame)
+    window.requestAnimationFrame(this.handleFrame.bind(this))
   }
 
   render() {

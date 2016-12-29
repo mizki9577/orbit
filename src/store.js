@@ -1,7 +1,18 @@
+/* @flow */
+
 import { ReduceStore } from 'flux/utils'
 
-import { G } from './constants'
 import dispatcher from './dispatcher'
+
+export type Body = {
+  id: number,
+  mass: number,
+  radius: number,
+  x: number,
+  y: number,
+  vx: number,
+  vy: number,
+};
 
 class Store extends ReduceStore {
   getInitialState() {
