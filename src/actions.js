@@ -27,7 +27,7 @@ export const update = () => {
   })
 }
 
-export const mouseMoved = (x, y) => {
+export const mouseMoved = (x: number, y: number) => {
   dispatcher.dispatch({
     type: 'mouse_moved',
     x, y,
@@ -46,7 +46,7 @@ export const mouseButtonReleased = () => {
   })
 }
 
-export const windowResized = (width, height) => {
+export const windowResized = (width: number, height: number) => {
   dispatcher.dispatch({
     type: 'window_resized',
     width, height,

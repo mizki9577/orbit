@@ -12,6 +12,7 @@ export type Body = {
   y: number,
   vx: number,
   vy: number,
+  style: Object,
 }
 
 class Store extends ReduceStore {

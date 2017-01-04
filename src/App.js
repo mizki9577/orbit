@@ -8,13 +8,14 @@ import { Container } from 'flux/utils'
 import store from './store'
 import { update, mouseMoved, mouseButtonPushed, mouseButtonReleased, windowResized } from './actions'
 
-/*
 type State = {
-  width: number,
-  height: number,
+  windowWidth: number,
+  windowHeight: number,
+  mouseX: number,
+  mouseY: number,
+  isMouseButtonPushed: bool,
   bodies: Body[],
 }
-*/
 
 class App extends Component {
   state: State
