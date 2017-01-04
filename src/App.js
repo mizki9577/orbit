@@ -19,6 +19,8 @@ class App extends Component {
 
   static style = {
     position: 'absolute',
+    top: 0,
+    left: 0,
   }
 
   static getStores() {
@@ -66,7 +68,7 @@ class App extends Component {
   render() {
     const { width, height, bodies } = this.state
     return (
-      <svg id="app" style={ App.style } width={ width } height={ height } viewBox={`${-width / 2} ${-height / 2} ${width} ${height}`}>
+      <svg style={ App.style } width={ width } height={ height } viewBox={`${-width / 2} ${-height / 2} ${width} ${height}`}>
       {
         bodies.map(b => <circle key={ b.id } r={ b.radius } cx={ b.x } cy={ b.y } style={ b.style } />)
       }
