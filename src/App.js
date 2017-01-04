@@ -12,10 +12,10 @@ type State = {
   width: number,
   height: number,
   bodies: Body[],
-};
+}
 
 class App extends Component {
-  state: State;
+  state: State
 
   static style = {
     position: 'absolute',

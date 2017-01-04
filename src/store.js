@@ -12,7 +12,7 @@ export type Body = {
   y: number,
   vx: number,
   vy: number,
-};
+}
 
 class Store extends ReduceStore {
   getInitialState() {
