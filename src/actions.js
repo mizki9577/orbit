@@ -46,4 +46,11 @@ export const mouseButtonReleased = () => {
   })
 }
 
+export const windowResized = (width, height) => {
+  dispatcher.dispatch({
+    type: 'window_resized',
+    width, height,
+  })
+}
+
 // vim: set ts=2 sw=2 et:

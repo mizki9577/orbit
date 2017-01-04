@@ -63,6 +63,13 @@ class Store extends ReduceStore {
           ...state,
           isMouseButtonPushed: false,
         }
+
+      case 'window_resized':
+        return {
+          ...state,
+          windowWidth: action.width,
+          windowHeight: action.height,
+        }
     }
   }
 }
