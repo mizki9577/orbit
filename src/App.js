@@ -68,7 +68,7 @@ class App extends Component {
     return (
       <svg id="app" style={ App.style } width={ width } height={ height } viewBox={`${-width / 2} ${-height / 2} ${width} ${height}`}>
       {
-        bodies.map(b => <circle key={ b.id } r={ b.radius } cx={ b.x } cy={ b.y } />)
+        bodies.map(b => <circle key={ b.id } r={ b.radius } cx={ b.x } cy={ b.y } style={ b.style } />)
       }
       </svg>
     )

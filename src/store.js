@@ -18,10 +18,10 @@ class Store extends ReduceStore {
   getInitialState() {
     return {
       bodies: [
-        { id: 0, mass: 1000, radius: 5, x:  100, y:  100, vx: -2, vy:  0 },
-        { id: 1, mass: 1000, radius: 5, x: -100, y:  100, vx:  0, vy: -2 },
-        { id: 2, mass: 1000, radius: 5, x: -100, y: -100, vx:  2, vy:  0 },
-        { id: 3, mass: 1000, radius: 5, x:  100, y: -100, vx:  0, vy:  2 },
+        { id: 0, mass: 1000, radius: 5, x:  100, y:  100, vx: -2, vy:  0, style: { fill: 'hsl(  0, 100%, 50%)' }, },
+        { id: 1, mass: 1000, radius: 5, x: -100, y:  100, vx:  0, vy: -2, style: { fill: 'hsl( 90, 100%, 50%)' }, },
+        { id: 2, mass: 1000, radius: 5, x: -100, y: -100, vx:  2, vy:  0, style: { fill: 'hsl(180, 100%, 50%)' }, },
+        { id: 3, mass: 1000, radius: 5, x:  100, y: -100, vx:  0, vy:  2, style: { fill: 'hsl(270, 100%, 50%)' }, },
       ],
     }
   }
