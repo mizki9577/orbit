@@ -34,6 +34,9 @@ class Store extends ReduceStore {
         { id: 7, mass:   100, radius: 10, x:   0, y: -r1, vx:  v1, vy:   0, style: { fill: 'hsl(270, 100%, 50%)' }, },
         { id: 8, mass:   100, radius: 10, x:  r2, y: -r2, vx:  v2, vy:  v2, style: { fill: 'hsl(315, 100%, 50%)' }, },
       ],
+      mouseX: 0,
+      mouseY: 0,
+      isMouseButtonPushed: false,
     }
   }
 
@@ -41,6 +44,25 @@ class Store extends ReduceStore {
     switch (action.type) {
       case 'update':
         return { ...state, bodies: action.bodies }
+
+      case 'mouse_moved':
+        return {
+          ...state,
+          mouseX: action.x,
+          mouseY: action.y
+        }
+
+      case 'mouse_button_pushed':
+        return {
+          ...state,
+          isMouseButtonPushed: true,
+        }
+
+      case 'mouse_button_released':
+        return {
+          ...state,
+          isMouseButtonPushed: false,
+        }
     }
   }
 }

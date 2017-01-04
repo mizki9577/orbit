@@ -27,4 +27,23 @@ export const update = () => {
   })
 }
 
+export const mouseMoved = (x, y) => {
+  dispatcher.dispatch({
+    type: 'mouse_moved',
+    x, y,
+  })
+}
+
+export const mouseButtonPushed = () => {
+  dispatcher.dispatch({
+    type: 'mouse_button_pushed',
+  })
+}
+
+export const mouseButtonReleased = () => {
+  dispatcher.dispatch({
+    type: 'mouse_button_released',
+  })
+}
+
 // vim: set ts=2 sw=2 et:
