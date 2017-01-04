@@ -31,22 +31,30 @@ class Store extends ReduceStore {
       case 'update':
         return {
           bodies: state.bodies.map(body => {
-            const ax = state.bodies.map(other => body === other ? 0 : other.mass * (other.x - body.x) / ((body.x - other.x) ** 2 + (body.y - other.y) ** 2) ** 1.5)
-                                   .reduce((a, b) => a + b)
-            const ay = state.bodies.map(other => body === other ? 0 : other.mass * (other.y - body.y) / ((body.x - other.x) ** 2 + (body.y - other.y) ** 2) ** 1.5)
-                                   .reduce((a, b) => a + b)
-
-            return {
-              ...body,
-              x: body.x + body.vx + ax,
-              y: body.y + body.vy + ay,
-              vx: body.vx + ax,
-              vy: body.vy + ay,
-            }
+            const [ax, ay] = getGravitionalAcceleration(body, state.bodies)
+            const vx = body.vx + ax
+            const vy = body.vy + ay
+            const x = body.x + vx
+            const y = body.y + vy
+            return { ...body, x, y, vx, vy }
           })
         }
     }
   }
+}
+
+function getGravitionalAcceleration(self, others) {
+  let ax = 0
+  let ay = 0
+
+  for (const other of others) {
+    if (self === other) continue
+    const coefficient = -other.mass / ((self.x - other.x) ** 2 + (self.y - other.y) ** 2) ** 1.5
+    ax += coefficient * (self.x - other.x)
+    ay += coefficient * (self.y - other.y)
+  }
+
+  return [ax, ay]
 }
 
 export default new Store(dispatcher)
