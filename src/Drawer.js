@@ -44,12 +44,12 @@ class Drawer extends Component {
   }
 
   render() {
-    const { windowWidth, windowHeight, zoomLevel, bodies } = this.state
+    const { windowWidth, windowHeight, zoomLevel, centerX, centerY, bodies } = this.state
 
     return (
       <svg style={ style } width={ windowWidth } height={ windowHeight } viewBox={ `${-windowWidth/2} ${-windowHeight/2} ${windowWidth} ${windowHeight}` }
            onMouseMove={ this.handleMouseMove.bind(this) } onMouseDown={ this.handleMouseDown.bind(this) } onMouseUp={ this.handleMouseUp.bind(this) } onMouseLeave={ this.handleMouseLeave.bind(this) } onWheel={ this.handleWheel.bind(this) }>
-        <g transform={`scale(${zoomLevel})`}>
+        <g transform={`scale(${zoomLevel}) translate(${centerX} ${centerY})`}>
           {
             bodies.map(b => <circle key={ b.id } r={ b.radius } cx={ b.x } cy={ b.y } style={ b.style } />)
           }

@@ -11,6 +11,8 @@ class Store extends ReduceStore {
       bodies: initialBodies,
       mouseX: null,
       mouseY: null,
+      centerX: 0,
+      centerY: 0,
       isMouseButtonPushed: false,
       zoomLevel: 1,
     }
@@ -29,6 +31,13 @@ class Store extends ReduceStore {
           ...state,
           mouseX: action.x,
           mouseY: action.y
+        }
+
+      case 'drawer_panned':
+        return {
+          ...state,
+          centerX: action.centerX,
+          centerY: action.centerY,
         }
 
       case 'mouse_button_pushed':

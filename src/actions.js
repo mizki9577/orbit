@@ -28,10 +28,20 @@ export const update = () => {
 }
 
 export const mouseMoved = (x: number, y: number) => {
+  const { isMouseButtonPushed, zoomLevel, centerX, centerY, mouseX: prevX, mouseY: prevY } = store.getState()
+
   dispatcher.dispatch({
     type: 'mouse_moved',
     x, y,
   })
+
+  if (isMouseButtonPushed) {
+    dispatcher.dispatch({
+      type: 'drawer_panned',
+      centerX: centerX + (x - prevX) / zoomLevel,
+      centerY: centerY + (y - prevY) / zoomLevel,
+    })
+  }
 }
 
 export const mouseButtonPushed = () => {
