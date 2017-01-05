@@ -6,7 +6,7 @@ import React, { Component } from 'react'
 import { Container } from 'flux/utils'
 
 import store from './store'
-import { update, mouseMoved, mouseButtonPushed, mouseButtonReleased, mouseLeft, windowResized } from './actions'
+import * as actions from './actions'
 
 import style from './App.css.js'
 
@@ -31,30 +31,30 @@ class App extends Component {
   }
 
   handleResize() {
-    windowResized(window.innerWidth, window.innerHeight)
+    actions.windowResized(window.innerWidth, window.innerHeight)
   }
 
   handleFrame() {
-    update()
+    actions.update()
     window.requestAnimationFrame(this.handleFrame.bind(this))
   }
 
   handleMouseMove(ev) {
-    mouseMoved(ev.clientX, ev.clientY)
+    actions.mouseMoved(ev.clientX, ev.clientY)
   }
 
   handleMouseDown(ev) {
-    mouseMoved(ev.clientX, ev.clientY)
-    mouseButtonPushed()
+    actions.mouseMoved(ev.clientX, ev.clientY)
+    actions.mouseButtonPushed()
   }
 
   handleMouseUp(ev) {
-    mouseMoved(ev.clientX, ev.clientY)
-    mouseButtonReleased()
+    actions.mouseMoved(ev.clientX, ev.clientY)
+    actions.mouseButtonReleased()
   }
 
   handleMouseLeave(ev) {
-    mouseLeft()
+    actions.mouseLeft()
   }
 
   render() {
