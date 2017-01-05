@@ -27,6 +27,7 @@ class Store extends ReduceStore {
       mouseX: null,
       mouseY: null,
       isMouseButtonPushed: false,
+      zoomLevel: 1,
     }
   }
 
@@ -62,6 +63,12 @@ class Store extends ReduceStore {
           ...state,
           mouseX: null,
           mouseY: null,
+        }
+
+      case 'change_zoom_level':
+        return {
+          ...state,
+          zoomLevel: action.zoomLevel
         }
 
       case 'window_resized':

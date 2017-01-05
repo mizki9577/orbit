@@ -57,18 +57,30 @@ class App extends Component {
     actions.mouseLeft()
   }
 
+  handleWheel(ev) {
+    actions.wheelMoved(ev.deltaY)
+  }
+
   render() {
-    const { windowWidth, windowHeight, mouseX, mouseY, isMouseButtonPushed, bodies } = this.state
+    const { windowWidth, windowHeight, mouseX, mouseY, isMouseButtonPushed, zoomLevel, bodies } = this.state
+
+    const width  = windowWidth  / zoomLevel
+    const height = windowHeight / zoomLevel
+    const left = -width  / 2
+    const top  = -height / 2
+    const svgMouseX = mouseX === null ? null : mouseX / zoomLevel
+    const svgMouseY = mouseY === null ? null : mouseY / zoomLevel
+
     return (
-      <svg style={ style } width={ windowWidth } height={ windowHeight } viewBox={`${-windowWidth / 2} ${-windowHeight / 2} ${windowWidth} ${windowHeight}`}
-           onMouseMove={ this.handleMouseMove.bind(this) } onMouseDown={ this.handleMouseDown.bind(this) } onMouseUp={ this.handleMouseUp.bind(this) } onMouseLeave={ this.handleMouseLeave.bind(this) }>
+      <svg style={ style } width={ windowWidth } height={ windowHeight } viewBox={  `${left} ${top} ${width} ${height}` }
+           onMouseMove={ this.handleMouseMove.bind(this) } onMouseDown={ this.handleMouseDown.bind(this) } onMouseUp={ this.handleMouseUp.bind(this) } onMouseLeave={ this.handleMouseLeave.bind(this) } onWheel={ this.handleWheel.bind(this) }>
         {
           bodies.map(b => <circle key={ b.id } r={ b.radius } cx={ b.x } cy={ b.y } style={ b.style } />)
         }
-        { mouseX === null || mouseY === null ? null : (
-          <g>
-            <line x1={ -windowWidth / 2 } y1={ mouseY - windowHeight / 2 } x2={ windowWidth / 2 } y2={ mouseY - windowHeight / 2 } stroke={ isMouseButtonPushed ? 'red' : 'black' } />
-            <line x1={ mouseX - windowWidth / 2 } y1={ -windowHeight / 2 } x2={ mouseX - windowWidth / 2 } y2={ windowHeight / 2 } stroke={ isMouseButtonPushed ? 'red' : 'black' } />
+        { svgMouseX === null || svgMouseY === null ? null : (
+          <g stroke={ isMouseButtonPushed ? 'red' : 'black' } strokeWidth={ 1 / zoomLevel }>
+            <line x1={ -width / 2 } y1={ svgMouseY - height / 2 } x2={ width / 2 } y2={ svgMouseY - height / 2 } />
+            <line x1={ svgMouseX - width / 2 } y1={ -height / 2 } x2={ svgMouseX - width / 2 } y2={ height / 2 } />
           </g>
         ) }
       </svg>

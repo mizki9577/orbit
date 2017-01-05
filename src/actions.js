@@ -52,6 +52,17 @@ export const mouseLeft = () => {
   })
 }
 
+export const wheelMoved = delta => {
+  const { zoomLevel } = store.getState()
+  delta = delta > 0 ? 0.9
+        : delta < 0 ? 1.1
+        : 1
+  dispatcher.dispatch({
+    type: 'change_zoom_level',
+    zoomLevel: zoomLevel * delta,
+  })
+}
+
 export const windowResized = (width, height) => {
   dispatcher.dispatch({
     type: 'window_resized',
