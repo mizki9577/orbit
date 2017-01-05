@@ -17,7 +17,7 @@ class App extends Component {
     return [ store ]
   }
 
-  static calculateState(prevState) {
+  static calculateState() {
     return store.getState()
   }
 
