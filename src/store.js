@@ -55,6 +55,7 @@ class Store extends ReduceStore {
       case 'mouse_left':
         return {
           ...state,
+          isMouseButtonPushed: false,
           mouseX: null,
           mouseY: null,
         }
