@@ -66,10 +66,12 @@ class App extends Component {
 
     const width  = windowWidth  / zoomLevel
     const height = windowHeight / zoomLevel
-    const left = -width  / 2
-    const top  = -height / 2
-    const svgMouseX = mouseX === null ? null : mouseX / zoomLevel
-    const svgMouseY = mouseY === null ? null : mouseY / zoomLevel
+    const bottom  = height / 2
+    const right = width  / 2
+    const top = -bottom
+    const left = -right
+    const svgMouseX = mouseX === null ? null : left + mouseX / zoomLevel
+    const svgMouseY = mouseY === null ? null : top + mouseY / zoomLevel
 
     return (
       <svg style={ style } width={ windowWidth } height={ windowHeight } viewBox={  `${left} ${top} ${width} ${height}` }
@@ -79,8 +81,8 @@ class App extends Component {
         }
         { svgMouseX === null || svgMouseY === null ? null : (
           <g stroke={ isMouseButtonPushed ? 'red' : 'black' } strokeWidth={ 1 / zoomLevel }>
-            <line x1={ -width / 2 } y1={ svgMouseY - height / 2 } x2={ width / 2 } y2={ svgMouseY - height / 2 } />
-            <line x1={ svgMouseX - width / 2 } y1={ -height / 2 } x2={ svgMouseX - width / 2 } y2={ height / 2 } />
+            <line x1={ left } y1={ svgMouseY } x2={ right } y2={ svgMouseY } />
+            <line x1={ svgMouseX } y1={ top } x2={ svgMouseX } y2={ bottom } />
           </g>
         ) }
       </svg>
