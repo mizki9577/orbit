@@ -46,6 +46,12 @@ export const mouseButtonReleased = () => {
   })
 }
 
+export const mouseLeft = () => {
+  dispatcher.dispatch({
+    type: 'mouse_left',
+  })
+}
+
 export const windowResized = (width: number, height: number) => {
   dispatcher.dispatch({
     type: 'window_resized',

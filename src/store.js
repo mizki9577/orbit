@@ -24,8 +24,8 @@ class Store extends ReduceStore {
         { id: 8, mass:   100, radius: 10, x:  r2, y: -r2, vx:  v2, vy:  v2, style: { fill: 'hsl(315, 100%, 50%)' }, },
       ],
 
-      mouseX: 0,
-      mouseY: 0,
+      mouseX: null,
+      mouseY: null,
       isMouseButtonPushed: false,
     }
   }
@@ -55,6 +55,13 @@ class Store extends ReduceStore {
         return {
           ...state,
           isMouseButtonPushed: false,
+        }
+
+      case 'mouse_left':
+        return {
+          ...state,
+          mouseX: null,
+          mouseY: null,
         }
 
       case 'window_resized':
