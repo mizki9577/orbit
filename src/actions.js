@@ -52,7 +52,7 @@ export const mouseLeft = () => {
   })
 }
 
-export const wheelMoved = delta => {
+export const wheelMoved = (delta: number) => {
   const { zoomLevel } = store.getState()
   delta = delta > 0 ? 0.9
         : delta < 0 ? 1.1
@@ -63,7 +63,7 @@ export const wheelMoved = delta => {
   })
 }
 
-export const windowResized = (width, height) => {
+export const windowResized = (width:number, height: number) => {
   dispatcher.dispatch({
     type: 'window_resized',
     width, height,
