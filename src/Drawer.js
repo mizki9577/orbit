@@ -1,5 +1,7 @@
 /* @flow */
 
+import type { State } from './types'
+
 import React, { Component } from 'react'
 import { Container } from 'flux/utils'
 
