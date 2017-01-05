@@ -8,14 +8,10 @@ import { Container } from 'flux/utils'
 import store from './store'
 import { update, mouseMoved, mouseButtonPushed, mouseButtonReleased, windowResized } from './actions'
 
+import style from './App.css.js'
+
 class App extends Component {
   state: State
-
-  static style = {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-  }
 
   static getStores() {
     return [ store ]
@@ -60,7 +56,7 @@ class App extends Component {
   render() {
     const { windowWidth, windowHeight, mouseX, mouseY, isMouseButtonPushed, bodies } = this.state
     return (
-      <svg style={ App.style } width={ windowWidth } height={ windowHeight } viewBox={`${-windowWidth / 2} ${-windowHeight / 2} ${windowWidth} ${windowHeight}`}
+      <svg style={ style } width={ windowWidth } height={ windowHeight } viewBox={`${-windowWidth / 2} ${-windowHeight / 2} ${windowWidth} ${windowHeight}`}
            onMouseMove={ this.handleMouseMove.bind(this) } onMouseDown={ this.handleMouseDown.bind(this) } onMouseUp={ this.handleMouseUp.bind(this) }>
         {
           bodies.map(b => <circle key={ b.id } r={ b.radius } cx={ b.x } cy={ b.y } style={ b.style } />)
