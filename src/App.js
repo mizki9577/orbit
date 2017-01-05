@@ -14,7 +14,7 @@ class App extends Component {
   state: State
 
   static getStores() {
-    return [ store ]
+    return [store]
   }
 
   static calculateState() {
@@ -74,7 +74,7 @@ class App extends Component {
     const svgMouseY = mouseY === null ? null : top + mouseY / zoomLevel
 
     return (
-      <svg style={ style } width={ windowWidth } height={ windowHeight } viewBox={  `${left} ${top} ${width} ${height}` }
+      <svg style={ style } width={ windowWidth } height={ windowHeight } viewBox={ `${left} ${top} ${width} ${height}` }
            onMouseMove={ this.handleMouseMove.bind(this) } onMouseDown={ this.handleMouseDown.bind(this) } onMouseUp={ this.handleMouseUp.bind(this) } onMouseLeave={ this.handleMouseLeave.bind(this) } onWheel={ this.handleWheel.bind(this) }>
         {
           bodies.map(b => <circle key={ b.id } r={ b.radius } cx={ b.x } cy={ b.y } style={ b.style } />)
