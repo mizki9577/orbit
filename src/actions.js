@@ -52,7 +52,7 @@ export const mouseLeft = () => {
   })
 }
 
-export const windowResized = (width: number, height: number) => {
+export const windowResized = (width, height) => {
   dispatcher.dispatch({
     type: 'window_resized',
     width, height,
