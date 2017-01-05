@@ -6,3 +6,4 @@ public/bundle.js.map
 npm-debug.log
 
 *.swp
+Session.vim
