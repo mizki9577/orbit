@@ -7,17 +7,24 @@ export default {
   dest: 'public/bundle.js',
 
   plugins: [
-    nodeResolve(),
+    nodeResolve({
+      jsnext: true,
+    }),
+
     commonjs({
       namedExports: {
         'node_modules/react/react.js': [ 'Component' ],
       },
     }),
+
     babel({
       presets: [
         [
           'env', {
             modules: false,
+            targets: {
+              browsers: 'last 1 versions',
+            },
           },
         ],
         "react",
