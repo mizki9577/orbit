@@ -27,18 +27,20 @@ class Store extends ReduceStore {
         }
 
       case 'mouse_moved':
-        return {
+        const nextState = {
           ...state,
           mouseX: action.x,
-          mouseY: action.y
+          mouseY: action.y,
         }
 
-      case 'drawer_panned':
-        return {
-          ...state,
-          centerX: action.centerX,
-          centerY: action.centerY,
+        if (state.isMouseButtonPushed) {
+          Object.assign(nextState, {
+            centerX: state.centerX + (state.mouseX - nextState.mouseX) / state.zoomLevel,
+            centerY: state.centerY + (state.mouseY - nextState.mouseY) / state.zoomLevel,
+          })
         }
+
+        return nextState
 
       case 'mouse_button_pushed':
         return {
