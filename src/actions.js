@@ -38,8 +38,8 @@ export const mouseMoved = (x: number, y: number) => {
   if (isMouseButtonPushed) {
     dispatcher.dispatch({
       type: 'drawer_panned',
-      centerX: centerX + (x - prevX) / zoomLevel,
-      centerY: centerY + (y - prevY) / zoomLevel,
+      centerX: centerX - (x - prevX) / zoomLevel,
+      centerY: centerY - (y - prevY) / zoomLevel,
     })
   }
 }
