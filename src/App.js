@@ -13,7 +13,9 @@ class App extends Component {
     return [store]
   }
 
-  static calculateState() { }
+  static calculateState() {
+    return store.getState()
+  }
 
   componentWillMount() {
     this.handleResize()
@@ -34,7 +36,16 @@ class App extends Component {
   }
 
   render() {
-    return <Drawer />
+    return (
+      <div>
+        <table style={{ fontFamily: 'monospace', }}>
+          <tbody>
+          { Object.keys(this.state).map(k => k === 'bodies' ? null : <tr key={ k }><td>{ k }</td><td>{ this.state[k] }</td></tr>) }
+          </tbody>
+        </table>
+        <Drawer />
+      </div>
+    )
   }
 }
 
