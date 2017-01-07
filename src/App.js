@@ -1,5 +1,7 @@
 /* @flow */
 
+import type { State } from './types'
+
 import React, { Component } from 'react'
 import { Container } from 'flux/utils'
 
@@ -9,6 +11,8 @@ import * as actions from './actions'
 import Drawer from './Drawer'
 
 class App extends Component {
+  state: State
+
   static getStores() {
     return [store]
   }

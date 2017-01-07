@@ -11,7 +11,7 @@ const initialBodies = [{
   style: { fill: 'hsl(  0, 100%,  0%)' },
 }]
 
-for (const i = 1; i <= n; ++i) {
+for (let i = 1; i <= n; ++i) {
   initialBodies.push({
     id: i,
     mass: 100,
