@@ -63,7 +63,7 @@ class Store extends ReduceStore {
       case 'change_zoom_level':
         return {
           ...state,
-          zoomLevel: action.zoomLevel
+          zoomLevel: state.zoomLevel * action.coefficient
         }
 
       case 'window_resized':
