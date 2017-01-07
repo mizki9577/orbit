@@ -14,7 +14,7 @@ class Store extends ReduceStore {
       centerX: 0,
       centerY: 0,
       isMouseButtonPushed: false,
-      zoomLevel: 1,
+      scale: 1,
     }
   }
 
@@ -35,8 +35,8 @@ class Store extends ReduceStore {
 
         if (state.isMouseButtonPushed) {
           Object.assign(nextState, {
-            centerX: state.centerX + (state.mouseX - nextState.mouseX) / state.zoomLevel,
-            centerY: state.centerY + (state.mouseY - nextState.mouseY) / state.zoomLevel,
+            centerX: state.centerX + (state.mouseX - nextState.mouseX) / state.scale,
+            centerY: state.centerY + (state.mouseY - nextState.mouseY) / state.scale,
           })
         }
 
@@ -65,7 +65,7 @@ class Store extends ReduceStore {
       case 'change_zoom_level':
         return {
           ...state,
-          zoomLevel: state.zoomLevel * action.coefficient
+          scale: state.scale * action.coefficient
         }
 
       case 'window_resized':
