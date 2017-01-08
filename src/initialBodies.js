@@ -8,6 +8,7 @@ const initialBodies = [{
   radius: 20,
   x : 0, y : 0,
   vx: 0, vy: 0,
+  locus: [],
   style: { fill: 'hsl(  0, 100%,  0%)' },
 }]
 
@@ -20,6 +21,7 @@ for (let i = 1; i <= n; ++i) {
     y : 200 *  Math.cos(i * Math.PI / n * 2),
     vx: 5 * -Math.cos(i * Math.PI / n * 2),
     vy: 5 * -Math.sin(i * Math.PI / n * 2),
+    locus: [],
     style: { fill: `hsl(${360 / n * i}, 100%, 50%)` },
   })
 }

@@ -6,6 +6,7 @@ export type Body = {
   y: number,
   vx: number,
   vy: number,
+  locus: [number, number][],
   style: Object,
 }
 
