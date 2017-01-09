@@ -65,6 +65,7 @@ class Store extends ReduceStore {
         }
 
       case 'touch_started':
+      case 'touch_ended':
         return {
           ...state,
           touches: action.touches,
@@ -95,12 +96,6 @@ class Store extends ReduceStore {
 
         return nextState
       }
-
-      case 'touch_ended':
-        return {
-          ...state,
-          touches: action.touches,
-        }
 
       case 'change_zoom_level':
         return {

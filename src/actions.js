@@ -54,37 +54,25 @@ export const mouseLeft = () => {
   })
 }
 
-export const touchStarted = event => {
-  if (event.touches.length >= 2) return
+export const touchStarted = touches => {
+  if (touches.length >= 2) return
   dispatcher.dispatch({
     type: 'touch_started',
-    touches: Array.from(event.touches).map(t => ({
-      id: t.identifier,
-      x: t.clientX,
-      y: t.clientY,
-    })),
+    touches,
   })
 }
 
-export const touchMoved = event => {
+export const touchMoved = touches => {
   dispatcher.dispatch({
     type: 'touch_moved',
-    touches: Array.from(event.touches).map(t => ({
-      id: t.identifier,
-      x: t.clientX,
-      y: t.clientY,
-    })),
+    touches,
   })
 }
 
-export const touchEnded = event => {
+export const touchEnded = touches => {
   dispatcher.dispatch({
     type: 'touch_moved',
-    touches: Array.from(event.touches).map(t => ({
-      id: t.identifier,
-      x: t.clientX,
-      y: t.clientY,
-    })),
+    touches,
   })
 }
 
