@@ -9,6 +9,7 @@ import store from './store'
 import * as actions from './actions'
 
 import Drawer from './Drawer'
+import ObjectTable from './ObjectTable'
 
 class App extends Component {
   state: State
@@ -42,11 +43,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <table style={{ fontFamily: 'monospace', }}>
-          <tbody>
-          { Object.keys(this.state).map(k => k === 'bodies' ? null : <tr key={ k }><td>{ k }</td><td>{ this.state[k] }</td></tr>) }
-          </tbody>
-        </table>
+        <ObjectTable obj={ this.state } exclude={{ bodies: null }} />
         <Drawer />
       </div>
     )
