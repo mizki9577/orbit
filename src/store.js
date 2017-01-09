@@ -11,6 +11,7 @@ class Store extends ReduceStore {
       bodies: initialBodies,
       mouseX: null,
       mouseY: null,
+      touches: [],
       centerX: 0,
       centerY: 0,
       isMouseButtonPushed: false,
@@ -26,7 +27,7 @@ class Store extends ReduceStore {
           bodies: action.bodies
         }
 
-      case 'mouse_moved':
+      case 'mouse_moved': {
         const nextState = {
           ...state,
           mouseX: action.x,
@@ -41,6 +42,7 @@ class Store extends ReduceStore {
         }
 
         return nextState
+      }
 
       case 'mouse_button_pushed':
         return {
@@ -60,6 +62,34 @@ class Store extends ReduceStore {
           isMouseButtonPushed: false,
           mouseX: null,
           mouseY: null,
+        }
+
+      case 'touch_started':
+        return {
+          ...state,
+          touches: action.touches,
+        }
+
+      case 'touch_moved': {
+        const nextState = {
+          ...state,
+          touches: action.touches,
+        }
+
+        if (state.touches.length === 1 && nextState.touches.length === 1) {
+          Object.assign(nextState, {
+            centerX: state.centerX + (state.touches[0].x - nextState.touches[0].x) / state.scale,
+            centerY: state.centerY + (state.touches[0].y - nextState.touches[0].y) / state.scale,
+          })
+        }
+
+        return nextState
+      }
+
+      case 'touch_ended':
+        return {
+          ...state,
+          touches: action.touches,
         }
 
       case 'change_zoom_level':

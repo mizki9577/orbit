@@ -39,6 +39,18 @@ class Drawer extends Component {
     actions.mouseLeft()
   }
 
+  handleTouchStart(ev) {
+    actions.touchStarted(ev)
+  }
+
+  handleTouchMove(ev) {
+    actions.touchMoved(ev)
+  }
+
+  handleTouchEnd(ev) {
+    actions.touchEnded(ev)
+  }
+
   handleWheel(ev) {
     actions.wheelMoved(ev.deltaY)
   }
@@ -53,6 +65,9 @@ class Drawer extends Component {
         onMouseDown={ this.handleMouseDown.bind(this) }
         onMouseUp={ this.handleMouseUp.bind(this) }
         onMouseLeave={ this.handleMouseLeave.bind(this) }
+        onTouchStart={ this.handleTouchStart.bind(this) }
+        onTouchMove={ this.handleTouchMove.bind(this) }
+        onTouchEnd={ this.handleTouchEnd.bind(this) }
         onWheel={ this.handleWheel.bind(this) }
       >
         <g transform={`scale(${scale}) translate(${-centerX} ${-centerY})`}>
