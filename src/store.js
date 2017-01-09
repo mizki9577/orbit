@@ -14,7 +14,7 @@ class Store extends ReduceStore {
       touches: [],
       centerX: 0,
       centerY: 0,
-      isMouseButtonPushed: false,
+      mousePressed: false,
       scale: 1,
     }
   }
@@ -34,7 +34,7 @@ class Store extends ReduceStore {
           mouseY: action.y,
         }
 
-        if (state.isMouseButtonPushed) {
+        if (state.mousePressed) {
           Object.assign(nextState, {
             centerX: state.centerX + (state.mouseX - nextState.mouseX) / state.scale,
             centerY: state.centerY + (state.mouseY - nextState.mouseY) / state.scale,
@@ -47,19 +47,19 @@ class Store extends ReduceStore {
       case 'mouse_button_pushed':
         return {
           ...state,
-          isMouseButtonPushed: true,
+          mousePressed: true,
         }
 
       case 'mouse_button_released':
         return {
           ...state,
-          isMouseButtonPushed: false,
+          mousePressed: false,
         }
 
       case 'mouse_left':
         return {
           ...state,
-          isMouseButtonPushed: false,
+          mousePressed: false,
           mouseX: null,
           mouseY: null,
         }

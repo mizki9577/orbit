@@ -15,7 +15,7 @@ export type State = {
   windowHeight: number,
   mouseX: ?number,
   mouseY: ?number,
-  isMouseButtonPushed: bool,
+  mousePressed: bool,
   bodies: Body[],
 }
 
