@@ -81,6 +81,16 @@ class Store extends ReduceStore {
             centerX: state.centerX + (state.touches[0].x - nextState.touches[0].x) / state.scale,
             centerY: state.centerY + (state.touches[0].y - nextState.touches[0].y) / state.scale,
           })
+        } else if (state.touches.length === 2 && nextState.touches.length === 2) {
+          Object.assign(nextState, {
+            scale: state.scale * (
+              ((nextState.touches[0].x - nextState.touches[1].x) ** 2 +
+               (nextState.touches[0].y - nextState.touches[1].y) ** 2)
+              /
+              ((state.touches[0].x - state.touches[1].x) ** 2 +
+               (state.touches[0].y - state.touches[1].y) ** 2)
+            ) ** 0.5
+          })
         }
 
         return nextState
