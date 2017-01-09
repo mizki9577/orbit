@@ -43,7 +43,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <ObjectTable obj={ this.state } exclude={{ bodies: null }} />
+        { process.env.NODE_ENV === 'production' ? null : <ObjectTable obj={ this.state } exclude={{ bodies: null }} /> }
         <Drawer />
       </div>
     )
