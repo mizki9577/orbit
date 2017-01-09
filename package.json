@@ -14,7 +14,8 @@
   "dependencies": {
     "flux": "^3.1.0",
     "react": "^15.4.1",
-    "react-dom": "^15.4.1"
+    "react-dom": "^15.4.1",
+    "screenfull": "^3.0.2"
   },
   "devDependencies": {
     "babel-plugin-external-helpers": "^6.18.0",

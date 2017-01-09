@@ -4,6 +4,7 @@ import type { State } from './types'
 
 import React, { Component } from 'react'
 import { Container } from 'flux/utils'
+import screenfull from 'screenfull'
 
 import store from './store'
 import * as actions from './actions'
@@ -19,6 +20,12 @@ class Drawer extends Component {
 
   static calculateState() {
     return store.getState()
+  }
+
+  componentDidMount() {
+    document.querySelector('svg').addEventListener('touchend', () => {
+      screenfull.request()
+    }, { once: true })
   }
 
   handleMouseMove(ev) {
