@@ -11,7 +11,13 @@ const ObjectTable = ({ obj, exclude={}, style={ fontFamily: 'monospace' } }: { o
           v === null ? null :
           <tr key={ k }>
             <th>{ k }</th>
-            <td>{ typeof v === 'object' ? <ObjectTable obj={ v } exclude={ exclude[k] } /> : String(v) }</td>
+            <td>
+            {
+              typeof v === 'object' ? <ObjectTable obj={ v } exclude={ exclude[k] } />
+              : typeof v === 'number' && !Number.isInteger(v) ? v.toPrecision(4)
+              : String(v)
+            }
+            </td>
           </tr>
         ))
       }
