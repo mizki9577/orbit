@@ -2,15 +2,15 @@
 
 import React from 'react'
 
-const ObjectTable = ({ obj, exclude={}, style={ fontFamily: 'monospace' } }: { obj: Object, exclude: Object, style?: Object }) => (
-  <table style={ style }>
+const ObjectTable = ({ obj, exclude={} }: { obj: Object, exclude: Object }) => (
+  <table style={{ fontFamily: 'monospace' }}>
     <tbody>
       {
         Object.entries(obj).map(([k, v]) => (
           exclude[k] === null ? null :
           v === null ? null :
           <tr key={ k }>
-            <th>{ k }</th>
+            <th style={{ textAlign: 'right', paddingRight: '1em' }}>{ k }</th>
             <td>
             {
               typeof v === 'object' ? <ObjectTable obj={ v } exclude={ exclude[k] } />
