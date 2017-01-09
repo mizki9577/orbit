@@ -7,7 +7,7 @@
   "author": "Mizki SUZUMORI <mizki9577@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "rollup -c rollup.config.dev.js -w -m",
+    "start": "rollup -c rollup.config.dev.js -w -m inline",
     "build": "rollup -c rollup.config.prod.js",
     "deploy": "npm build&&gh-pages -d public"
   },
