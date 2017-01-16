@@ -8,12 +8,12 @@ const ObjectTable = ({ obj, exclude={} }: { obj: Object, exclude: Object }) => (
       {
         Object.entries(obj).map(([k, v]) => (
           exclude[k] === null ? null :
-          v === null ? null :
           <tr key={ k }>
             <th style={{ textAlign: 'right', paddingRight: '1em' }}>{ k }</th>
             <td>
             {
-              typeof v === 'object' ? <ObjectTable obj={ v } exclude={ exclude[k] } />
+              v === null ? 'null'
+              : typeof v === 'object' ? <ObjectTable obj={ v } exclude={ exclude[k] } />
               : typeof v === 'number' && !Number.isInteger(v) ? v.toPrecision(4)
               : String(v)
             }
