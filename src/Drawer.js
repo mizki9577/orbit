@@ -62,6 +62,11 @@ class Drawer extends Component {
     actions.wheelMoved(ev.deltaY)
   }
 
+  handleBodyClicked(ev, id) {
+    ev.stopPropagation()
+    actions.bodyClicked(id)
+  }
+
   render() {
     const { windowWidth, windowHeight, scale, centerX, centerY, bodies } = this.state
 
@@ -78,7 +83,10 @@ class Drawer extends Component {
         onWheel={ this.handleWheel.bind(this) }
       >
         <g transform={`scale(${scale}) translate(${-centerX} ${-centerY})`}>
-        { bodies.map(b => <circle key={ b.id } r={ b.radius } cx={ b.x } cy={ b.y } style={ b.style } />) }
+        { bodies.map(b => (
+          <circle key={ b.id } r={ b.radius } cx={ b.x } cy={ b.y } style={ b.style }
+                  onMouseDown={ ev => this.handleBodyClicked(ev, b.id) } />
+        )) }
         </g>
       </svg>
     )

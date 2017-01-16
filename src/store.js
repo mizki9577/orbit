@@ -15,6 +15,7 @@ class Store extends ReduceStore {
       centerX: 0,
       centerY: 0,
       mousePressed: false,
+      selectedBody: null,
       scale: 1,
     }
   }
@@ -48,6 +49,7 @@ class Store extends ReduceStore {
         return {
           ...state,
           mousePressed: true,
+          selectedBody: null,
         }
 
       case 'mouse_button_released':
@@ -101,6 +103,12 @@ class Store extends ReduceStore {
         return {
           ...state,
           scale: state.scale * action.coefficient
+        }
+
+      case 'select_body':
+        return {
+          ...state,
+          selectedBody: action.id,
         }
 
       case 'window_resized':

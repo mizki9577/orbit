@@ -86,6 +86,13 @@ export const wheelMoved = (delta: number) => {
   })
 }
 
+export const bodyClicked = id => {
+  dispatcher.dispatch({
+    type: 'select_body',
+    id,
+  })
+}
+
 export const windowResized = (width:number, height: number) => {
   dispatcher.dispatch({
     type: 'window_resized',
