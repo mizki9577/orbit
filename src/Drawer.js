@@ -68,7 +68,7 @@ class Drawer extends Component {
   }
 
   render() {
-    const { windowWidth, windowHeight, scale, centerX, centerY, bodies } = this.state
+    const { windowWidth, windowHeight, scale, centerX, centerY, selectedBody, bodies } = this.state
 
     return (
       <svg

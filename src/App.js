@@ -9,6 +9,7 @@ import store from './store'
 import * as actions from './actions'
 
 import Drawer from './Drawer'
+import BodyInformationWindow from './BodyInformationWindow'
 import ObjectTable from './ObjectTable'
 
 class App extends Component {
@@ -44,6 +45,7 @@ class App extends Component {
     return (
       <div>
         { process.env.NODE_ENV === 'production' ? null : <ObjectTable obj={ this.state } exclude={{ bodies: null }} /> }
+        <BodyInformationWindow />
         <Drawer />
       </div>
     )
