@@ -42,7 +42,7 @@ class BodyInformationWindow extends Component {
             <tr key={ 'biw' + k }>
               <th style={ style.th }>{ k }</th>
               <td style={ style.td }>
-                <input style={ style.input } type={ t } value={ v } readonly />
+                <input style={ style.input } type={ t } value={ v } readOnly />
               </td>
             </tr>
           )) }
