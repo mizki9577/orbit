@@ -108,4 +108,10 @@ export const deleteButtonClicked = id => {
   })
 }
 
+export const closeButtonClicked = () => {
+  dispatcher.dispatch({
+    type: 'close_information_window',
+  })
+}
+
 // vim: set ts=2 sw=2 et:

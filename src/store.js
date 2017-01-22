@@ -123,6 +123,12 @@ class Store extends ReduceStore {
           selectedBody: null,
           bodies: state.bodies.filter(body => body.id !== action.id),
         }
+
+      case 'close_information_window':
+        return {
+          ...state,
+          selectedBody: null,
+        }
     }
   }
 }

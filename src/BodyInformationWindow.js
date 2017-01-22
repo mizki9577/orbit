@@ -25,6 +25,10 @@ class BodyInformationWindow extends Component {
     actions.deleteButtonClicked(id)
   }
 
+  handleCloseButtonClick() {
+    actions.closeButtonClicked()
+  }
+
   render() {
     const { bodies, selectedBody, scale } = this.state
 
@@ -54,6 +58,7 @@ class BodyInformationWindow extends Component {
           <tr>
             <td style={ style.td } colSpan={ 2 }>
               <button onClick={ ev => this.handleDeleteButtonClick(selectedBody) }>Delete</button>
+              <button onClick={ ev => this.handleCloseButtonClick(selectedBody) }>Close</button>
             </td>
           </tr>
         </tbody>
