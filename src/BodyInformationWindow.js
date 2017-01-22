@@ -47,7 +47,7 @@ class BodyInformationWindow extends Component {
             </tr>
           )) }
           <tr>
-            <td colSpan={ 2 }>
+            <td style={ style.td } colSpan={ 2 }>
               <button>Delete</button>
             </td>
           </tr>
