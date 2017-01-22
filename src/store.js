@@ -17,16 +17,27 @@ class Store extends ReduceStore {
       mousePressed: false,
       selectedBody: null,
       scale: 1,
+      followingBody: null,
     }
   }
 
   reduce(state, action) {
     switch (action.type) {
-      case 'update':
-        return {
+      case 'update': {
+        const nextState = {
           ...state,
           bodies: action.bodies
         }
+
+        if (state.followingBody !== null) {
+          Object.assign(nextState, {
+            centerX: state.bodies[state.followingBody].x,
+            centerY: state.bodies[state.followingBody].y,
+          })
+        }
+
+        return nextState
+      }
 
       case 'mouse_moved': {
         const nextState = {
@@ -35,7 +46,7 @@ class Store extends ReduceStore {
           mouseY: action.y,
         }
 
-        if (state.mousePressed) {
+        if (state.mousePressed && state.followingBody === null) {
           Object.assign(nextState, {
             centerX: state.centerX + (state.mouseX - nextState.mouseX) / state.scale,
             centerY: state.centerY + (state.mouseY - nextState.mouseY) / state.scale,
@@ -128,6 +139,18 @@ class Store extends ReduceStore {
         return {
           ...state,
           selectedBody: null,
+        }
+
+      case 'change_follow_target':
+        return {
+          ...state,
+          followingBody: action.id,
+        }
+
+      case 'stop_following':
+        return {
+          ...state,
+          followingBody: null,
         }
     }
   }

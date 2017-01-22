@@ -114,4 +114,17 @@ export const closeButtonClicked = () => {
   })
 }
 
+export const followTargetChanged = id => {
+  dispatcher.dispatch({
+    type: 'change_follow_target',
+    id,
+  })
+}
+
+export const stopFollowing = () => {
+  dispatcher.dispatch({
+    type: 'stop_following',
+  })
+}
+
 // vim: set ts=2 sw=2 et:

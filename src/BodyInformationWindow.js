@@ -29,8 +29,16 @@ class BodyInformationWindow extends Component {
     actions.closeButtonClicked()
   }
 
+  handleFollowCheckboxChange(id, ev) {
+    if (ev.target.checked) {
+      actions.followTargetChanged(id)
+    } else {
+      actions.stopFollowing()
+    }
+  }
+
   render() {
-    const { bodies, selectedBody, scale } = this.state
+    const { bodies, selectedBody, followingBody, scale } = this.state
 
     if (selectedBody === null) return null
 
@@ -57,8 +65,12 @@ class BodyInformationWindow extends Component {
           )) }
           <tr>
             <td style={ style.td } colSpan={ 2 }>
-              <button onClick={ ev => this.handleDeleteButtonClick(selectedBody) }>Delete</button>
-              <button onClick={ ev => this.handleCloseButtonClick(selectedBody) }>Close</button>
+              <label>
+                <input type="checkbox" checked={ followingBody === selectedBody } onChange={ this.handleFollowCheckboxChange.bind(this, selectedBody) } />
+                Follow
+              </label>
+              <button onClick={ this.handleDeleteButtonClick.bind(this, selectedBody) }>Delete</button>
+              <button onClick={ this.handleCloseButtonClick.bind(this) }>Close</button>
             </td>
           </tr>
         </tbody>
