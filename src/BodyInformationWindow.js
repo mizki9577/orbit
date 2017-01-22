@@ -38,7 +38,7 @@ class BodyInformationWindow extends Component {
   }
 
   render() {
-    const { bodies, selectedBody, followingBody, scale } = this.state
+    const { bodies, selectedBody, followingBody } = this.state
 
     if (selectedBody === null) return null
 

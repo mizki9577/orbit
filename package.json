@@ -8,6 +8,7 @@
   "license": "MIT",
   "scripts": {
     "start": "rollup -c rollup.config.dev.js -w -m inline",
+    "check": "eslint ./src/&&flow",
     "build": "rollup -c rollup.config.prod.js",
     "deploy": "npm run build&&gh-pages -d public"
   },
@@ -18,10 +19,13 @@
     "screenfull": "^3.0.2"
   },
   "devDependencies": {
+    "babel-eslint": "^7.1.1",
     "babel-plugin-external-helpers": "^6.18.0",
     "babel-preset-env": "^1.1.8",
     "babel-preset-react": "^6.16.0",
     "babel-preset-stage-0": "^6.16.0",
+    "eslint": "^3.14.0",
+    "eslint-plugin-react": "^6.9.0",
     "gh-pages": "^0.12.0",
     "rollup": "^0.41.4",
     "rollup-plugin-babel": "^2.6.1",

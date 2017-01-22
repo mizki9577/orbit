@@ -42,7 +42,7 @@ class Drawer extends Component {
     actions.mouseButtonReleased()
   }
 
-  handleMouseLeave(ev) {
+  handleMouseLeave() {
     actions.mouseLeft()
   }
 
@@ -67,7 +67,7 @@ class Drawer extends Component {
   }
 
   render() {
-    const { windowWidth, windowHeight, scale, centerX, centerY, selectedBody, bodies } = this.state
+    const { windowWidth, windowHeight, scale, centerX, centerY, bodies } = this.state
 
     return (
       <svg

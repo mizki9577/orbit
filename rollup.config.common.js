@@ -28,8 +28,8 @@ export default {
             },
           },
         ],
-        "react",
-        "stage-0",
+        'react',
+        'stage-0',
       ],
       plugins: [
         'external-helpers',
