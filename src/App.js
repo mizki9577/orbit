@@ -45,8 +45,8 @@ class App extends Component {
     return (
       <div>
         <ObjectTable obj={ this.state } exclude={{ bodies: null }} show={ process.env.NODE_ENV !== 'production' } />
-        <BodyInformationWindow />
         <Drawer />
+        <BodyInformationWindow />
       </div>
     )
   }
