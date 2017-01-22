@@ -23,7 +23,7 @@ class Drawer extends Component {
   }
 
   componentDidMount() {
-    document.querySelector('svg').addEventListener('touchend', () => {
+    document.addEventListener('touchend', () => {
       screenfull.request()
     }, { once: true })
   }

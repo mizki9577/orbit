@@ -87,7 +87,7 @@ export const wheelMoved = (delta: number) => {
   })
 }
 
-export const bodyClicked = id => {
+export const bodyClicked = (id: number) => {
   dispatcher.dispatch({
     type: 'select_body',
     id,
@@ -101,7 +101,7 @@ export const windowResized = (width:number, height: number) => {
   })
 }
 
-export const deleteButtonClicked = id => {
+export const deleteButtonClicked = (id: number) => {
   dispatcher.dispatch({
     type: 'delete_body',
     id,
@@ -114,7 +114,7 @@ export const closeButtonClicked = () => {
   })
 }
 
-export const followTargetChanged = id => {
+export const followTargetChanged = (id: number) => {
   dispatcher.dispatch({
     type: 'change_follow_target',
     id,
