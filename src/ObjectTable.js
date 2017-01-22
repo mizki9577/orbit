@@ -2,7 +2,8 @@
 
 import React from 'react'
 
-const ObjectTable = ({ obj, exclude={} }: { obj: Object, exclude: Object }) => (
+const ObjectTable = ({ obj, exclude={}, show=true }: { obj: Object, exclude?: Object, show?: boolean }) => (
+  !show ? null:
   <table style={{ fontFamily: 'monospace' }}>
     <tbody>
       {
