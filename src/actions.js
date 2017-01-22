@@ -101,4 +101,11 @@ export const windowResized = (width:number, height: number) => {
   })
 }
 
+export const deleteButtonClicked = id => {
+  dispatcher.dispatch({
+    type: 'delete_body',
+    id,
+  })
+}
+
 // vim: set ts=2 sw=2 et:

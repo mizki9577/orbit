@@ -6,6 +6,7 @@ import React, { Component } from 'react'
 import { Container } from 'flux/utils'
 
 import store from './store'
+import * as actions from './actions'
 
 import * as style from './BodyInformationWindow.css.js'
 
@@ -18,6 +19,10 @@ class BodyInformationWindow extends Component {
 
   static calculateState() {
     return store.getState()
+  }
+
+  handleDeleteButtonClick(id) {
+    actions.deleteButtonClicked(id)
   }
 
   render() {
@@ -48,7 +53,7 @@ class BodyInformationWindow extends Component {
           )) }
           <tr>
             <td style={ style.td } colSpan={ 2 }>
-              <button>Delete</button>
+              <button onClick={ ev => this.handleDeleteButtonClick(selectedBody) }>Delete</button>
             </td>
           </tr>
         </tbody>

@@ -49,7 +49,6 @@ class Store extends ReduceStore {
         return {
           ...state,
           mousePressed: true,
-          selectedBody: null,
         }
 
       case 'mouse_button_released':
@@ -116,6 +115,13 @@ class Store extends ReduceStore {
           ...state,
           windowWidth: action.width,
           windowHeight: action.height,
+        }
+
+      case 'delete_body':
+        return {
+          ...state,
+          selectedBody: null,
+          bodies: state.bodies.filter(body => body.id !== action.id),
         }
     }
   }
