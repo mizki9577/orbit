@@ -62,8 +62,7 @@ class Drawer extends Component {
     actions.wheelMoved(ev.deltaY)
   }
 
-  handleBodyClicked(ev, id) {
-    ev.stopPropagation()
+  handleBodyClicked(id) {
     actions.bodyClicked(id)
   }
 
@@ -85,7 +84,7 @@ class Drawer extends Component {
         <g transform={`scale(${scale}) translate(${-centerX} ${-centerY})`}>
         { bodies.map(b => (
           <circle key={ b.id } r={ b.radius } cx={ b.x } cy={ b.y } style={ b.style }
-                  onMouseDown={ ev => this.handleBodyClicked(ev, b.id) } />
+                  onMouseDown={ () => this.handleBodyClicked(b.id) } />
         )) }
         </g>
       </svg>
