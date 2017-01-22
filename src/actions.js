@@ -23,7 +23,8 @@ export const update = () => {
       const x = self.x + vx
       const y = self.y + vy
 
-      const locus = [[self.x, self.y], ...self.locus]
+      //const locus = [[self.x, self.y], ...self.locus]
+      const locus = []
       return { ...self, x, y, vx, vy, locus }
     }),
   })
