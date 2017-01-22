@@ -5,6 +5,7 @@ import nodeResolve from 'rollup-plugin-node-resolve'
 export default {
   entry: 'src/index.js',
   dest: 'public/bundle.js',
+  format: 'es',
 
   plugins: [
     nodeResolve({
