@@ -38,11 +38,11 @@ class BodyInformationWindow extends Component {
   }
 
   render() {
-    const { bodies, selectedBody, followingBody } = this.state
+    const { bodies, selectedBodyId, followingBodyId } = this.state
 
-    if (selectedBody == null) return null
+    if (selectedBodyId == null) return null
 
-    const body = bodies[selectedBody]
+    const body = bodies[selectedBodyId]
     const entries = [
       ['Mass'      , 'number', body.mass],
       ['Radius'    , 'number', body.radius],
@@ -53,28 +53,26 @@ class BodyInformationWindow extends Component {
     ]
 
     return (
-      <table style={ style.table }>
-        <tbody>
-          { entries.map(([k, t, v]) => (
-            <tr key={ 'biw' + k }>
-              <th style={ style.th }>{ k }</th>
-              <td style={ style.td }>
-                <input style={ style.input } type={ t } value={ v } readOnly />
-              </td>
-            </tr>
-          )) }
-          <tr>
-            <td style={ style.td } colSpan={ 2 }>
-              <label>
-                <input type="checkbox" checked={ followingBody === selectedBody } onChange={ this.handleFollowCheckboxChange.bind(this, selectedBody) } />
-                Follow
-              </label>
-              <button onClick={ this.handleDeleteButtonClick.bind(this, selectedBody) }>Delete</button>
-              <button onClick={ this.handleCloseButtonClick.bind(this) }>Close</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <div style={ style.div }>
+        <table style={ style.table }>
+          <tbody>
+            { entries.map(([k, t, v]) => (
+              <tr key={ 'biw' + k }>
+                <th style={ style.th }>{ k }</th>
+                <td style={ style.td }>
+                  <input style={ style.input } type={ t } value={ v } readOnly />
+                </td>
+              </tr>
+            )) }
+          </tbody>
+        </table>
+        <label>
+          <input type="checkbox" checked={ followingBodyId === selectedBodyId } onChange={ this.handleFollowCheckboxChange.bind(this, selectedBodyId) } />
+          Follow
+        </label>
+        <button onClick={ this.handleDeleteButtonClick.bind(this, selectedBodyId) }>Delete</button>
+        <button onClick={ this.handleCloseButtonClick.bind(this) }>Close</button>
+      </div>
     )
   }
 }

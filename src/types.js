@@ -20,17 +20,17 @@ export type Touch = {|
 
 export type State = {|
   bodies: Body[],
-  centerX: number,
-  centerY: number,
-  followingBody: ?number,
-  mousePressed: bool,
-  mouseX: ?number,
-  mouseY: ?number,
-  scale: number,
-  selectedBody: ?number,
   touches: Touch[],
   windowHeight: number,
   windowWidth: number,
+  centerX: number,
+  centerY: number,
+  mouseX: ?number,
+  mouseY: ?number,
+  mousePressed: bool,
+  scale: number,
+  followingBodyId: ?number,
+  selectedBodyId: ?number,
 |}
 
 // vim: set ts=2 sw=2 et:

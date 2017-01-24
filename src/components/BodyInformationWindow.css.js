@@ -1,16 +1,20 @@
 /* @flow */
 
-export const table = {
-  borderCollapse: 'collapse',
+export const div = {
   position: 'absolute',
   bottom: 0,
   right: 0,
   fontFamily: 'monospace',
+  background: 'white',
+}
+
+export const table = {
+  borderCollapse: 'collapse',
 }
 
 export const th = {
   border: 'solid thin black',
-  textAlign: 'left',
+  textAlign: 'right',
 }
 
 export const td = {

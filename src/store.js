@@ -19,9 +19,9 @@ class Store extends ReduceStore {
       centerX: 0,
       centerY: 0,
       mousePressed: false,
-      selectedBody: null,
+      selectedBodyId: null,
       scale: 1,
-      followingBody: null,
+      followingBodyId: null,
     }
   }
 
@@ -33,10 +33,10 @@ class Store extends ReduceStore {
           bodies: action.bodies
         }
 
-        if (state.followingBody !== null) {
+        if (state.followingBodyId !== null) {
           Object.assign(nextState, {
-            centerX: state.bodies[state.followingBody].x,
-            centerY: state.bodies[state.followingBody].y,
+            centerX: state.bodies[state.followingBodyId].x,
+            centerY: state.bodies[state.followingBodyId].y,
           })
         }
 
@@ -50,7 +50,7 @@ class Store extends ReduceStore {
           mouseY: action.y,
         }
 
-        if (state.mousePressed && state.followingBody === null) {
+        if (state.mousePressed && state.followingBodyId === null) {
           Object.assign(nextState, {
             centerX: state.centerX + (state.mouseX - nextState.mouseX) / state.scale,
             centerY: state.centerY + (state.mouseY - nextState.mouseY) / state.scale,
@@ -122,7 +122,7 @@ class Store extends ReduceStore {
       case 'select_body':
         return {
           ...state,
-          selectedBody: action.id,
+          selectedBodyId: action.id,
         }
 
       case 'window_resized':
@@ -135,26 +135,26 @@ class Store extends ReduceStore {
       case 'delete_body':
         return {
           ...state,
-          selectedBody: null,
+          selectedBodyId: null,
           bodies: state.bodies.filter(body => body.id !== action.id),
         }
 
       case 'close_information_window':
         return {
           ...state,
-          selectedBody: null,
+          selectedBodyId: null,
         }
 
       case 'change_follow_target':
         return {
           ...state,
-          followingBody: action.id,
+          followingBodyId: action.id,
         }
 
       case 'stop_following':
         return {
           ...state,
-          followingBody: null,
+          followingBodyId: null,
         }
     }
   }
