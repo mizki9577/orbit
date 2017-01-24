@@ -1,12 +1,12 @@
 /* @flow */
 
-import type { State } from './types'
+import type { State } from '../types'
 
 import React, { Component } from 'react'
 import { Container } from 'flux/utils'
 
-import store from './store'
-import * as actions from './actions'
+import store from '../store'
+import * as actions from '../actions'
 
 import Drawer from './Drawer'
 import BodyInformationWindow from './BodyInformationWindow'
