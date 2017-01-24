@@ -2,10 +2,11 @@
   "name": "orbit",
   "version": "1.0.0",
   "description": "Orbital simulator written in JavaScript",
-  "main": "index.js",
-  "repository": "https://github.com/mizki9577/orbit",
-  "author": "Mizki SUZUMORI <mizki9577@gmail.com>",
+  "homepage": "https://mizki9577.github.io/orbit",
+  "bugs": "https://github.com/mizki9577/orbit/issues",
   "license": "BSD-2-Clause",
+  "author": "Mizki SUZUMORI <mizki9577@gmail.com>",
+  "repository": "https://github.com/mizki9577/orbit",
   "scripts": {
     "start": "rollup -c rollup.config.dev.js -w -m inline",
     "check": "eslint ./src/&&flow",
@@ -35,5 +36,6 @@
     "rollup-plugin-serve": "^0.1.0",
     "rollup-plugin-uglify": "^1.0.1",
     "rollup-watch": "^3.2.2"
-  }
+  },
+  "private": true
 }
