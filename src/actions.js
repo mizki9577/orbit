@@ -1,5 +1,7 @@
 /* @flow */
 
+import type { Touch } from './types'
+
 import store from './store'
 import dispatcher from './dispatcher'
 
@@ -55,7 +57,7 @@ export const mouseLeft = () => {
   })
 }
 
-export const touchStarted = (touches: { id: number, x: number, y: number }[]) => {
+export const touchStarted = (touches: Touch[]) => {
   if (touches.length >= 2) return
   dispatcher.dispatch({
     type: 'touch_started',
@@ -63,14 +65,14 @@ export const touchStarted = (touches: { id: number, x: number, y: number }[]) =>
   })
 }
 
-export const touchMoved = (touches: { id: number, x: number, y: number }[]) => {
+export const touchMoved = (touches: Touch[]) => {
   dispatcher.dispatch({
     type: 'touch_moved',
     touches,
   })
 }
 
-export const touchEnded = (touches: { id: number, x: number, y: number }[]) => {
+export const touchEnded = (touches: Touch[]) => {
   dispatcher.dispatch({
     type: 'touch_moved',
     touches,

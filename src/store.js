@@ -1,13 +1,17 @@
 /* @flow */
 
+import type { State } from './types'
+
 import { ReduceStore } from 'flux/utils'
 import dispatcher from './dispatcher'
 
 import initialBodies from './initialBodies'
 
 class Store extends ReduceStore {
-  getInitialState() {
+  getInitialState(): State {
     return {
+      windowWidth: window.innerWidth,
+      windowHeight: window.innerHeight,
       bodies: initialBodies,
       mouseX: null,
       mouseY: null,

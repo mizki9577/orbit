@@ -21,7 +21,7 @@ class BodyInformationWindow extends Component {
     return store.getState()
   }
 
-  handleDeleteButtonClick(id) {
+  handleDeleteButtonClick(id: number) {
     actions.deleteButtonClicked(id)
   }
 
@@ -29,7 +29,7 @@ class BodyInformationWindow extends Component {
     actions.closeButtonClicked()
   }
 
-  handleFollowCheckboxChange(id, ev) {
+  handleFollowCheckboxChange(id: number, ev) {
     if (ev.target.checked) {
       actions.followTargetChanged(id)
     } else {
@@ -40,7 +40,7 @@ class BodyInformationWindow extends Component {
   render() {
     const { bodies, selectedBody, followingBody } = this.state
 
-    if (selectedBody === null) return null
+    if (selectedBody == null) return null
 
     const body = bodies[selectedBody]
     const entries = [

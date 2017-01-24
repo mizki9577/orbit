@@ -1,8 +1,10 @@
 /* @flow */
 
+import type { Body } from './types'
+
 const n = 8
 
-const initialBodies = [{
+const initialBodies: Body[] = [{
   id: 0,
   mass: 10000,
   radius: 20,

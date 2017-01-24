@@ -24,7 +24,6 @@ class App extends Component {
   }
 
   componentWillMount() {
-    this.handleResize()
     window.addEventListener('resize', this.handleResize.bind(this))
   }
 

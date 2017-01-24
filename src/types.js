@@ -1,22 +1,36 @@
-export type Body = {
+/* @flow */
+
+export type Body = {|
   id: number,
+  locus: [number, number][],
   mass: number,
   radius: number,
-  x: number,
-  y: number,
+  style: Object,
   vx: number,
   vy: number,
-  locus: [number, number][],
-  style: Object,
-}
+  x: number,
+  y: number,
+|}
 
-export type State = {
-  windowWidth: number,
-  windowHeight: number,
+export type Touch = {|
+  id: number,
+  x: number,
+  y: number,
+|}
+
+export type State = {|
+  bodies: Body[],
+  centerX: number,
+  centerY: number,
+  followingBody: ?number,
+  mousePressed: bool,
   mouseX: ?number,
   mouseY: ?number,
-  mousePressed: bool,
-  bodies: Body[],
-}
+  scale: number,
+  selectedBody: ?number,
+  touches: Touch[],
+  windowHeight: number,
+  windowWidth: number,
+|}
 
 // vim: set ts=2 sw=2 et:
