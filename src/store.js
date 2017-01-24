@@ -23,6 +23,7 @@ class Store extends ReduceStore {
       scale: 1,
       followingBodyId: null,
       loop: 0,
+      isRunning: true,
     }
   }
 
@@ -159,6 +160,12 @@ class Store extends ReduceStore {
         return {
           ...state,
           followingBodyId: null,
+        }
+
+      case 'toggle_run_pause':
+        return {
+          ...state,
+          isRunning: !state.isRunning,
         }
     }
   }

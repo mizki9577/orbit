@@ -6,7 +6,9 @@ import store from './store'
 import dispatcher from './dispatcher'
 
 export const update = () => {
-  const { bodies } = store.getState()
+  const { bodies, isRunning } = store.getState()
+  if (!isRunning) return
+
   dispatcher.dispatch({
     type: 'update',
     bodies: bodies.map(self => {
@@ -126,6 +128,12 @@ export const followTargetChanged = (id: number) => {
 export const stopFollowing = () => {
   dispatcher.dispatch({
     type: 'stop_following',
+  })
+}
+
+export const toggleRunPause = () => {
+  dispatcher.dispatch({
+    type: 'toggle_run_pause',
   })
 }
 

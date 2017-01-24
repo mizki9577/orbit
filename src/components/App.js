@@ -9,6 +9,7 @@ import store from '../store'
 import * as actions from '../actions'
 
 import Drawer from './Drawer'
+import ControllWindow from './ControllWindow'
 import BodyInformationWindow from './BodyInformationWindow'
 import ObjectTable from './ObjectTable'
 
@@ -46,6 +47,7 @@ class App extends Component {
         <ObjectTable obj={ this.state } exclude={{ bodies: null }} show={ process.env.NODE_ENV !== 'production' } />
         <Drawer />
         <BodyInformationWindow />
+        <ControllWindow />
       </div>
     )
   }
