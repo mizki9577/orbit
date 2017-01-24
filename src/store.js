@@ -136,6 +136,7 @@ class Store extends ReduceStore {
         return {
           ...state,
           selectedBodyId: null,
+          followingBodyId: state.selectedBodyId === state.followingBodyId ? null : state.followingBodyId,
           bodies: state.bodies.filter(body => body.id !== action.id),
         }
 

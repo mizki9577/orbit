@@ -42,7 +42,7 @@ class BodyInformationWindow extends Component {
 
     if (selectedBodyId == null) return null
 
-    const body = bodies[selectedBodyId]
+    const body = bodies.filter(b => b.id === selectedBodyId)[0]
     const entries = [
       ['Mass'      , 'number', body.mass],
       ['Radius'    , 'number', body.radius],
