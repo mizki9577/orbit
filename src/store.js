@@ -36,7 +36,7 @@ class Store extends ReduceStore {
         }
 
         if (state.followingBodyId !== null) {
-          const followingBody = state.bodies.filter(b => b.id === state.followingBodyId)[0]
+          const followingBody = state.bodies.find(b => b.id === state.followingBodyId)
           Object.assign(nextState, {
             centerX: followingBody.x,
             centerY: followingBody.y,
