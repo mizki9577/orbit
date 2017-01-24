@@ -31,6 +31,7 @@ export type State = {|
   scale: number,
   followingBodyId: ?number,
   selectedBodyId: ?number,
+  loop: number,
 |}
 
 // vim: set ts=2 sw=2 et:

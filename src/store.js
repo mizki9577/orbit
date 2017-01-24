@@ -22,6 +22,7 @@ class Store extends ReduceStore {
       selectedBodyId: null,
       scale: 1,
       followingBodyId: null,
+      loop: 0,
     }
   }
 
@@ -30,7 +31,8 @@ class Store extends ReduceStore {
       case 'update': {
         const nextState = {
           ...state,
-          bodies: action.bodies
+          bodies: action.bodies,
+          loop: state.loop + 1,
         }
 
         if (state.followingBodyId !== null) {
