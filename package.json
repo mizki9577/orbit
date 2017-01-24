@@ -5,7 +5,7 @@
   "main": "index.js",
   "repository": "https://github.com/mizki9577/orbit",
   "author": "Mizki SUZUMORI <mizki9577@gmail.com>",
-  "license": "MIT",
+  "license": "BSD-2-Clause",
   "scripts": {
     "start": "rollup -c rollup.config.dev.js -w -m inline",
     "check": "eslint ./src/&&flow",
