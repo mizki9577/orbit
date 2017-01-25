@@ -51,6 +51,7 @@ class BodyInformationWindow extends Component {
       ['Y'         , 'number', body.y.toFixed(4)],
       ['Velocity X', 'number', body.vx.toFixed(4)],
       ['Velocity Y', 'number', body.vy.toFixed(4)],
+      ['Speed'     , 'number', Math.hypot(body.vx, body.vy).toFixed(4)],
     ]
 
     return (
