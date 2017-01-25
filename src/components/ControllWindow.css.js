@@ -7,9 +7,9 @@ export const div = {
 }
 
 export const button = {
-  width: '2cm',
-  height: '2cm',
-  fontSize: '32pt',
+  width: '1cm',
+  height: '1cm',
+  fontSize: '12pt',
 }
 
 // vim: set ts=2 sw=2 et:
