@@ -24,16 +24,8 @@ class App extends Component {
     return store.getState()
   }
 
-  componentWillMount() {
-    window.addEventListener('resize', this.handleResize.bind(this))
-  }
-
   componentDidMount() {
     actions.applicationStarted()
-  }
-
-  handleResize() {
-    actions.windowResized(window.innerWidth, window.innerHeight)
   }
 
   render() {

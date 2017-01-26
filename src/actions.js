@@ -9,6 +9,8 @@ import dispatcher from './dispatcher'
 
 export const applicationStarted = () => {
   window.requestAnimationFrame(update)
+  window.addEventListener('resize', windowResized)
+
   dispatcher.dispatch({
     type: 'application_started',
     timestamp: performance.now()
@@ -111,10 +113,11 @@ export const bodyClicked = (id: number) => {
   })
 }
 
-export const windowResized = (width:number, height: number) => {
+export const windowResized = () => {
   dispatcher.dispatch({
     type: 'window_resized',
-    width, height,
+    width: window.innerWidth,
+    height: window.innerHeight,
   })
 }
 
