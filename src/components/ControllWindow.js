@@ -29,8 +29,12 @@ class ControllWindow extends Component {
     actions.toggleRunPause()
   }
 
+  handleShowStateToggleButtonClick() {
+    actions.toggleShowState()
+  }
+
   render() {
-    const { isRunning, isFullscreen } = this.state
+    const { isRunning, isFullscreen, showState } = this.state
 
     return (
       <div style={ style.div }>
@@ -39,6 +43,9 @@ class ControllWindow extends Component {
         </button>
         <button onClick={ this.handleFullscreenToggleButtonClick.bind(this) }>
           { isFullscreen ? 'Exit Fullscreen' : 'Enter Fullscreen' }
+        </button>
+        <button onClick={ this.handleShowStateToggleButtonClick.bind(this) }>
+          { showState ? 'Hide State' : 'Show State' }
         </button>
       </div>
     )

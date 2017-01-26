@@ -34,6 +34,7 @@ export type State = {|
   loop: number,
   isRunning: boolean,
   isFullscreen: boolean,
+  showState: boolean,
 |}
 
 // vim: set ts=2 sw=2 et:

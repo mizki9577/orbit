@@ -26,6 +26,7 @@ class Store extends ReduceStore {
       loop: 0,
       isRunning: true,
       isFullscreen: screenfull.isFullscreen,
+      showState: false,
     }
   }
 
@@ -188,6 +189,12 @@ class Store extends ReduceStore {
         return {
           ...state,
           isFullscreen: false,
+        }
+
+      case 'toggle_show_state':
+        return {
+          ...state,
+          showState: !state.showState,
         }
     }
   }

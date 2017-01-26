@@ -31,7 +31,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <ObjectTable obj={ this.state } exclude={{ bodies: null }} show={ process.env.NODE_ENV !== 'production' } />
+        <ObjectTable obj={ this.state } exclude={{ bodies: null }} show={ this.state.showState } />
         <Drawer />
         <BodyInformationWindow />
         <ControllWindow />

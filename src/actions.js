@@ -168,4 +168,10 @@ export const fullscreenToggleButtonClicked = () => {
   }
 }
 
+export const toggleShowState = () => {
+  dispatcher.dispatch({
+    type: 'toggle_show_state',
+  })
+}
+
 // vim: set ts=2 sw=2 et:
