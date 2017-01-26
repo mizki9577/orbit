@@ -29,16 +29,11 @@ class App extends Component {
   }
 
   componentDidMount() {
-    window.requestAnimationFrame(this.handleFrame.bind(this))
+    actions.applicationStarted()
   }
 
   handleResize() {
     actions.windowResized(window.innerWidth, window.innerHeight)
-  }
-
-  handleFrame() {
-    actions.update()
-    window.requestAnimationFrame(this.handleFrame.bind(this))
   }
 
   render() {

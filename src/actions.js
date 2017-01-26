@@ -7,12 +7,21 @@ import screenfull from 'screenfull'
 import store from './store'
 import dispatcher from './dispatcher'
 
-export const update = () => {
+export const applicationStarted = () => {
+  window.requestAnimationFrame(update)
+  dispatcher.dispatch({
+    type: 'application_started',
+    timestamp: performance.now()
+  })
+}
+
+export const update = (timestamp: number) => {
   const { bodies, isRunning } = store.getState()
   if (!isRunning) return
 
   dispatcher.dispatch({
     type: 'update',
+    timestamp,
     bodies: bodies.map(self => {
       let ax = 0
       let ay = 0
@@ -34,6 +43,8 @@ export const update = () => {
       return { ...self, x, y, vx, vy, locus }
     }),
   })
+
+  window.requestAnimationFrame(update)
 }
 
 export const mouseMoved = (x: number, y: number) => {

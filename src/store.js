@@ -4,6 +4,7 @@ import type { State } from './types'
 
 import { ReduceStore } from 'flux/utils'
 import dispatcher from './dispatcher'
+import screenfull from 'screenfull'
 
 import initialBodies from './initialBodies'
 
@@ -24,15 +25,23 @@ class Store extends ReduceStore {
       followingBodyId: null,
       loop: 0,
       isRunning: true,
-      isFullscreen: false,
+      isFullscreen: screenfull.isFullscreen,
     }
   }
 
   reduce(state, action) {
     switch (action.type) {
+      case 'application_started':
+        return {
+          ...state,
+          timestamp: action.timestamp,
+        }
+
       case 'update': {
         const nextState = {
           ...state,
+          timestamp: action.timestamp,
+          fps: 1000 / (action.timestamp - state.timestamp),
           bodies: action.bodies,
           loop: state.loop + 1,
         }

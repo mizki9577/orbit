@@ -15,7 +15,7 @@ const ObjectTable = ({ obj, exclude={}, show=true }: { obj: Object, exclude?: Ob
             {
               v === null ? 'null'
               : typeof v === 'object' ? <ObjectTable obj={ v } exclude={ exclude[k] } />
-              : typeof v === 'number' && !Number.isInteger(v) ? v.toPrecision(4)
+              : typeof v === 'number' && !Number.isInteger(v) ? v.toFixed(2)
               : String(v)
             }
             </td>
