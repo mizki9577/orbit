@@ -3,14 +3,15 @@ import serve from 'rollup-plugin-serve'
 
 import config from './rollup.config.common.js'
 
-config.plugins.push(
+config.plugins = [
+  ...config.plugins,
   replace({
     'process.env.NODE_ENV': JSON.stringify('development'),
   }),
   serve({
     contentBase: 'public',
-  })
-)
+  }),
+]
 
 export default config
 
