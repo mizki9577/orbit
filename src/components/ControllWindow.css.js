@@ -6,10 +6,4 @@ export const div = {
   left: 0,
 }
 
-export const button = {
-  width: '1cm',
-  height: '1cm',
-  fontSize: '12pt',
-}
-
 // vim: set ts=2 sw=2 et:

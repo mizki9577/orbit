@@ -30,8 +30,8 @@ class ControllWindow extends Component {
 
     return (
       <div style={ style.div }>
-        <button style={ style.button } onClick={ this.handleRunPauseButtonClick.bind(this) }>
-          { isRunning ? '\u23F8\uFE0F' : '\u25B6\uFE0F' }
+        <button onClick={ this.handleRunPauseButtonClick.bind(this) }>
+          { isRunning ? 'Pause' : 'Run' }
         </button>
       </div>
     )
