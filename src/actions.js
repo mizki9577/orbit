@@ -2,6 +2,8 @@
 
 import type { Touch } from './types'
 
+import screenfull from 'screenfull'
+
 import store from './store'
 import dispatcher from './dispatcher'
 
@@ -135,6 +137,21 @@ export const toggleRunPause = () => {
   dispatcher.dispatch({
     type: 'toggle_run_pause',
   })
+}
+
+export const fullscreenToggleButtonClicked = () => {
+  const { isFullscreen } = store.getState()
+  if (isFullscreen) {
+    screenfull.exit()
+    dispatcher.dispatch({
+      type: 'exit_fullscreen',
+    })
+  } else {
+    screenfull.request()
+    dispatcher.dispatch({
+      type: 'enter_fullscreen',
+    })
+  }
 }
 
 // vim: set ts=2 sw=2 et:

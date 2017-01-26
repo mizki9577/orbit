@@ -24,6 +24,7 @@ class Store extends ReduceStore {
       followingBodyId: null,
       loop: 0,
       isRunning: true,
+      isFullscreen: false,
     }
   }
 
@@ -166,6 +167,18 @@ class Store extends ReduceStore {
         return {
           ...state,
           isRunning: !state.isRunning,
+        }
+
+      case 'enter_fullscreen':
+        return {
+          ...state,
+          isFullscreen: true,
+        }
+
+      case 'exit_fullscreen':
+        return {
+          ...state,
+          isFullscreen: false,
         }
     }
   }
