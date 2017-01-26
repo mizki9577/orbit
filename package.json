@@ -10,7 +10,7 @@
   "scripts": {
     "start": "rollup -c rollup.config.dev.js -w -m inline",
     "check": "eslint ./src/&&flow",
-    "build": "rollup -c rollup.config.prod.js",
+    "build": "BABEL_ENV=production rollup -c rollup.config.prod.js",
     "deploy": "npm run build&&gh-pages -d public"
   },
   "dependencies": {
@@ -31,11 +31,11 @@
     "gh-pages": "^0.12.0",
     "rollup": "^0.41.4",
     "rollup-plugin-babel": "^2.6.1",
+    "rollup-plugin-babili": "^1.1.1",
     "rollup-plugin-commonjs": "^7.0.0",
     "rollup-plugin-node-resolve": "^2.0.0",
     "rollup-plugin-replace": "^1.1.1",
     "rollup-plugin-serve": "^0.1.0",
-    "rollup-plugin-uglify": "^1.0.1",
     "rollup-watch": "^3.2.2"
   },
   "private": true

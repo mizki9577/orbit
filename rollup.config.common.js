@@ -34,6 +34,12 @@ export default {
       plugins: [
         'external-helpers',
       ],
+      env: {
+        production: {
+          minified: true,
+          comments: false,
+        },
+      },
     }),
   ],
 }
