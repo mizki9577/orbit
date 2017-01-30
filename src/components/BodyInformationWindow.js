@@ -47,11 +47,11 @@ class BodyInformationWindow extends Component {
     const entries = [
       ['Mass'      , 'number', body.mass],
       ['Radius'    , 'number', body.radius],
-      ['X'         , 'number', body.x.toFixed(4)],
-      ['Y'         , 'number', body.y.toFixed(4)],
-      ['Velocity X', 'number', body.vx.toFixed(4)],
-      ['Velocity Y', 'number', body.vy.toFixed(4)],
-      ['Speed'     , 'number', Math.hypot(body.vx, body.vy).toFixed(4)],
+      ['X'         , 'number', body.x.toPrecision(4)],
+      ['Y'         , 'number', body.y.toPrecision(4)],
+      ['Velocity X', 'number', body.vx.toPrecision(4)],
+      ['Velocity Y', 'number', body.vy.toPrecision(4)],
+      ['Speed'     , 'number', Math.hypot(body.vx, body.vy).toPrecision(4)],
     ]
 
     return (
