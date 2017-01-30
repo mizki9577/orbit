@@ -30,7 +30,7 @@ class Store extends ReduceStore {
     }
   }
 
-  reduce(state, action) {
+  reduce(state, action): State {
     switch (action.type) {
       case 'application_started':
         return {
@@ -190,6 +190,9 @@ class Store extends ReduceStore {
           ...state,
           showState: !state.showState,
         }
+
+      default:
+        return state
     }
   }
 }
