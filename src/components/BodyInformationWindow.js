@@ -22,16 +22,16 @@ class BodyInformationWindow extends Component {
   }
 
   handleDeleteButtonClick(id: number) {
-    actions.deleteButtonClicked(id)
+    actions.deleteBody(id)
   }
 
   handleCloseButtonClick() {
-    actions.closeButtonClicked()
+    actions.closeInformationWindow()
   }
 
   handleFollowCheckboxChange(id: number, ev) {
     if (ev.target.checked) {
-      actions.followTargetChanged(id)
+      actions.selectFollowTarget(id)
     } else {
       actions.stopFollowing()
     }

@@ -108,7 +108,7 @@ export const wheelMoved = (delta: number) => {
   })
 }
 
-export const bodyClicked = (id: number) => {
+export const selectBody = (id: number) => {
   dispatcher.dispatch({
     type: 'select_body',
     id,
@@ -123,22 +123,22 @@ export const windowResized = () => {
   })
 }
 
-export const deleteButtonClicked = (id: number) => {
+export const deleteBody = (id: number) => {
   dispatcher.dispatch({
     type: 'delete_body',
     id,
   })
 }
 
-export const closeButtonClicked = () => {
+export const closeInformationWindow = () => {
   dispatcher.dispatch({
     type: 'close_information_window',
   })
 }
 
-export const followTargetChanged = (id: number) => {
+export const selectFollowTarget = (id: number) => {
   dispatcher.dispatch({
-    type: 'change_follow_target',
+    type: 'select_follow_target',
     id,
   })
 }
@@ -155,7 +155,7 @@ export const toggleRunPause = () => {
   })
 }
 
-export const fullscreenToggleButtonClicked = () => {
+export const toggleFullscreen = () => {
   screenfull.toggle()
 }
 

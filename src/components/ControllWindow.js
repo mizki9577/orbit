@@ -22,7 +22,7 @@ class ControllWindow extends Component {
   }
 
   handleFullscreenToggleButtonClick() {
-    actions.fullscreenToggleButtonClicked()
+    actions.toggleFullscreen()
   }
 
   handleRunPauseButtonClick() {

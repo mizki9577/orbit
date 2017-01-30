@@ -56,7 +56,7 @@ class Drawer extends Component {
   }
 
   handleBodyClicked(id) {
-    actions.bodyClicked(id)
+    actions.selectBody(id)
   }
 
   render() {

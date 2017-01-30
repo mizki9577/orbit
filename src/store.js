@@ -161,7 +161,7 @@ class Store extends ReduceStore {
           selectedBodyId: null,
         }
 
-      case 'change_follow_target':
+      case 'select_follow_target':
         return {
           ...state,
           followingBodyId: action.id,
