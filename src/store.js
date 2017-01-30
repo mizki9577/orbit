@@ -65,7 +65,7 @@ class Store extends ReduceStore {
           mouseY: action.y,
         }
 
-        if (state.mousePressed && state.followingBodyId === null) {
+        if (state.mousePressed && (!state.isRunning || state.isRunning && state.followingBodyId === null)) {
           Object.assign(nextState, {
             centerX: state.centerX + (state.mouseX - nextState.mouseX) / state.scale,
             centerY: state.centerY + (state.mouseY - nextState.mouseY) / state.scale,
