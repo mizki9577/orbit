@@ -94,45 +94,31 @@ class Store extends ReduceStore {
           mousePressed: false,
           mouseX: null,
           mouseY: null,
+          touches: [],
         }
 
-      case 'touch_started':
-      case 'touch_ended':
-        return {
-          ...state,
-          touches: action.touches,
-        }
-
-      case 'touch_moved': {
-        const nextState = {
-          ...state,
-          touches: action.touches,
-        }
-
-        if (state.touches.length === 1 && nextState.touches.length === 1) {
-          Object.assign(nextState, {
-            centerX: state.centerX + (state.touches[0].x - nextState.touches[0].x) / state.scale,
-            centerY: state.centerY + (state.touches[0].y - nextState.touches[0].y) / state.scale,
-          })
-        } else if (state.touches.length === 2 && nextState.touches.length === 2) {
-          Object.assign(nextState, {
-            scale: state.scale * (
-              ((nextState.touches[0].x - nextState.touches[1].x) ** 2 +
-               (nextState.touches[0].y - nextState.touches[1].y) ** 2)
-              /
-              ((state.touches[0].x - state.touches[1].x) ** 2 +
-               (state.touches[0].y - state.touches[1].y) ** 2)
-            ) ** 0.5
-          })
-        }
-
-        return nextState
-      }
-
-      case 'change_zoom_level':
+      case 'change_scale':
         return {
           ...state,
           scale: state.scale * action.coefficient
+        }
+
+      case 'pinch_start':
+        return {
+          ...state,
+          touches: action.touches,
+        }
+
+      case 'pinch_move':
+        return {
+          ...state,
+          touches: action.touches,
+          scale: state.scale * (
+            Math.hypot(action.touches[0].x - action.touches[1].x,
+                      action.touches[0].y - action.touches[1].y) /
+            Math.hypot(state.touches[0].x - state.touches[1].x,
+                      state.touches[0].y - state.touches[1].y)
+          )
         }
 
       case 'select_body':

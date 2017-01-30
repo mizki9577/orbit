@@ -76,24 +76,16 @@ export const mouseLeft = () => {
   })
 }
 
-export const touchStarted = (touches: Touch[]) => {
-  if (touches.length >= 2) return
+export const pinchStart = (touches: Touch[]) => {
   dispatcher.dispatch({
-    type: 'touch_started',
+    type: 'pinch_start',
     touches,
   })
 }
 
-export const touchMoved = (touches: Touch[]) => {
+export const pinchMove = (touches: Touch[]) => {
   dispatcher.dispatch({
-    type: 'touch_moved',
-    touches,
-  })
-}
-
-export const touchEnded = (touches: Touch[]) => {
-  dispatcher.dispatch({
-    type: 'touch_moved',
+    type: 'pinch_move',
     touches,
   })
 }
@@ -103,7 +95,7 @@ export const wheelMoved = (delta: number) => {
                     : delta < 0 ? 1.1
                                 : 1
   dispatcher.dispatch({
-    type: 'change_zoom_level',
+    type: 'change_scale',
     coefficient,
   })
 }

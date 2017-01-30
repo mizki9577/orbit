@@ -40,15 +40,24 @@ class Drawer extends Component {
   }
 
   handleTouchStart(ev) {
-    actions.touchStarted(extractTouches(ev.touches))
+    if (ev.touches.length === 1) {
+      actions.mouseMoved(ev.touches[0].clientX, ev.touches[0].clientY)
+      actions.mouseButtonPushed()
+    } else if (ev.touches.length === 2) {
+      actions.pinchStart(extractTouches(ev.touches))
+    }
   }
 
   handleTouchMove(ev) {
-    actions.touchMoved(extractTouches(ev.touches))
+    if (ev.touches.length === 1) {
+      actions.mouseMoved(ev.touches[0].clientX, ev.touches[0].clientY)
+    } else if (ev.touches.length === 2) {
+      actions.pinchMove(extractTouches(ev.touches))
+    }
   }
 
-  handleTouchEnd(ev) {
-    actions.touchEnded(extractTouches(ev.touches))
+  handleTouchEnd() {
+    actions.mouseLeft()
   }
 
   handleWheel(ev) {
@@ -86,7 +95,6 @@ class Drawer extends Component {
 }
 
 const extractTouches = touches => Array.from(touches).map(t => ({
-  id: t.identifier,
   x: t.clientX,
   y: t.clientY,
 }))

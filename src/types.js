@@ -13,7 +13,6 @@ export type Body = {|
 |}
 
 export type Touch = {|
-  id: number,
   x: number,
   y: number,
 |}
