@@ -10,6 +10,7 @@ import dispatcher from './dispatcher'
 export const applicationStarted = () => {
   window.requestAnimationFrame(update)
   window.addEventListener('resize', windowResized)
+  document.addEventListener(screenfull.raw.fullscreenchange, fullscreenChanged)
 
   dispatcher.dispatch({
     type: 'application_started',
@@ -155,18 +156,14 @@ export const toggleRunPause = () => {
 }
 
 export const fullscreenToggleButtonClicked = () => {
-  const { isFullscreen } = store.getState()
-  if (isFullscreen) {
-    screenfull.exit()
-    dispatcher.dispatch({
-      type: 'exit_fullscreen',
-    })
-  } else {
-    screenfull.request()
-    dispatcher.dispatch({
-      type: 'enter_fullscreen',
-    })
-  }
+  screenfull.toggle()
+}
+
+export const fullscreenChanged = () => {
+  dispatcher.dispatch({
+    type: 'fullscreen_changed',
+    isFullscreen: screenfull.isFullscreen,
+  })
 }
 
 export const toggleShowState = () => {

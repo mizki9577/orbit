@@ -179,16 +179,10 @@ class Store extends ReduceStore {
           isRunning: !state.isRunning,
         }
 
-      case 'enter_fullscreen':
+      case 'fullscreen_changed':
         return {
           ...state,
-          isFullscreen: true,
-        }
-
-      case 'exit_fullscreen':
-        return {
-          ...state,
-          isFullscreen: false,
+          isFullscreen: action.isFullscreen,
         }
 
       case 'toggle_show_state':
