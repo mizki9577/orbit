@@ -9,6 +9,8 @@ export const container = {
 export const table = {
   borderCollapse: 'collapse',
   marginRight: '0.125in',
+  fontFamily: 'monospace',
+  fontSize: '8pt',
 }
 
 export const th = {
@@ -27,7 +29,8 @@ export const right = {
 
 export const input = {
   textAlign: 'right',
-  minWidth: '8em',
+  width: '1in',
+  fontFamily: 'monospace',
 }
 
 export const button = {
