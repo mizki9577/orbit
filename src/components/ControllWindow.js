@@ -38,13 +38,13 @@ class ControllWindow extends Component {
 
     return (
       <div style={ style.div }>
-        <button onClick={ this.handleRunPauseButtonClick.bind(this) }>
+        <button style={ style.button } onClick={ this.handleRunPauseButtonClick.bind(this) }>
           { isRunning ? 'Pause' : 'Run' }
         </button>
-        <button onClick={ this.handleFullscreenToggleButtonClick.bind(this) }>
+        <button style={ style.button } onClick={ this.handleFullscreenToggleButtonClick.bind(this) }>
           { isFullscreen ? 'Exit Fullscreen' : 'Enter Fullscreen' }
         </button>
-        <button onClick={ this.handleShowStateToggleButtonClick.bind(this) }>
+        <button style={ style.button } onClick={ this.handleShowStateToggleButtonClick.bind(this) }>
           { showState ? 'Hide State' : 'Show State' }
         </button>
       </div>

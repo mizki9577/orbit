@@ -1,9 +1,11 @@
 /* @flow */
 
 export const div = {
-  position: 'absolute',
-  bottom: 0,
-  left: 0,
+  margin: '0.125in',
+}
+
+export const button = {
+  lineHeight: '200%',
 }
 
 // vim: set ts=2 sw=2 et:

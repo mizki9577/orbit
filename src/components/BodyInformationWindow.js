@@ -55,7 +55,7 @@ class BodyInformationWindow extends Component {
     ]
 
     return (
-      <div style={ style.div }>
+      <div style={ style.container }>
         <table style={ style.table }>
           <tbody>
             { entries.map(([k, t, v]) => (
@@ -68,12 +68,14 @@ class BodyInformationWindow extends Component {
             )) }
           </tbody>
         </table>
-        <label>
-          <input type="checkbox" checked={ followingBodyId === selectedBodyId } onChange={ this.handleFollowCheckboxChange.bind(this, selectedBodyId) } />
-          Follow
-        </label>
-        <button onClick={ this.handleDeleteButtonClick.bind(this, selectedBodyId) }>Delete</button>
-        <button onClick={ this.handleCloseButtonClick.bind(this) }>Close</button>
+        <div style={ style.right }>
+          <label>
+            <input type="checkbox" checked={ followingBodyId === selectedBodyId } onChange={ this.handleFollowCheckboxChange.bind(this, selectedBodyId) } />
+            Follow
+          </label>
+          <button style={ style.button } onClick={ this.handleDeleteButtonClick.bind(this, selectedBodyId) }>Delete</button>
+          <button style={ style.button } onClick={ this.handleCloseButtonClick.bind(this) }>Close</button>
+        </div>
       </div>
     )
   }

@@ -9,8 +9,7 @@ import store from '../store'
 import * as actions from '../actions'
 
 import Drawer from './Drawer'
-import ControllWindow from './ControllWindow'
-import BodyInformationWindow from './BodyInformationWindow'
+import Controlls from './Controlls'
 import ObjectTable from './ObjectTable'
 
 class App extends Component {
@@ -33,8 +32,7 @@ class App extends Component {
       <div>
         <ObjectTable obj={ this.state } exclude={{ bodies: null }} show={ this.state.showState } />
         <Drawer />
-        <BodyInformationWindow />
-        <ControllWindow />
+        <Controlls />
       </div>
     )
   }
