@@ -2,6 +2,7 @@
 
 export const div = {
   margin: '0.125in',
+  background: 'white',
 }
 
 export const button = {

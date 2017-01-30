@@ -14,7 +14,6 @@ const style = {
   flexWrap: 'wrap-reverse',
   justifyContent: 'space-between',
   alignItems: 'flex-start',
-  background: 'white',
 }
 
 const _Controlls = (

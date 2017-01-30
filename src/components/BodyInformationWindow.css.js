@@ -3,6 +3,7 @@
 export const container = {
   margin: '0.125in',
   display: 'flex',
+  background: 'white',
 }
 
 export const table = {
