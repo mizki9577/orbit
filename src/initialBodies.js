@@ -2,12 +2,13 @@
 
 import type { Body } from './types'
 
-const n = 8
+const n = 8, m = 100, c = 10, r = 200
+const M = 10000, C = 20
 
 const initialBodies: Body[] = [{
   id: 0,
-  mass: 10000,
-  radius: 20,
+  mass: M,
+  radius: C,
   x : 0, y : 0,
   vx: 0, vy: 0,
   locus: [],
@@ -17,12 +18,12 @@ const initialBodies: Body[] = [{
 for (let i = 1; i <= n; ++i) {
   initialBodies.push({
     id: i,
-    mass: 100,
-    radius: 10,
-    x : 200 * -Math.sin(i * Math.PI / n * 2),
-    y : 200 *  Math.cos(i * Math.PI / n * 2),
-    vx: 5 * -Math.cos(i * Math.PI / n * 2),
-    vy: 5 * -Math.sin(i * Math.PI / n * 2),
+    mass: m,
+    radius: c,
+    x : r * -Math.sin(i * Math.PI / n * 2),
+    y : r *  Math.cos(i * Math.PI / n * 2),
+    vx: (M / r) ** 0.5 * -Math.cos(i * Math.PI / n * 2),
+    vy: (M / r) ** 0.5 * -Math.sin(i * Math.PI / n * 2),
     locus: [],
     style: { fill: `hsl(${360 / n * i}, 100%, 50%)` },
   })
