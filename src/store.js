@@ -48,10 +48,11 @@ class Store extends ReduceStore {
         }
 
         if (state.followingBodyId !== null) {
-          const followingBody = action.bodies.find(b => b.id === state.followingBodyId)
+          const followingBody = state.bodies.find(b => b.id === state.followingBodyId)
+          const followingBodyNext = action.bodies.find(b => b.id === state.followingBodyId)
           Object.assign(nextState, {
-            centerX: followingBody.x,
-            centerY: followingBody.y,
+            centerX: state.centerX + (followingBody.x - followingBodyNext.x),
+            centerY: state.centerY + (followingBody.y - followingBodyNext.y),
           })
         }
 
@@ -65,7 +66,7 @@ class Store extends ReduceStore {
           mouseY: action.y,
         }
 
-        if (state.mousePressed && (!state.isRunning || state.isRunning && state.followingBodyId === null)) {
+        if (state.mousePressed) {
           Object.assign(nextState, {
             centerX: state.centerX + (state.mouseX - nextState.mouseX) / state.scale,
             centerY: state.centerY + (state.mouseY - nextState.mouseY) / state.scale,
