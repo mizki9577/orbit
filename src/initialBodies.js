@@ -2,6 +2,8 @@
 
 import type { Body } from './types'
 
+import chroma from 'chroma-js'
+
 const n = 8, m = 100, c = 10, r = 200
 const M = 10000, C = 20
 
@@ -12,7 +14,7 @@ const initialBodies: Body[] = [{
   x : 0, y : 0,
   vx: 0, vy: 0,
   locus: [],
-  style: { fill: 'hsl(  0, 100%,  0%)' },
+  style: { fill: chroma.hcl(0, 0, 0).css() },
 }]
 
 for (let i = 1; i <= n; ++i) {
@@ -25,7 +27,7 @@ for (let i = 1; i <= n; ++i) {
     vx: (M / r) ** 0.5 * -Math.cos(i * Math.PI / n * 2),
     vy: (M / r) ** 0.5 * -Math.sin(i * Math.PI / n * 2),
     locus: [],
-    style: { fill: `hsl(${360 / n * i}, 100%, 50%)` },
+    style: { fill: chroma.hcl(360 / n * i, 150, 50).css() },
   })
 }
 

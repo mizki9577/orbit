@@ -110,6 +110,7 @@ class BodyInformationWindow extends Component {
 
           </tbody>
         </table>
+
         <div style={ style.right }>
           <label>
             <input type="checkbox" checked={ followingBodyId === selectedBodyId } onChange={ this.handleFollowCheckboxChange.bind(this, selectedBodyId) } />
