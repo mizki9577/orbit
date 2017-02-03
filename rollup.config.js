@@ -25,29 +25,7 @@ const config = {
       },
     }),
 
-    babel({
-      presets: [
-        [
-          'env', {
-            modules: false,
-            targets: {
-              browsers: 'last 1 versions',
-            },
-          },
-        ],
-        'react',
-        'stage-0',
-      ],
-      plugins: [
-        'external-helpers',
-      ],
-      env: {
-        production: {
-          minified: true,
-          comments: false,
-        },
-      },
-    }),
+    babel(),
   ],
 }
 
