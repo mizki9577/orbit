@@ -8,9 +8,9 @@
   "author": "Mizki SUZUMORI <mizki9577@gmail.com>",
   "repository": "https://github.com/mizki9577/orbit",
   "scripts": {
-    "start": "rollup -c rollup.config.dev.js -w -m inline",
+    "start": "rollup -c -w -m inline --environment NODE_ENV:development",
     "check": "eslint ./src/&&flow",
-    "build": "BABEL_ENV=production rollup -c rollup.config.prod.js",
+    "build": "rollup -c --environment NODE_ENV:production",
     "deploy": "npm run build&&gh-pages -d public"
   },
   "dependencies": {
