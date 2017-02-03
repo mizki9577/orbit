@@ -1,15 +1,10 @@
 {
   presets: [
-    [
-      'env', {
+    ['latest', {
+      es2015: {
         modules: false,
-        targets: {
-          browsers: [
-            'last 1 versions',
-          ],
-        },
       },
-    ],
+    }],
     'react',
     'stage-0',
   ],
