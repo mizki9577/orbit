@@ -12,7 +12,6 @@ module.exports = {
 
   env: {
     browser: true,
-    es6: true,
   },
 
   plugins: ['react'],
@@ -20,7 +19,18 @@ module.exports = {
   extends: ['eslint:recommended', 'plugin:react/recommended'],
 
   rules: {
-    'no-process-env': 'off',
+    // Possible Errors
+    'no-prototype-builtins'       : 'error',
+    'no-template-curly-in-string' : 'error',
+    'no-unsafe-negation'          : 'error',
+    'valid-jsdoc'                 : 'warn',
+
+    // Variables
+    'init-declarations'    : 'warn',
+    'no-catch-shadow'      : 'warn',
+    'no-shadow'            : 'error',
+    'no-undef-init'        : 'warn',
+    'no-undefined'         : 'error',
   },
 }
 
