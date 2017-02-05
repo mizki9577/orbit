@@ -44,7 +44,7 @@ class Drawer extends Component {
       actions.mouseMoved(ev.touches[0].clientX, ev.touches[0].clientY)
       actions.mouseButtonPushed()
     } else if (ev.touches.length === 2) {
-      actions.pinchStart(extractTouches(ev.touches))
+      actions.pinchStart(ev.touches)
     }
   }
 
@@ -52,7 +52,7 @@ class Drawer extends Component {
     if (ev.touches.length === 1) {
       actions.mouseMoved(ev.touches[0].clientX, ev.touches[0].clientY)
     } else if (ev.touches.length === 2) {
-      actions.pinchMove(extractTouches(ev.touches))
+      actions.pinchMove(ev.touches)
     }
   }
 
@@ -93,11 +93,6 @@ class Drawer extends Component {
     )
   }
 }
-
-const extractTouches = touches => Array.from(touches).map(t => ({
-  x: t.clientX,
-  y: t.clientY,
-}))
 
 export default Container.create(Drawer)
 

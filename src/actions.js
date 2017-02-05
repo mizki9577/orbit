@@ -1,7 +1,5 @@
 /* @flow */
 
-import type { Touch } from './types'
-
 import screenfull from 'screenfull'
 
 import store from './store'
@@ -76,14 +74,14 @@ export const mouseLeft = () => {
   })
 }
 
-export const pinchStart = (touches: Touch[]) => {
+export const pinchStart = (touches: TouchList) => {
   dispatcher.dispatch({
     type: 'pinch_start',
     touches,
   })
 }
 
-export const pinchMove = (touches: Touch[]) => {
+export const pinchMove = (touches: TouchList) => {
   dispatcher.dispatch({
     type: 'pinch_move',
     touches,

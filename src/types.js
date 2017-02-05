@@ -12,11 +12,6 @@ export type Body = {|
   y: number,
 |}
 
-export type Touch = {|
-  x: number,
-  y: number,
-|}
-
 export type State = {|
   bodies: Body[],
   touches: Touch[],
