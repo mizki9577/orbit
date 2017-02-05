@@ -5,15 +5,23 @@ import dispatcher from '../dispatcher.js'
 import { update } from '../actions.js'
 
 export const applicationStarted = () => {
-  window.requestAnimationFrame(update)
+  window.requestAnimationFrame(frame)
   window.addEventListener('resize', windowResized)
   document.addEventListener(screenfull.raw.fullscreenchange, fullscreenChanged)
 
   dispatcher.dispatch({
     type: 'application_started',
-    timestamp: performance.now()
+    timestamp: performance.now(),
+    isFullscreen: screenfull.isFullscreen,
   })
 }
+
+export const frame = (timestamp: number) => {
+  update(timestamp)
+
+  window.requestAnimationFrame(frame)
+}
+
 
 export const windowResized = () => {
   dispatcher.dispatch({

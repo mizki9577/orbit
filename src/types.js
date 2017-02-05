@@ -27,7 +27,7 @@ export type State = {|
   selectedBodyId: ?number,
   loop: number,
   isRunning: boolean,
-  isFullscreen: boolean,
+  isFullscreen: ?boolean,
   showState: boolean,
 |}
 

@@ -3,8 +3,6 @@
 import type { State } from './types'
 
 import { ReduceStore } from 'flux/utils'
-import screenfull from 'screenfull'
-
 import dispatcher from './dispatcher.js'
 
 import initialBodies from './initialBodies.js'
@@ -26,7 +24,7 @@ class Store extends ReduceStore {
       followingBodyId: null,
       loop: 0,
       isRunning: true,
-      isFullscreen: screenfull.isFullscreen,
+      isFullscreen: null,
       showState: false,
     }
   }
@@ -37,6 +35,7 @@ class Store extends ReduceStore {
         return {
           ...state,
           timestamp: action.timestamp,
+          isFullscreen: action.isFullscreen,
         }
 
       case 'update': {
