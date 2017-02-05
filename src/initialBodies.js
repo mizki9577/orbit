@@ -1,6 +1,6 @@
 /* @flow */
 
-import type { Body } from './types'
+import type { Body } from './types.js'
 
 import chroma from 'chroma-js'
 

@@ -2,8 +2,8 @@
 
 import React from 'react'
 
-import ControllWindow from './ControllWindow'
-import BodyInformationWindow from './BodyInformationWindow'
+import ControllWindow from './ControllWindow.js'
+import BodyInformationWindow from './BodyInformationWindow.js'
 
 const style = {
   position: 'absolute',

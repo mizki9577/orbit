@@ -3,10 +3,11 @@
 import type { State } from './types'
 
 import { ReduceStore } from 'flux/utils'
-import dispatcher from './dispatcher'
 import screenfull from 'screenfull'
 
-import initialBodies from './initialBodies'
+import dispatcher from './dispatcher.js'
+
+import initialBodies from './initialBodies.js'
 
 class Store extends ReduceStore {
   getInitialState(): State {

@@ -1,8 +1,8 @@
 /* @flow */
 import screenfull from 'screenfull'
-import dispatcher from '../dispatcher'
+import dispatcher from '../dispatcher.js'
 
-import { update } from '../actions'
+import { update } from '../actions.js'
 
 export const applicationStarted = () => {
   window.requestAnimationFrame(update)

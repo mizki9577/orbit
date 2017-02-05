@@ -1,7 +1,7 @@
 /* @flow */
 
-import store from '../store'
-import dispatcher from '../dispatcher'
+import store from '../store.js'
+import dispatcher from '../dispatcher.js'
 
 export const update = (timestamp: number) => {
   const { bodies, isRunning } = store.getState()

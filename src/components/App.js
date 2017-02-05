@@ -1,16 +1,16 @@
 /* @flow */
 
-import type { State } from '../types'
+import type { State } from '../types.js'
 
 import React, { Component } from 'react'
 import { Container } from 'flux/utils'
 
-import store from '../store'
-import * as actions from '../actions'
+import store from '../store.js'
+import * as actions from '../actions.js'
 
-import Drawer from './Drawer'
-import Controlls from './Controlls'
-import ObjectTable from './ObjectTable'
+import Drawer from './Drawer.js'
+import Controlls from './Controlls.js'
+import ObjectTable from './ObjectTable.js'
 
 class App extends Component {
   state: State
