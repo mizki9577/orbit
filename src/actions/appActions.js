@@ -11,8 +11,10 @@ export const applicationStarted = () => {
 
   dispatcher.dispatch({
     type: 'application_started',
-    timestamp: performance.now(),
-    isFullscreen: screenfull.isFullscreen,
+    payload: {
+      timestamp: performance.now(),
+      isFullscreen: screenfull.isFullscreen,
+    }
   })
 }
 
@@ -26,8 +28,8 @@ export const frame = (timestamp: number) => {
 export const windowResized = () => {
   dispatcher.dispatch({
     type: 'window_resized',
-    width: window.innerWidth,
-    height: window.innerHeight,
+    windowWidth: window.innerWidth,
+    windowHeight: window.innerHeight,
   })
 }
 
@@ -38,7 +40,9 @@ export const toggleFullscreen = () => {
 export const fullscreenChanged = () => {
   dispatcher.dispatch({
     type: 'fullscreen_changed',
-    isFullscreen: screenfull.isFullscreen,
+    payload: {
+      isFullscreen: screenfull.isFullscreen,
+    },
   })
 }
 

@@ -34,10 +34,10 @@ export const update = (timestamp: number) => {
   })
 }
 
-export const selectBody = (id: number) => {
+export const selectBody = (selectedBodyId: number) => {
   dispatcher.dispatch({
     type: 'select_body',
-    id,
+    payload: { selectedBodyId },
   })
 }
 
@@ -54,10 +54,10 @@ export const closeInformationWindow = () => {
   })
 }
 
-export const selectFollowTarget = (id: number) => {
+export const selectFollowTarget = (followingBodyId: number) => {
   dispatcher.dispatch({
     type: 'select_follow_target',
-    id,
+    payload: { followingBodyId },
   })
 }
 

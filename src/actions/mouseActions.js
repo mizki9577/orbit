@@ -2,10 +2,13 @@
 
 import dispatcher from '../dispatcher.js'
 
-export const mouseMoved = (x: number, y: number) => {
+export const mouseMoved = (mouseX: number, mouseY: number) => {
   dispatcher.dispatch({
     type: 'mouse_moved',
-    x, y,
+    payload: {
+      mouseX,
+      mouseY,
+    }
   })
 }
 

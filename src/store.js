@@ -32,11 +32,7 @@ class Store extends ReduceStore {
   reduce(state, action): State {
     switch (action.type) {
       case 'application_started':
-        return {
-          ...state,
-          timestamp: action.timestamp,
-          isFullscreen: action.isFullscreen,
-        }
+        return { ...state, ...action.payload }
 
       case 'update': {
         const nextState = {
@@ -60,11 +56,7 @@ class Store extends ReduceStore {
       }
 
       case 'mouse_moved': {
-        const nextState = {
-          ...state,
-          mouseX: action.x,
-          mouseY: action.y,
-        }
+        const nextState = { ...state, ...action.payload }
 
         if (state.mousePressed) {
           Object.assign(nextState, {
@@ -104,15 +96,11 @@ class Store extends ReduceStore {
         }
 
       case 'pinch_start':
-        return {
-          ...state,
-          touches: action.touches,
-        }
+        return { ...state, ...action.payload }
 
       case 'pinch_move':
         return {
-          ...state,
-          touches: action.touches,
+          ...state, ...action.payload,
           scale: state.scale * (Math.hypot(action.touches[0].clientX - action.touches[1].clientX,
                                            action.touches[0].clientY - action.touches[1].clientY) /
                                 Math.hypot(state.touches[0].clientX - state.touches[1].clientX,
@@ -122,17 +110,10 @@ class Store extends ReduceStore {
         }
 
       case 'select_body':
-        return {
-          ...state,
-          selectedBodyId: action.id,
-        }
+        return { ...state, ...action.payload }
 
       case 'window_resized':
-        return {
-          ...state,
-          windowWidth: action.width,
-          windowHeight: action.height,
-        }
+        return { ...state, ...action.payload }
 
       case 'delete_body':
         return {
@@ -149,10 +130,7 @@ class Store extends ReduceStore {
         }
 
       case 'select_follow_target':
-        return {
-          ...state,
-          followingBodyId: action.id,
-        }
+        return { ...state, ...action.payload }
 
       case 'stop_following':
         return {
@@ -167,10 +145,7 @@ class Store extends ReduceStore {
         }
 
       case 'fullscreen_changed':
-        return {
-          ...state,
-          isFullscreen: action.isFullscreen,
-        }
+        return { ...state, ...action.payload }
 
       case 'toggle_show_state':
         return {
