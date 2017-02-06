@@ -8,7 +8,11 @@ import { Container } from 'flux/utils'
 import store from '../store.js'
 import * as actions from '../actions.js'
 
-import * as style from './BodyInformationWindow.css.js'
+import Panel from 'react-bootstrap/lib/Panel'
+import Table from 'react-bootstrap/lib/Table'
+import Button from 'react-bootstrap/lib/Button'
+import ButtonGroup from 'react-bootstrap/lib/ButtonGroup'
+import Glyphicon from 'react-bootstrap/lib/Glyphicon'
 
 class BodyInformationWindow extends Component {
   state: State
@@ -29,11 +33,11 @@ class BodyInformationWindow extends Component {
     actions.closeInformationWindow()
   }
 
-  handleFollowCheckboxChange(id: number, ev) {
-    if (ev.target.checked) {
-      actions.selectFollowTarget(id)
-    } else {
+  handleFollowToggleButtonClick(id: number) {
+    if (this.state.followingBodyId === id) {
       actions.stopFollowing()
+    } else {
+      actions.selectFollowTarget(id)
     }
   }
 
@@ -45,71 +49,79 @@ class BodyInformationWindow extends Component {
     if (body == null) return null
 
     return (
-      <div style={ style.container }>
-        <table style={ style.table }>
+      <Panel>
+        <Button block onClick={ this.handleCloseButtonClick.bind(this) }>
+          <Glyphicon glyph="remove" />
+          Close
+        </Button>
+
+        <Table>
           <tbody>
 
             <tr>
-              <th style={ style.th }>Mass</th>
-              <td style={ style.td }>
-                <input style={ style.input } type="number" value={ body.mass } readOnly />
+              <th>Mass</th>
+              <td>
+                <input type="number" value={ body.mass } readOnly />
               </td>
             </tr>
 
             <tr>
-              <th style={ style.th }>Radius</th>
-              <td style={ style.td }>
-                <input style={ style.input } type="number" value={ body.radius } readOnly />
+              <th>Radius</th>
+              <td>
+                <input type="number" value={ body.radius } readOnly />
               </td>
             </tr>
 
             <tr>
-              <th style={ style.th }>X Coor.</th>
-              <td style={ style.td }>
-                <input style={ style.input } type="number" value={ body.x.toPrecision(4) } readOnly />
+              <th>X Coor.</th>
+              <td>
+                <input type="number" value={ body.x.toPrecision(4) } readOnly />
               </td>
             </tr>
 
             <tr>
-              <th style={ style.th }>Y Coor.</th>
-              <td style={ style.td }>
-                <input style={ style.input } type="number" value={ body.y.toPrecision(4) } readOnly />
+              <th>Y Coor.</th>
+              <td>
+                <input type="number" value={ body.y.toPrecision(4) } readOnly />
               </td>
             </tr>
 
             <tr>
-              <th style={ style.th }>X Vel.</th>
-              <td style={ style.td }>
-                <input style={ style.input } type="number" value={ body.vx.toPrecision(4) } readOnly />
+              <th>X Vel.</th>
+              <td>
+                <input type="number" value={ body.vx.toPrecision(4) } readOnly />
               </td>
             </tr>
 
             <tr>
-              <th style={ style.th }>Y Vel.</th>
-              <td style={ style.td }>
-                <input style={ style.input } type="number" value={ body.vy.toPrecision(4) } readOnly />
+              <th>Y Vel.</th>
+              <td>
+                <input type="number" value={ body.vy.toPrecision(4) } readOnly />
               </td>
             </tr>
 
             <tr>
-              <th style={ style.th }>Speed</th>
-              <td style={ style.td }>
-                <input style={ style.input } type="number" value={ Math.hypot(body.vx, body.vy).toPrecision(4) } readOnly />
+              <th>Speed</th>
+              <td>
+                <input type="number" value={ Math.hypot(body.vx, body.vy).toPrecision(4) } readOnly />
               </td>
             </tr>
 
           </tbody>
-        </table>
+        </Table>
 
-        <div style={ style.right }>
-          <label>
-            <input type="checkbox" checked={ followingBodyId === selectedBodyId } onChange={ this.handleFollowCheckboxChange.bind(this, selectedBodyId) } />
+        <ButtonGroup>
+          <Button block active={ followingBodyId === selectedBodyId } onClick={ this.handleFollowToggleButtonClick.bind(this, selectedBodyId) }>
+            <Glyphicon glyph="eye-open" />
             Follow
-          </label>
-          <button style={ style.button } onClick={ this.handleDeleteButtonClick.bind(this, selectedBodyId) }>Delete</button>
-          <button style={ style.button } onClick={ this.handleCloseButtonClick.bind(this) }>Close</button>
-        </div>
-      </div>
+          </Button>
+          <Button block bsStyle="danger" onClick={ this.handleDeleteButtonClick.bind(this, selectedBodyId) }>
+            <Glyphicon glyph="erase" />
+            Remove
+          </Button>
+        </ButtonGroup>
+
+      </Panel>
     )
   }
 }

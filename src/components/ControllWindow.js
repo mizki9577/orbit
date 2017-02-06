@@ -8,7 +8,10 @@ import { Container } from 'flux/utils'
 import store from '../store.js'
 import * as actions from '../actions.js'
 
-import * as style from './ControllWindow.css.js'
+import Navbar from 'react-bootstrap/lib/Navbar'
+import Button from 'react-bootstrap/lib/Button'
+import ButtonGroup from 'react-bootstrap/lib/ButtonGroup'
+import Glyphicon from 'react-bootstrap/lib/Glyphicon'
 
 class ControllWindow extends Component {
   state: State
@@ -37,17 +40,24 @@ class ControllWindow extends Component {
     const { isRunning, isFullscreen, showState } = this.state
 
     return (
-      <div style={ style.div }>
-        <button style={ style.button } onClick={ this.handleRunPauseButtonClick.bind(this) }>
-          { isRunning ? 'Pause' : 'Run' }
-        </button>
-        <button style={ style.button } onClick={ this.handleFullscreenToggleButtonClick.bind(this) }>
-          { isFullscreen ? 'Exit Fullscreen' : 'Enter Fullscreen' }
-        </button>
-        <button style={ style.button } onClick={ this.handleShowStateToggleButtonClick.bind(this) }>
-          { showState ? 'Hide State' : 'Show State' }
-        </button>
-      </div>
+      <Navbar fixedBottom>
+        <Navbar.Header>
+          <Navbar.Brand>Orbit</Navbar.Brand>
+        </Navbar.Header>
+        <Navbar.Form pullLeft>
+          <ButtonGroup>
+            <Button active={ isRunning } onClick={ this.handleRunPauseButtonClick.bind(this) }>
+              <Glyphicon glyph={ isRunning ? 'pause' : 'play' } />
+            </Button>
+            <Button active={ isFullscreen } onClick={ this.handleFullscreenToggleButtonClick.bind(this) }>
+              <Glyphicon glyph="fullscreen" />
+            </Button>
+            <Button active={ showState } onClick={ this.handleShowStateToggleButtonClick.bind(this) }>
+              <Glyphicon glyph="console" />
+            </Button>
+          </ButtonGroup>
+        </Navbar.Form>
+      </Navbar>
     )
   }
 }

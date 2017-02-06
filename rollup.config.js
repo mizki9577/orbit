@@ -26,7 +26,7 @@ const config = {
 
     commonjs({
       namedExports: {
-        'node_modules/react/react.js': [ 'Component' ],
+        'node_modules/react/react.js': [ 'Component', 'cloneElement', 'PropTypes' ],
       },
     }),
   ],
