@@ -79,4 +79,16 @@ export const toggleShowState = () => {
   })
 }
 
+export const selectMoveMode = () => {
+  dispatcher.dispatch({
+    type: 'select_move_mode',
+  })
+}
+
+export const selectCreateMode = () => {
+  dispatcher.dispatch({
+    type: 'select_create_mode',
+  })
+}
+
 // vim: set ts=2 sw=2 et:

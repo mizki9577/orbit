@@ -26,6 +26,7 @@ class Store extends ReduceStore {
       isRunning: true,
       isFullscreen: null,
       showState: false,
+      operationMode: 'move',
     }
   }
 
@@ -59,10 +60,12 @@ class Store extends ReduceStore {
         const nextState = { ...state, ...action.payload }
 
         if (state.mousePressed) {
-          Object.assign(nextState, {
-            centerX: state.centerX + (state.mouseX - nextState.mouseX) / state.scale,
-            centerY: state.centerY + (state.mouseY - nextState.mouseY) / state.scale,
-          })
+          if (state.operationMode === 'move') {
+            Object.assign(nextState, {
+              centerX: state.centerX + (state.mouseX - nextState.mouseX) / state.scale,
+              centerY: state.centerY + (state.mouseY - nextState.mouseY) / state.scale,
+            })
+          }
         }
 
         return nextState
@@ -151,6 +154,18 @@ class Store extends ReduceStore {
         return {
           ...state,
           showState: !state.showState,
+        }
+
+      case 'select_move_mode':
+        return {
+          ...state,
+          operationMode: 'move',
+        }
+
+      case 'select_create_mode':
+        return {
+          ...state,
+          operationMode: 'create',
         }
 
       default:

@@ -36,8 +36,16 @@ class ControllWindow extends Component {
     actions.toggleShowState()
   }
 
+  handleMoveModeButtonClick() {
+    actions.selectMoveMode()
+  }
+
+  handleCreateModeButtonClick() {
+    actions.selectCreateMode()
+  }
+
   render() {
-    const { isRunning, isFullscreen, showState } = this.state
+    const { isRunning, isFullscreen, showState, operationMode } = this.state
 
     return (
       <Navbar fixedBottom>
@@ -45,16 +53,28 @@ class ControllWindow extends Component {
           <Navbar.Brand>Orbit</Navbar.Brand>
         </Navbar.Header>
         <Navbar.Form pullLeft>
+
           <ButtonGroup>
             <Button active={ isRunning } onClick={ this.handleRunPauseButtonClick.bind(this) }>
               <Glyphicon glyph={ isRunning ? 'pause' : 'play' } />
             </Button>
+
             <Button active={ isFullscreen } onClick={ this.handleFullscreenToggleButtonClick.bind(this) }>
               <Glyphicon glyph="fullscreen" />
             </Button>
+
             <Button active={ showState } onClick={ this.handleShowStateToggleButtonClick.bind(this) }>
               <Glyphicon glyph="console" />
             </Button>
+
+            <Button active={ operationMode === 'move' } onClick={ this.handleMoveModeButtonClick.bind(this) }>
+              <Glyphicon glyph="move" />
+            </Button>
+
+            <Button active={ operationMode === 'create' } onClick={ this.handleCreateModeButtonClick.bind(this) }>
+              <Glyphicon glyph="pencil" />
+            </Button>
+
           </ButtonGroup>
         </Navbar.Form>
       </Navbar>

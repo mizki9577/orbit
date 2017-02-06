@@ -29,6 +29,7 @@ export type State = {|
   isRunning: boolean,
   isFullscreen: ?boolean,
   showState: boolean,
+  operationMode: string,
 |}
 
 // vim: set ts=2 sw=2 et:
