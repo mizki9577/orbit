@@ -101,12 +101,12 @@ class Store extends ReduceStore {
       case 'pinch_move':
         return {
           ...state, ...action.payload,
-          scale: state.scale * (Math.hypot(action.touches[0].clientX - action.touches[1].clientX,
-                                           action.touches[0].clientY - action.touches[1].clientY) /
+          scale: state.scale * (Math.hypot(action.payload.touches[0].clientX - action.payload.touches[1].clientX,
+                                           action.payload.touches[0].clientY - action.payload.touches[1].clientY) /
                                 Math.hypot(state.touches[0].clientX - state.touches[1].clientX,
                                            state.touches[0].clientY - state.touches[1].clientY)),
-          centerX: state.centerX + ((state.touches[0].clientX + state.touches[1].clientX) - (action.touches[0].clientX + action.touches[1].clientX)) / 2 / state.scale,
-          centerY: state.centerY + ((state.touches[0].clientY + state.touches[1].clientY) - (action.touches[0].clientY + action.touches[1].clientY)) / 2 / state.scale,
+          centerX: state.centerX + ((state.touches[0].clientX + state.touches[1].clientX) - (action.payload.touches[0].clientX + action.payload.touches[1].clientX)) / 2 / state.scale,
+          centerY: state.centerY + ((state.touches[0].clientY + state.touches[1].clientY) - (action.payload.touches[0].clientY + action.payload.touches[1].clientY)) / 2 / state.scale,
         }
 
       case 'select_body':
