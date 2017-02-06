@@ -28,8 +28,10 @@ export const frame = (timestamp: number) => {
 export const windowResized = () => {
   dispatcher.dispatch({
     type: 'window_resized',
-    windowWidth: window.innerWidth,
-    windowHeight: window.innerHeight,
+    payload: {
+      windowWidth: window.innerWidth,
+      windowHeight: window.innerHeight,
+    },
   })
 }
 
