@@ -5,7 +5,7 @@ export type Body = {|
   locus: [number, number][],
   mass: number,
   radius: number,
-  style: Object,
+  color: string,
   vx: number,
   vy: number,
   x: number,

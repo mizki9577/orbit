@@ -85,7 +85,7 @@ class Drawer extends Component {
       >
         <g transform={`scale(${scale}) translate(${-centerX} ${-centerY})`}>
         { bodies.map(b => (
-          <circle key={ b.id } r={ b.radius } cx={ b.x } cy={ b.y } style={ b.style }
+          <circle key={ b.id } r={ b.radius } cx={ b.x } cy={ b.y } style={{ fill: b.color }}
                   onMouseDown={ () => this.handleBodyClicked(b.id) } />
         )) }
         </g>

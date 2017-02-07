@@ -14,7 +14,7 @@ const initialBodies: Body[] = [{
   x : 0, y : 0,
   vx: 0, vy: 0,
   locus: [],
-  style: { fill: chroma.hcl(0, 0, 0).css() },
+  color: chroma.hcl(0, 0, 0).css(),
 }]
 
 for (let i = 1; i <= n; ++i) {
@@ -27,7 +27,7 @@ for (let i = 1; i <= n; ++i) {
     vx: (M / r) ** 0.5 * -Math.cos(i * Math.PI / n * 2),
     vy: (M / r) ** 0.5 * -Math.sin(i * Math.PI / n * 2),
     locus: [],
-    style: { fill: chroma.hcl(360 / n * i, 150, 50).css() },
+    color: chroma.hcl(360 / n * i, 150, 50).css(),
   })
 }
 
