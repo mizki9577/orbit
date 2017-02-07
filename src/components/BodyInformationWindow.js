@@ -8,11 +8,11 @@ import { Container } from 'flux/utils'
 import store from '../store.js'
 import * as actions from '../actions.js'
 
-import Panel from 'react-bootstrap/lib/Panel'
-import Table from 'react-bootstrap/lib/Table'
-import Button from 'react-bootstrap/lib/Button'
-import ButtonGroup from 'react-bootstrap/lib/ButtonGroup'
-import Glyphicon from 'react-bootstrap/lib/Glyphicon'
+import Panel from 'react-bootstrap/es/Panel'
+import Table from 'react-bootstrap/es/Table'
+import Button from 'react-bootstrap/es/Button'
+import ButtonGroup from 'react-bootstrap/es/ButtonGroup'
+import Glyphicon from 'react-bootstrap/es/Glyphicon'
 
 class BodyInformationWindow extends Component {
   state: State

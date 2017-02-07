@@ -8,10 +8,10 @@ import { Container } from 'flux/utils'
 import store from '../store.js'
 import * as actions from '../actions.js'
 
-import Navbar from 'react-bootstrap/lib/Navbar'
-import Button from 'react-bootstrap/lib/Button'
-import ButtonGroup from 'react-bootstrap/lib/ButtonGroup'
-import Glyphicon from 'react-bootstrap/lib/Glyphicon'
+import Navbar from 'react-bootstrap/es/Navbar'
+import Button from 'react-bootstrap/es/Button'
+import ButtonGroup from 'react-bootstrap/es/ButtonGroup'
+import Glyphicon from 'react-bootstrap/es/Glyphicon'
 
 class ControllWindow extends Component {
   state: State
