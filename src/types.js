@@ -15,8 +15,8 @@ export type Body = {|
 export type State = {|
   bodies: Body[],
   touches: Touch[],
-  windowHeight: number,
-  windowWidth: number,
+  windowHeight: ?number,
+  windowWidth: ?number,
   centerX: number,
   centerY: number,
   mouseX: ?number,

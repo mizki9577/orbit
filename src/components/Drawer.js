@@ -71,6 +71,8 @@ class Drawer extends Component {
   render() {
     const { windowWidth, windowHeight, scale, centerX, centerY, bodies } = this.state
 
+    if (windowWidth == null || windowHeight == null) return null
+
     return (
       <svg
         style={ style } width={ windowWidth } height={ windowHeight } viewBox={ `${-windowWidth/2} ${-windowHeight/2} ${windowWidth} ${windowHeight}` }

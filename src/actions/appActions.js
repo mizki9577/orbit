@@ -14,6 +14,8 @@ export const applicationStarted = () => {
     payload: {
       timestamp: performance.now(),
       isFullscreen: screenfull.isFullscreen,
+      windowWidth: window.innerWidth,
+      windowHeight: window.innerHeight,
     }
   })
 }

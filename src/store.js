@@ -10,8 +10,8 @@ import initialBodies from './initialBodies.js'
 class Store extends ReduceStore {
   getInitialState(): State {
     return {
-      windowWidth: window.innerWidth,
-      windowHeight: window.innerHeight,
+      windowWidth: null,
+      windowHeight: null,
       bodies: initialBodies,
       mouseX: null,
       mouseY: null,
