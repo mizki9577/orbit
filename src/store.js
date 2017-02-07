@@ -2,6 +2,7 @@
 
 import type { State } from './types'
 
+import chroma from 'chroma-js'
 import { ReduceStore } from 'flux/utils'
 import dispatcher from './dispatcher.js'
 
@@ -27,6 +28,9 @@ class Store extends ReduceStore {
       isFullscreen: null,
       showState: false,
       operationMode: 'move',
+      newBody: null,
+      mouseSvgX: null,
+      mouseSvgY: null,
     }
   }
 
@@ -50,14 +54,28 @@ class Store extends ReduceStore {
           Object.assign(nextState, {
             centerX: state.centerX + (followingBodyNext.x - followingBody.x),
             centerY: state.centerY + (followingBodyNext.y - followingBody.y),
+            mouseSvgX: state.mouseSvgX + (followingBodyNext.x - followingBody.x),
+            mouseSvgY: state.mouseSvgY + (followingBodyNext.y - followingBody.y),
           })
+
+          if (state.newBody !== null) {
+            Object.assign(nextState.newBody, {
+              x: nextState.newBody.x + (followingBodyNext.x - followingBody.x),
+              y: nextState.newBody.y + (followingBodyNext.y - followingBody.y),
+            })
+          }
         }
 
         return nextState
       }
 
       case 'mouse_moved': {
-        const nextState = { ...state, ...action.payload }
+        const nextState = {
+          ...state,
+          ...action.payload,
+          mouseSvgX: (action.payload.mouseX - state.windowWidth  / 2) / state.scale + state.centerX,
+          mouseSvgY: (action.payload.mouseY - state.windowHeight / 2) / state.scale + state.centerY,
+        }
 
         if (state.mousePressed) {
           if (state.operationMode === 'move') {
@@ -71,17 +89,51 @@ class Store extends ReduceStore {
         return nextState
       }
 
-      case 'mouse_button_pushed':
-        return {
+      case 'mouse_button_pushed': {
+        const nextState = {
           ...state,
           mousePressed: true,
         }
 
-      case 'mouse_button_released':
-        return {
+        if (state.operationMode === 'create') {
+          nextState.newBody = {
+            id: performance.now(),
+            mass: 100,
+            radius: 10,
+            x: state.mouseSvgX,
+            y: state.mouseSvgY,
+            vx: 0,
+            vy: 0,
+            locus: [],
+            color: chroma.random(),
+          }
+        }
+
+        return nextState
+      }
+
+      case 'mouse_button_released': {
+        const nextState = {
           ...state,
           mousePressed: false,
         }
+
+        if (state.operationMode === 'create') {
+          Object.assign(nextState, {
+            bodies: [
+              ...state.bodies,
+              {
+                ...state.newBody,
+                vx: (state.newBody.x - state.mouseSvgX) / 30,
+                vy: (state.newBody.y - state.mouseSvgY) / 30,
+              },
+            ],
+            newBody: null,
+          })
+        }
+
+        return nextState
+      }
 
       case 'mouse_left':
         return {
@@ -113,6 +165,7 @@ class Store extends ReduceStore {
         }
 
       case 'select_body':
+        if (state.operationMode === 'create') return state
         return { ...state, ...action.payload }
 
       case 'window_resized':

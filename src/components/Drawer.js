@@ -57,6 +57,7 @@ class Drawer extends Component {
   }
 
   handleTouchEnd() {
+    actions.mouseButtonReleased()
     actions.mouseLeft()
   }
 
@@ -69,7 +70,7 @@ class Drawer extends Component {
   }
 
   render() {
-    const { windowWidth, windowHeight, scale, centerX, centerY, bodies } = this.state
+    const { windowWidth, windowHeight, scale, centerX, centerY, bodies, newBody, mouseSvgX, mouseSvgY } = this.state
 
     if (windowWidth == null || windowHeight == null) return null
 
@@ -90,6 +91,13 @@ class Drawer extends Component {
           <circle key={ b.id } r={ b.radius } cx={ b.x } cy={ b.y } style={{ fill: b.color }}
                   onMouseDown={ () => this.handleBodyClicked(b.id) } />
         )) }
+        {
+          newBody == null ? null :
+          <g>
+            <line x1={ newBody.x } y1={ newBody.y } x2={ mouseSvgX } y2={ mouseSvgY } style={{ stroke: 'black', strokeWidth: 1 / scale }} />
+            <circle r={ newBody.radius } cx={ newBody.x } cy={ newBody.y } style={{ fill: newBody.color }} />
+          </g>
+        }
         </g>
       </svg>
     )
