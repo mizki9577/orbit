@@ -13,7 +13,7 @@ import ButtonGroup from 'react-bootstrap/es/ButtonGroup'
 import ButtonToolbar from 'react-bootstrap/es/ButtonToolbar'
 import Glyphicon from 'react-bootstrap/es/Glyphicon'
 
-class ControllWindow extends Component {
+class Toolbar extends Component {
   state: State
 
   static getStores() {
@@ -77,6 +77,6 @@ class ControllWindow extends Component {
   }
 }
 
-export default Container.create(ControllWindow)
+export default Container.create(Toolbar)
 
 // vim: set ts=2 sw=2 et:

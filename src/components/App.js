@@ -10,7 +10,7 @@ import * as actions from '../actions.js'
 
 import Drawer from './Drawer.js'
 import BodyInformationWindow from './BodyInformationWindow.js'
-import ControllWindow from './ControllWindow.js'
+import Toolbar from './Toolbar.js'
 import ObjectTable from './ObjectTable.js'
 
 class App extends Component {
@@ -34,7 +34,7 @@ class App extends Component {
         <ObjectTable obj={ this.state } exclude={{ bodies: null }} show={ this.state.showState } />
         <Drawer />
         <BodyInformationWindow />
-        <ControllWindow />
+        <Toolbar />
       </div>
     )
   }
