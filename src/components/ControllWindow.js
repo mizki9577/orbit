@@ -55,7 +55,7 @@ class ControllWindow extends Component {
         <Navbar.Form pullLeft>
 
           <ButtonGroup>
-            <Button active={ isRunning } onClick={ this.handleRunPauseButtonClick.bind(this) }>
+            <Button onClick={ this.handleRunPauseButtonClick.bind(this) }>
               <Glyphicon glyph={ isRunning ? 'pause' : 'play' } />
             </Button>
 
