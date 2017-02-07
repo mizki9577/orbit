@@ -8,9 +8,9 @@ import { Container } from 'flux/utils'
 import store from '../store.js'
 import * as actions from '../actions.js'
 
-import Navbar from 'react-bootstrap/es/Navbar'
 import Button from 'react-bootstrap/es/Button'
 import ButtonGroup from 'react-bootstrap/es/ButtonGroup'
+import ButtonToolbar from 'react-bootstrap/es/ButtonToolbar'
 import Glyphicon from 'react-bootstrap/es/Glyphicon'
 
 class ControllWindow extends Component {
@@ -48,36 +48,31 @@ class ControllWindow extends Component {
     const { isRunning, isFullscreen, showState, operationMode } = this.state
 
     return (
-      <Navbar fixedBottom>
-        <Navbar.Header>
-          <Navbar.Brand>Orbit</Navbar.Brand>
-        </Navbar.Header>
-        <Navbar.Form pullLeft>
+      <ButtonToolbar style={{ position: 'absolute', bottom: 0 }}>
+        <ButtonGroup>
+          <Button onClick={ this.handleRunPauseButtonClick.bind(this) }>
+            <Glyphicon glyph={ isRunning ? 'pause' : 'play' } />
+          </Button>
 
-          <ButtonGroup>
-            <Button onClick={ this.handleRunPauseButtonClick.bind(this) }>
-              <Glyphicon glyph={ isRunning ? 'pause' : 'play' } />
-            </Button>
+          <Button active={ isFullscreen } onClick={ this.handleFullscreenToggleButtonClick.bind(this) }>
+            <Glyphicon glyph="fullscreen" />
+          </Button>
 
-            <Button active={ isFullscreen } onClick={ this.handleFullscreenToggleButtonClick.bind(this) }>
-              <Glyphicon glyph="fullscreen" />
-            </Button>
+          <Button active={ showState } onClick={ this.handleShowStateToggleButtonClick.bind(this) }>
+            <Glyphicon glyph="console" />
+          </Button>
+        </ButtonGroup>
 
-            <Button active={ showState } onClick={ this.handleShowStateToggleButtonClick.bind(this) }>
-              <Glyphicon glyph="console" />
-            </Button>
+        <ButtonGroup>
+          <Button active={ operationMode === 'move' } onClick={ this.handleMoveModeButtonClick.bind(this) }>
+            <Glyphicon glyph="move" />
+          </Button>
 
-            <Button active={ operationMode === 'move' } onClick={ this.handleMoveModeButtonClick.bind(this) }>
-              <Glyphicon glyph="move" />
-            </Button>
-
-            <Button active={ operationMode === 'create' } onClick={ this.handleCreateModeButtonClick.bind(this) }>
-              <Glyphicon glyph="pencil" />
-            </Button>
-
-          </ButtonGroup>
-        </Navbar.Form>
-      </Navbar>
+          <Button active={ operationMode === 'create' } onClick={ this.handleCreateModeButtonClick.bind(this) }>
+            <Glyphicon glyph="pencil" />
+          </Button>
+        </ButtonGroup>
+      </ButtonToolbar>
     )
   }
 }

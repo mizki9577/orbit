@@ -9,7 +9,6 @@ import store from '../store.js'
 import * as actions from '../actions.js'
 
 import Panel from 'react-bootstrap/es/Panel'
-import Table from 'react-bootstrap/es/Table'
 import Button from 'react-bootstrap/es/Button'
 import ButtonGroup from 'react-bootstrap/es/ButtonGroup'
 import Glyphicon from 'react-bootstrap/es/Glyphicon'
@@ -49,78 +48,41 @@ class BodyInformationWindow extends Component {
     if (body == null) return null
 
     return (
-      <Panel>
-        <Button block onClick={ this.handleCloseButtonClick.bind(this) }>
-          <Glyphicon glyph="remove" />
-          Close
-        </Button>
-
-        <Table>
-          <tbody>
-
-            <tr>
-              <th>Mass</th>
-              <td>
-                <input type="number" value={ body.mass } readOnly />
-              </td>
-            </tr>
-
-            <tr>
-              <th>Radius</th>
-              <td>
-                <input type="number" value={ body.radius } readOnly />
-              </td>
-            </tr>
-
-            <tr>
-              <th>X Coor.</th>
-              <td>
-                <input type="number" value={ body.x.toPrecision(4) } readOnly />
-              </td>
-            </tr>
-
-            <tr>
-              <th>Y Coor.</th>
-              <td>
-                <input type="number" value={ body.y.toPrecision(4) } readOnly />
-              </td>
-            </tr>
-
-            <tr>
-              <th>X Vel.</th>
-              <td>
-                <input type="number" value={ body.vx.toPrecision(4) } readOnly />
-              </td>
-            </tr>
-
-            <tr>
-              <th>Y Vel.</th>
-              <td>
-                <input type="number" value={ body.vy.toPrecision(4) } readOnly />
-              </td>
-            </tr>
-
-            <tr>
-              <th>Speed</th>
-              <td>
-                <input type="number" value={ Math.hypot(body.vx, body.vy).toPrecision(4) } readOnly />
-              </td>
-            </tr>
-
-          </tbody>
-        </Table>
-
+      <Panel style={{ maxWidth: '2.5in' }}>
         <ButtonGroup>
-          <Button block active={ followingBodyId === selectedBodyId } onClick={ this.handleFollowToggleButtonClick.bind(this, selectedBodyId) }>
-            <Glyphicon glyph="eye-open" />
-            Follow
-          </Button>
-          <Button block bsStyle="danger" onClick={ this.handleDeleteButtonClick.bind(this, selectedBodyId) }>
-            <Glyphicon glyph="erase" />
-            Remove
+          <Button onClick={ this.handleCloseButtonClick.bind(this) }>
+            <Glyphicon glyph="remove" />
+            Close
           </Button>
         </ButtonGroup>
 
+        <table style={{ width: '100%', textAlign: 'right' }}>
+          <tbody>
+            <tr><th>Mass         </th><td> { body.mass                                   } </td></tr>
+            <tr><th>Radius       </th><td> { body.radius                                 } </td></tr>
+            <tr><th>x            </th><td> { body.x.toPrecision(4)                       } </td></tr>
+            <tr><th>y            </th><td> { body.y.toPrecision(4)                       } </td></tr>
+            <tr><th>v<sub>x</sub></th><td> { body.vx.toPrecision(4)                      } </td></tr>
+            <tr><th>v<sub>y</sub></th><td> { body.vy.toPrecision(4)                      } </td></tr>
+            <tr><th>v            </th><td> { Math.hypot(body.vx, body.vy).toPrecision(4) } </td></tr>
+          </tbody>
+        </table>
+
+        <ButtonGroup justified>
+          <ButtonGroup>
+            <Button active={ followingBodyId === selectedBodyId } onClick={ this.handleFollowToggleButtonClick.bind(this, selectedBodyId) }>
+              <Glyphicon glyph="eye-open" />
+              Follow
+            </Button>
+          </ButtonGroup>
+
+          <ButtonGroup>
+            <Button bsStyle="danger" onClick={ this.handleDeleteButtonClick.bind(this, selectedBodyId) }>
+              <Glyphicon glyph="erase" />
+              Remove
+            </Button>
+          </ButtonGroup>
+        </ButtonGroup>
       </Panel>
     )
   }
