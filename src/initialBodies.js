@@ -1,7 +1,5 @@
 /* @flow */
-
 import type { Body } from './types.js'
-
 import chroma from 'chroma-js'
 
 const n = 8, m = 100, c = 10, r = 200

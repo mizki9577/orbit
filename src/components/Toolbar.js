@@ -1,17 +1,16 @@
 /* @flow */
-
 import type { State } from '../types.js'
 
 import React, { Component } from 'react'
 import { Container } from 'flux/utils'
 
-import store from '../store.js'
-import * as actions from '../actions.js'
-
 import Button from 'react-bootstrap/es/Button'
 import ButtonGroup from 'react-bootstrap/es/ButtonGroup'
 import ButtonToolbar from 'react-bootstrap/es/ButtonToolbar'
 import Glyphicon from 'react-bootstrap/es/Glyphicon'
+
+import store from '../store.js'
+import * as actions from '../actions.js'
 
 class Toolbar extends Component {
   state: State
@@ -50,25 +49,25 @@ class Toolbar extends Component {
     return (
       <ButtonToolbar style={{ position: 'absolute', bottom: 0 }}>
         <ButtonGroup>
-          <Button onClick={ this.handleRunPauseButtonClick.bind(this) }>
+          <Button onClick={ () => this.handleRunPauseButtonClick() }>
             <Glyphicon glyph={ isRunning ? 'pause' : 'play' } />
           </Button>
 
-          <Button active={ isFullscreen } onClick={ this.handleFullscreenToggleButtonClick.bind(this) }>
+          <Button active={ isFullscreen } onClick={ () => this.handleFullscreenToggleButtonClick() }>
             <Glyphicon glyph="fullscreen" />
           </Button>
 
-          <Button active={ showState } onClick={ this.handleShowStateToggleButtonClick.bind(this) }>
+          <Button active={ showState } onClick={ () => this.handleShowStateToggleButtonClick() }>
             <Glyphicon glyph="console" />
           </Button>
         </ButtonGroup>
 
         <ButtonGroup>
-          <Button active={ operationMode === 'move' } onClick={ this.handleMoveModeButtonClick.bind(this) }>
+          <Button active={ operationMode === 'move' } onClick={ () => this.handleMoveModeButtonClick() }>
             <Glyphicon glyph="move" />
           </Button>
 
-          <Button active={ operationMode === 'create' } onClick={ this.handleCreateModeButtonClick.bind(this) }>
+          <Button active={ operationMode === 'create' } onClick={ () => this.handleCreateModeButtonClick() }>
             <Glyphicon glyph="pencil" />
           </Button>
         </ButtonGroup>

@@ -1,5 +1,4 @@
 /* @flow */
-
 export type Body = {|
   id: number,
   locus: [number, number][],

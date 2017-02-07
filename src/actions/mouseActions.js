@@ -1,5 +1,4 @@
 /* @flow */
-
 import dispatcher from '../dispatcher.js'
 
 export const mouseMoved = (mouseX: number, mouseY: number) => {

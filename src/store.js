@@ -1,11 +1,10 @@
 /* @flow */
-
 import type { State } from './types'
 
 import chroma from 'chroma-js'
 import { ReduceStore } from 'flux/utils'
-import dispatcher from './dispatcher.js'
 
+import dispatcher from './dispatcher.js'
 import initialBodies from './initialBodies.js'
 
 class Store extends ReduceStore {

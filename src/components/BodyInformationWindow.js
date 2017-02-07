@@ -1,17 +1,16 @@
 /* @flow */
-
 import type { State } from '../types.js'
 
 import React, { Component } from 'react'
 import { Container } from 'flux/utils'
 
-import store from '../store.js'
-import * as actions from '../actions.js'
-
 import Panel from 'react-bootstrap/es/Panel'
 import Button from 'react-bootstrap/es/Button'
 import ButtonGroup from 'react-bootstrap/es/ButtonGroup'
 import Glyphicon from 'react-bootstrap/es/Glyphicon'
+
+import store from '../store.js'
+import * as actions from '../actions.js'
 
 class BodyInformationWindow extends Component {
   state: State
@@ -50,7 +49,7 @@ class BodyInformationWindow extends Component {
     return (
       <Panel style={{ maxWidth: '2.5in' }}>
         <ButtonGroup>
-          <Button onClick={ this.handleCloseButtonClick.bind(this) }>
+          <Button onClick={ ev => this.handleCloseButtonClick(ev) }>
             <Glyphicon glyph="remove" />
             Close
           </Button>

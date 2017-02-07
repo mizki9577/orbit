@@ -5,5 +5,4 @@ export default {
   touchAction: 'none',
 }
 
-
 // vim: set ts=2 sw=2 et:

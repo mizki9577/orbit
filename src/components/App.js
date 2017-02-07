@@ -8,10 +8,10 @@ import { Container } from 'flux/utils'
 import store from '../store.js'
 import * as actions from '../actions.js'
 
-import Drawer from './Drawer.js'
 import BodyInformationWindow from './BodyInformationWindow.js'
-import Toolbar from './Toolbar.js'
+import Drawer from './Drawer.js'
 import ObjectTable from './ObjectTable.js'
+import Toolbar from './Toolbar.js'
 
 class App extends Component {
   state: State

@@ -1,5 +1,4 @@
 /* @flow */
-
 import React from 'react'
 
 const ObjectTable = ({ obj, exclude={}, show=true }: { obj: Object, exclude?: Object, show?: boolean }) => (

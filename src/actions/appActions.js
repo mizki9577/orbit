@@ -1,7 +1,6 @@
 /* @flow */
 import screenfull from 'screenfull'
 import dispatcher from '../dispatcher.js'
-
 import { update } from '../actions.js'
 
 export const applicationStarted = () => {
@@ -25,7 +24,6 @@ export const frame = (timestamp: number) => {
 
   window.requestAnimationFrame(frame)
 }
-
 
 export const windowResized = () => {
   dispatcher.dispatch({

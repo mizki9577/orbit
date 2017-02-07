@@ -1,5 +1,4 @@
 /* @flow */
-
 import type { State } from '../types.js'
 
 import React, { Component } from 'react'
@@ -8,6 +7,7 @@ import { Container } from 'flux/utils'
 import store from '../store.js'
 import * as actions from '../actions.js'
 
+import Body from './Body.js'
 import style from './Drawer.css.js'
 
 class Drawer extends Component {
@@ -65,10 +65,6 @@ class Drawer extends Component {
     actions.wheelMoved(ev.deltaY)
   }
 
-  handleBodyClicked(id) {
-    actions.selectBody(id)
-  }
-
   render() {
     const { windowWidth, windowHeight, scale, centerX, centerY, bodies, newBody, mouseSvgX, mouseSvgY } = this.state
 
@@ -77,27 +73,24 @@ class Drawer extends Component {
     return (
       <svg
         style={ style } width={ windowWidth } height={ windowHeight } viewBox={ `${-windowWidth/2} ${-windowHeight/2} ${windowWidth} ${windowHeight}` }
-        onMouseMove={ this.handleMouseMove.bind(this) }
-        onMouseDown={ this.handleMouseDown.bind(this) }
-        onMouseUp={ this.handleMouseUp.bind(this) }
-        onMouseLeave={ this.handleMouseLeave.bind(this) }
-        onTouchStart={ this.handleTouchStart.bind(this) }
-        onTouchMove={ this.handleTouchMove.bind(this) }
-        onTouchEnd={ this.handleTouchEnd.bind(this) }
-        onWheel={ this.handleWheel.bind(this) }
+        onMouseMove={ ev => this.handleMouseMove(ev) }
+        onMouseDown={ ev => this.handleMouseDown(ev) }
+        onMouseUp={ ev => this.handleMouseUp(ev) }
+        onMouseLeave={ () => this.handleMouseLeave() }
+        onTouchStart={ ev => this.handleTouchStart(ev) }
+        onTouchMove={ ev => this.handleTouchMove(ev) }
+        onTouchEnd={ () => this.handleTouchEnd() }
+        onWheel={ ev => this.handleWheel(ev) }
       >
         <g transform={`scale(${scale}) translate(${-centerX} ${-centerY})`}>
-        { bodies.map(b => (
-          <circle key={ b.id } r={ b.radius } cx={ b.x } cy={ b.y } style={{ fill: b.color }}
-                  onMouseDown={ () => this.handleBodyClicked(b.id) } />
-        )) }
-        {
-          newBody == null ? null :
-          <g>
-            <line x1={ newBody.x } y1={ newBody.y } x2={ mouseSvgX } y2={ mouseSvgY } style={{ stroke: 'black', strokeWidth: 1 / scale }} />
-            <circle r={ newBody.radius } cx={ newBody.x } cy={ newBody.y } style={{ fill: newBody.color }} />
-          </g>
-        }
+          { bodies.map(b => <Body {...b} />) }
+          {
+            newBody == null ? null :
+            <g>
+              <line x1={ newBody.x } y1={ newBody.y } x2={ mouseSvgX } y2={ mouseSvgY } style={{ stroke: 'black', strokeWidth: 1 / scale }} />
+              <circle r={ newBody.radius } cx={ newBody.x } cy={ newBody.y } style={{ fill: newBody.color }} />
+            </g>
+          }
         </g>
       </svg>
     )
