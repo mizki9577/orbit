@@ -20,6 +20,7 @@ class Store extends ReduceStore {
       centerY: 0,
       mousePressed: false,
       selectedBodyId: null,
+      selectedBodyIndex: null,
       scale: 1,
       followingBodyId: null,
       followingBodyIndex: null,
@@ -155,7 +156,11 @@ class Store extends ReduceStore {
 
       case 'select_body':
         if (state.operationMode === 'create') return state
-        return { ...state, ...action.payload }
+        return {
+          ...state,
+          ...action.payload,
+          selectedBodyIndex: state.bodies.findIndex(b => b.id === action.payload.selectedBodyId),
+        }
 
       case 'window_resized':
         return { ...state, ...action.payload }
@@ -164,6 +169,7 @@ class Store extends ReduceStore {
         return {
           ...state,
           selectedBodyId: null,
+          selectedBodyIndex: null,
           followingBodyId: state.selectedBodyId === state.followingBodyId ? null : state.followingBodyId,
           followingBodyIndex: state.selectedBodyId === state.followingBodyId ? null : state.followingBodyIdx,
           bodies: state.bodies.filter(body => body.id !== action.id),
@@ -173,6 +179,7 @@ class Store extends ReduceStore {
         return {
           ...state,
           selectedBodyId: null,
+          selectedBodyIndex: null,
         }
 
       case 'select_follow_target':

@@ -40,11 +40,10 @@ class BodyInformationWindow extends Component {
   }
 
   render() {
-    const { bodies, selectedBodyId, followingBodyId } = this.state
+    const { bodies, selectedBodyId, selectedBodyIndex, followingBodyId } = this.state
 
-    if (selectedBodyId == null) return null
-    const body = bodies.find(b => b.id === selectedBodyId)
-    if (body == null) return null
+    if (selectedBodyId == null || selectedBodyIndex == null) return null
+    const body = bodies[selectedBodyIndex]
 
     return (
       <Panel style={{ maxWidth: '2.5in' }}>

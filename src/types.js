@@ -35,6 +35,7 @@ export type State = {|
   followingBodyId: ?number,
   followingBodyIndex: ?number,
   selectedBodyId: ?number,
+  selectedBodyIndex: ?number,
 
   isRunning: boolean,
   isFullscreen: ?boolean,
