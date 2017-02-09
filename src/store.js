@@ -47,20 +47,19 @@ class Store extends ReduceStore {
           loop: state.loop + 1,
         }
 
-        if (state.followingBodyId !== null) {
-          const followingBody = state.bodies.find(b => b.id === state.followingBodyId)
-          const followingBodyNext = action.bodies.find(b => b.id === state.followingBodyId)
-          nextState.centerX += followingBodyNext.x - followingBody.x
-          nextState.centerY += followingBodyNext.y - followingBody.y
-          nextState.mouseSvgX += followingBodyNext.x - followingBody.x
-          nextState.mouseSvgY += followingBodyNext.y - followingBody.y
+        if (state.followingBodyId === null) return nextState
 
-          if (state.newBody !== null) {
-            nextState.newBody.x += followingBodyNext.x - followingBody.x
-            nextState.newBody.y += followingBodyNext.y - followingBody.y
-          }
-        }
+        const followingBody = state.bodies.find(b => b.id === state.followingBodyId)
+        const nextFollowingBody = action.bodies.find(b => b.id === state.followingBodyId)
+        nextState.centerX += nextFollowingBody.x - followingBody.x
+        nextState.centerY += nextFollowingBody.y - followingBody.y
+        nextState.mouseSvgX += nextFollowingBody.x - followingBody.x
+        nextState.mouseSvgY += nextFollowingBody.y - followingBody.y
 
+        if (state.newBody === null) return nextState
+
+        nextState.newBody.x += nextFollowingBody.x - followingBody.x
+        nextState.newBody.y += nextFollowingBody.y - followingBody.y
         return nextState
       }
 
@@ -72,13 +71,10 @@ class Store extends ReduceStore {
           mouseSvgY: (action.payload.mouseY - state.windowHeight / 2) / state.scale + state.centerY,
         }
 
-        if (state.mousePressed) {
-          if (state.operationMode === 'move') {
-            nextState.centerX += (state.mouseX - nextState.mouseX) / state.scale
-            nextState.centerY += (state.mouseY - nextState.mouseY) / state.scale
-          }
-        }
+        if (!state.mousePressed || state.operationMode !== 'move') return nextState
 
+        nextState.centerX += (state.mouseX - nextState.mouseX) / state.scale
+        nextState.centerY += (state.mouseY - nextState.mouseY) / state.scale
         return nextState
       }
 
@@ -88,20 +84,19 @@ class Store extends ReduceStore {
           mousePressed: true,
         }
 
-        if (state.operationMode === 'create') {
-          nextState.newBody = {
-            id: performance.now(),
-            mass: 100,
-            radius: 10,
-            x: state.mouseSvgX,
-            y: state.mouseSvgY,
-            vx: 0,
-            vy: 0,
-            locus: [],
-            color: chroma.random(),
-          }
-        }
+        if (state.operationMode !== 'create') return nextState
 
+        nextState.newBody = {
+          id: performance.now(),
+          mass: 100,
+          radius: 10,
+          x: state.mouseSvgX,
+          y: state.mouseSvgY,
+          vx: 0,
+          vy: 0,
+          locus: [],
+          color: chroma.random(),
+        }
         return nextState
       }
 
@@ -111,20 +106,18 @@ class Store extends ReduceStore {
           mousePressed: false,
         }
 
-        if (state.operationMode === 'create') {
-          nextState.newBody.vx = (state.newBody.x - state.mouseSvgX) / 30
-          nextState.newBody.vy = (state.newBody.y - state.mouseSvgY) / 30
+        if (state.operationMode !== 'create') return nextState
 
-          if (state.followingBodyId !== null) {
-            const followingBody = state.bodies.find(b => b.id === state.followingBodyId)
-            nextState.newBody.vx += followingBody.vx
-            nextState.newBody.vy += followingBody.vy
-          }
+        const newBody = state.newBody
+        nextState.bodies.push(newBody)
+        nextState.newBody = null
+        newBody.vx = (newBody.x - state.mouseSvgX) / 30
+        newBody.vy = (newBody.y - state.mouseSvgY) / 30
 
-          nextState.bodies.push(nextState.newBody)
-          nextState.newBody = null
-        }
-
+        if (state.followingBodyId === null) return nextState
+        const followingBody = state.bodies.find(b => b.id === state.followingBodyId)
+        newBody.vx += followingBody.vx
+        newBody.vy += followingBody.vy
         return nextState
       }
 
