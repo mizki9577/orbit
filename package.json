@@ -8,10 +8,11 @@
   "author": "Mizki SUZUMORI <mizki9577@gmail.com>",
   "repository": "https://github.com/mizki9577/orbit",
   "scripts": {
-    "start": "rollup -c -w -m inline --environment NODE_ENV:development",
+    "start": "rollup -c -w -m inline --environment NODE_ENV:watch -o ./public/bundle.js",
     "check": "eslint ./src/&&flow",
-    "build": "rollup -c --environment NODE_ENV:production",
-    "deploy": "npm run build&&gh-pages -d public"
+    "build:development": "rollup -c -m inline --environment NODE_ENV:development",
+    "build:production": "rollup -c --environment NODE_ENV:production",
+    "deploy": "./bin/deploy.sh"
   },
   "dependencies": {
     "bootstrap": "^3.3.7",

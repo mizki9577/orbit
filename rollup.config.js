@@ -8,12 +8,9 @@ import serve from 'rollup-plugin-serve'
 
 const config = {
   entry: 'src/main.js',
-  dest: 'public/bundle.js',
   format: 'es',
 
   plugins: [
-    progress(),
-
     replace({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
     }),
@@ -32,14 +29,19 @@ const config = {
   ],
 }
 
-
-if (process.env.NODE_ENV === 'development') {
+if (process.env.NODE_ENV === 'watch') {
   config.plugins = [
+    progress(),
+
     ...config.plugins,
 
     serve({
       contentBase: 'public',
     }),
+  ]
+} else if (process.env.NODE_ENV === 'development') {
+  config.plugins = [
+    ...config.plugins,
   ]
 } else if (process.env.NODE_ENV === 'production') {
   config.plugins = [
