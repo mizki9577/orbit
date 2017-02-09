@@ -112,9 +112,15 @@ class Store extends ReduceStore {
         }
 
         if (state.operationMode === 'create') {
-          const followingBody = state.bodies.find(b => b.id === state.followingBodyId)
-          state.newBody.vx = (state.newBody.x - state.mouseSvgX) / 30 + followingBody.vx
-          state.newBody.vy = (state.newBody.y - state.mouseSvgY) / 30 + followingBody.vy
+          state.newBody.vx = (state.newBody.x - state.mouseSvgX) / 30
+          state.newBody.vy = (state.newBody.y - state.mouseSvgY) / 30
+
+          if (state.followingBodyId !== null) {
+            const followingBody = state.bodies.find(b => b.id === state.followingBodyId)
+            state.newBody.vx += followingBody.vx
+            state.newBody.vy += followingBody.vy
+          }
+
           nextState.bodies.push(state.newBody)
           nextState.newBody = null
         }
