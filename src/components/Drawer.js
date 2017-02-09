@@ -84,7 +84,7 @@ class Drawer extends Component {
         onWheel={ ev => this.handleWheel(ev) }
       >
         <g transform={`scale(${scale}) translate(${-centerX} ${-centerY})`}>
-          { bodies.map(b => <Body {...b} />) }
+          { bodies.map(b => <Body key={ b.id } {...b} />) }
           {
             newBody == null ? null :
             <g>
