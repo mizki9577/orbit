@@ -139,16 +139,18 @@ class Store extends ReduceStore {
       case 'pinch_start':
         return { ...state, ...action.payload }
 
-      case 'pinch_move':
+      case 'pinch_move': {
+        const touches = state.touches
+        const nextTouches = action.payload.touches
+
         return {
           ...state, ...action.payload,
-          scale: state.scale * (Math.hypot(action.payload.touches[0].clientX - action.payload.touches[1].clientX,
-                                           action.payload.touches[0].clientY - action.payload.touches[1].clientY) /
-                                Math.hypot(state.touches[0].clientX - state.touches[1].clientX,
-                                           state.touches[0].clientY - state.touches[1].clientY)),
-          centerX: state.centerX + ((state.touches[0].clientX + state.touches[1].clientX) - (action.payload.touches[0].clientX + action.payload.touches[1].clientX)) / 2 / state.scale,
-          centerY: state.centerY + ((state.touches[0].clientY + state.touches[1].clientY) - (action.payload.touches[0].clientY + action.payload.touches[1].clientY)) / 2 / state.scale,
+          scale: state.scale * (Math.hypot(nextTouches[0].clientX - nextTouches[1].clientX, nextTouches[0].clientY - nextTouches[1].clientY) /
+                                Math.hypot(touches[0].clientX - touches[1].clientX, touches[0].clientY - touches[1].clientY)),
+          centerX: state.centerX + ((touches[0].clientX - nextTouches[0].clientX) + (touches[1].clientX - nextTouches[1].clientX)) / 2 / state.scale,
+          centerY: state.centerY + ((touches[0].clientY - nextTouches[0].clientY) + (touches[1].clientY - nextTouches[1].clientY)) / 2 / state.scale,
         }
+      }
 
       case 'select_body':
         if (state.operationMode === 'create') return state
