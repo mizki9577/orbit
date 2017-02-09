@@ -50,18 +50,14 @@ class Store extends ReduceStore {
         if (state.followingBodyId !== null) {
           const followingBody = state.bodies.find(b => b.id === state.followingBodyId)
           const followingBodyNext = action.bodies.find(b => b.id === state.followingBodyId)
-          Object.assign(nextState, {
-            centerX: state.centerX + (followingBodyNext.x - followingBody.x),
-            centerY: state.centerY + (followingBodyNext.y - followingBody.y),
-            mouseSvgX: state.mouseSvgX + (followingBodyNext.x - followingBody.x),
-            mouseSvgY: state.mouseSvgY + (followingBodyNext.y - followingBody.y),
-          })
+          nextState.centerX += followingBodyNext.x - followingBody.x
+          nextState.centerY += followingBodyNext.y - followingBody.y
+          nextState.mouseSvgX += followingBodyNext.x - followingBody.x
+          nextState.mouseSvgY += followingBodyNext.y - followingBody.y
 
           if (state.newBody !== null) {
-            Object.assign(nextState.newBody, {
-              x: nextState.newBody.x + (followingBodyNext.x - followingBody.x),
-              y: nextState.newBody.y + (followingBodyNext.y - followingBody.y),
-            })
+            nextState.newBody.x += followingBodyNext.x - followingBody.x
+            nextState.newBody.y += followingBodyNext.y - followingBody.y
           }
         }
 
@@ -78,10 +74,8 @@ class Store extends ReduceStore {
 
         if (state.mousePressed) {
           if (state.operationMode === 'move') {
-            Object.assign(nextState, {
-              centerX: state.centerX + (state.mouseX - nextState.mouseX) / state.scale,
-              centerY: state.centerY + (state.mouseY - nextState.mouseY) / state.scale,
-            })
+            nextState.centerX += (state.mouseX - nextState.mouseX) / state.scale
+            nextState.centerY += (state.mouseY - nextState.mouseY) / state.scale
           }
         }
 
@@ -119,17 +113,10 @@ class Store extends ReduceStore {
 
         if (state.operationMode === 'create') {
           const followingBody = state.bodies.find(b => b.id === state.followingBodyId)
-          Object.assign(nextState, {
-            bodies: [
-              ...state.bodies,
-              {
-                ...state.newBody,
-                vx: (state.newBody.x - state.mouseSvgX) / 30 + followingBody.vx,
-                vy: (state.newBody.y - state.mouseSvgY) / 30 + followingBody.vy,
-              },
-            ],
-            newBody: null,
-          })
+          state.newBody.vx = (state.newBody.x - state.mouseSvgX) / 30 + followingBody.vx
+          state.newBody.vy = (state.newBody.y - state.mouseSvgY) / 30 + followingBody.vy
+          nextState.bodies.push(state.newBody)
+          nextState.newBody = null
         }
 
         return nextState
