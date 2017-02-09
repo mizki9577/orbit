@@ -49,6 +49,7 @@ class Drawer extends Component {
   }
 
   handleTouchMove(ev) {
+    ev.preventDefault()
     if (ev.touches.length === 1) {
       actions.mouseMoved(ev.touches[0].clientX, ev.touches[0].clientY)
     } else if (ev.touches.length === 2) {
