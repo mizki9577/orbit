@@ -118,13 +118,14 @@ class Store extends ReduceStore {
         }
 
         if (state.operationMode === 'create') {
+          const followingBody = state.bodies.find(b => b.id === state.followingBodyId)
           Object.assign(nextState, {
             bodies: [
               ...state.bodies,
               {
                 ...state.newBody,
-                vx: (state.newBody.x - state.mouseSvgX) / 30,
-                vy: (state.newBody.y - state.mouseSvgY) / 30,
+                vx: (state.newBody.x - state.mouseSvgX) / 30 + followingBody.vx,
+                vy: (state.newBody.y - state.mouseSvgY) / 30 + followingBody.vy,
               },
             ],
             newBody: null,
