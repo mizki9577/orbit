@@ -22,6 +22,7 @@ class Store extends ReduceStore {
       selectedBodyId: null,
       scale: 1,
       followingBodyId: null,
+      followingBodyIndex: null,
       loop: 0,
       isRunning: true,
       isFullscreen: null,
@@ -49,8 +50,8 @@ class Store extends ReduceStore {
 
         if (state.followingBodyId === null) return nextState
 
-        const followingBody = state.bodies.find(b => b.id === state.followingBodyId)
-        const nextFollowingBody = action.bodies.find(b => b.id === state.followingBodyId)
+        const followingBody = state.bodies[state.followingBodyIndex]
+        const nextFollowingBody = action.bodies[state.followingBodyIndex]
         nextState.centerX += nextFollowingBody.x - followingBody.x
         nextState.centerY += nextFollowingBody.y - followingBody.y
         nextState.mouseSvgX += nextFollowingBody.x - followingBody.x
@@ -115,7 +116,7 @@ class Store extends ReduceStore {
         newBody.vy = (newBody.y - state.mouseSvgY) / 30
 
         if (state.followingBodyId === null) return nextState
-        const followingBody = state.bodies.find(b => b.id === state.followingBodyId)
+        const followingBody = state.bodies[state.followingBodyIndex]
         newBody.vx += followingBody.vx
         newBody.vy += followingBody.vy
         return nextState
@@ -164,6 +165,7 @@ class Store extends ReduceStore {
           ...state,
           selectedBodyId: null,
           followingBodyId: state.selectedBodyId === state.followingBodyId ? null : state.followingBodyId,
+          followingBodyIndex: state.selectedBodyId === state.followingBodyId ? null : state.followingBodyIdx,
           bodies: state.bodies.filter(body => body.id !== action.id),
         }
 
@@ -174,12 +176,17 @@ class Store extends ReduceStore {
         }
 
       case 'select_follow_target':
-        return { ...state, ...action.payload }
+        return {
+          ...state,
+          ...action.payload,
+          followingBodyIndex: state.bodies.findIndex(b => b.id === action.payload.followingBodyId),
+        }
 
       case 'stop_following':
         return {
           ...state,
           followingBodyId: null,
+          followingBodyIndex: null,
         }
 
       case 'toggle_run_pause':

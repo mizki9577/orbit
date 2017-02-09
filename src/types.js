@@ -33,6 +33,7 @@ export type State = {|
   scale: number,
 
   followingBodyId: ?number,
+  followingBodyIndex: ?number,
   selectedBodyId: ?number,
 
   isRunning: boolean,
