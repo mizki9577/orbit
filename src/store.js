@@ -108,7 +108,7 @@ class Store extends ReduceStore {
           mousePressed: false,
         }
 
-        if (state.operationMode !== 'create') return nextState
+        if (state.operationMode !== 'create' || state.newBody === null) return nextState
 
         const newBody = state.newBody
         nextState.bodies.push(newBody)
