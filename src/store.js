@@ -139,7 +139,11 @@ class Store extends ReduceStore {
         }
 
       case 'pinch_start':
-        return { ...state, ...action.payload }
+        return {
+          ...state,
+          ...action.payload,
+          newBody: null,
+        }
 
       case 'pinch_move': {
         const touches = state.touches
