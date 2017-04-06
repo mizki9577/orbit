@@ -12,6 +12,8 @@ import Glyphicon from 'react-bootstrap/es/Glyphicon'
 import store from '../store.js'
 import * as actions from '../actions.js'
 
+import styles from './BodyInformationWindow.css'
+
 class BodyInformationWindow extends Component {
   state: State
 
@@ -46,7 +48,7 @@ class BodyInformationWindow extends Component {
     const body = bodies[selectedBodyIndex]
 
     return (
-      <Panel style={{ maxWidth: '2.5in' }}>
+      <Panel className={ styles.panel }>
         <ButtonGroup>
           <Button onClick={ ev => this.handleCloseButtonClick(ev) }>
             <Glyphicon glyph="remove" />
@@ -54,7 +56,7 @@ class BodyInformationWindow extends Component {
           </Button>
         </ButtonGroup>
 
-        <table style={{ width: '100%', textAlign: 'right' }}>
+        <table className={ styles.table }>
           <tbody>
             <tr><th>Mass         </th><td> { body.mass                                   } </td></tr>
             <tr><th>Radius       </th><td> { body.radius                                 } </td></tr>

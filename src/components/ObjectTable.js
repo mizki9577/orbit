@@ -1,15 +1,17 @@
 /* @flow */
 import React from 'react'
 
+import styles from './ObjectTable.css'
+
 const ObjectTable = ({ obj, exclude={}, show=true }: { obj: Object, exclude?: Object, show?: boolean }) => (
   !show ? null:
-  <table style={{ fontFamily: 'monospace' }}>
+  <table className={ styles.table }>
     <tbody>
       {
         Object.entries(obj).map(([k, v]) => (
           exclude[k] === null ? null :
           <tr key={ k }>
-            <th style={{ textAlign: 'right', paddingRight: '1em' }}>{ k }</th>
+            <th className={ styles.th }>{ k }</th>
             <td>
             {
               v === null ? 'null'

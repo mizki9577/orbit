@@ -8,7 +8,8 @@ import store from '../store.js'
 import * as actions from '../actions.js'
 
 import Body from './Body.js'
-import style from './Drawer.css.js'
+
+import './Drawer.css'
 
 class Drawer extends Component {
   state: State
@@ -73,7 +74,7 @@ class Drawer extends Component {
 
     return (
       <svg
-        style={ style } width={ windowWidth } height={ windowHeight } viewBox={ `${-windowWidth/2} ${-windowHeight/2} ${windowWidth} ${windowHeight}` }
+        width={ windowWidth } height={ windowHeight } viewBox={ `${-windowWidth/2} ${-windowHeight/2} ${windowWidth} ${windowHeight}` }
         onMouseMove={ ev => this.handleMouseMove(ev) }
         onMouseDown={ ev => this.handleMouseDown(ev) }
         onMouseUp={ ev => this.handleMouseUp(ev) }
