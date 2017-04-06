@@ -1,7 +1,7 @@
 #!/bin/sh
 mkdir -p ./public/development
 cp ./public/index.html ./public/development/
-npm run build:development -- -o ./public/development/bundle.js &
-npm run build:production -- -o ./public/bundle.js &
+npm run build:development -- --output-filename 'development/bundle.js' &
+npm run build:production -- --output-filename 'bundle.js' &
 wait
 gh-pages -d public

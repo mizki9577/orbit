@@ -2,11 +2,9 @@
   presets: [
     [
       'env', {
-        modules: false,
         targets: {
           browsers: [
             'last 2 versions',
-            'not ie <= 11',
           ],
         },
       },
@@ -14,14 +12,5 @@
     'react',
     'stage-0',
   ],
-  plugins: [
-    'external-helpers',
-  ],
-  env: {
-    production: {
-      minified: true,
-      comments: false,
-    },
-  },
 }
 // vim: set ts=2 sw=2 et:
