@@ -40,11 +40,16 @@ class Store extends ReduceStore {
       case 'application_started':
         return { ...state, ...action.payload }
 
-      case 'update': {
-        const nextState = {
+      case 'frame':
+        return {
           ...state,
           timestamp: action.timestamp,
           fps: 1000 / (action.timestamp - state.timestamp),
+        }
+
+      case 'update': {
+        const nextState = {
+          ...state,
           bodies: action.bodies,
           loop: state.loop + 1,
         }

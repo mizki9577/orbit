@@ -20,7 +20,11 @@ export const applicationStarted = () => {
 }
 
 export const frame = (timestamp: number) => {
-  update(timestamp)
+  dispatcher.dispatch({
+    type: 'frame',
+    timestamp,
+  })
+  update()
 
   window.requestAnimationFrame(frame)
 }
