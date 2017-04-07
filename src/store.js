@@ -102,7 +102,7 @@ class Store extends ReduceStore {
           vx: 0,
           vy: 0,
           locus: [],
-          color: chroma.random(),
+          color: chroma.hcl(Math.random() * 360, 150, 50),
         }
         return nextState
       }
