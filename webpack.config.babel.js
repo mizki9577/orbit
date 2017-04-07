@@ -15,12 +15,7 @@ export default env => ({
     rules: [
       {
         test: /\.js$/,
-        loader: 'babel-loader',
-      },
-
-      {
-        test: /\.html$/,
-        loader: 'file-loader',
+        loader: 'babel-loader'
       },
 
       {

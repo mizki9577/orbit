@@ -1,6 +1,9 @@
 /node_modules
 /flow-typed
-/public
+
+public/bundle.js
+public/bundle.js.map
+public/development
 
 npm-debug.log
 
