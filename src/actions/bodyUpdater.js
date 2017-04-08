@@ -1,9 +1,10 @@
 /* @flow */
-import UpdateWorker from 'worker-loader!./worker.js'
+import type { Body } from '../types'
+import UpdateWorker from './bodyUpdater.worker.js'
 
 const worker = new UpdateWorker()
 
-export default bodies => new Promise(resolve => {
+export default (bodies: Body[]) => new Promise(resolve => {
   worker.onmessage = resolve
   worker.postMessage(bodies)
 }).then(ev => ev.data)

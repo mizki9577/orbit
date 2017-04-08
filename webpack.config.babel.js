@@ -17,8 +17,13 @@ export default env => {
   config.module = {}
   config.module.rules = [
     {
+      test: /\.worker\.js$/,
+      loader: 'worker-loader',
+    },
+
+    {
       test: /\.js$/,
-      loader: 'babel-loader'
+      loader: 'babel-loader',
     },
 
     {

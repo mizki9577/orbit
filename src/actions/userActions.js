@@ -6,10 +6,10 @@ import bodyUpdater from './bodyUpdater.js'
 export const update = () => {
   const { bodies, isRunning } = store.getState()
   if (!isRunning) return
-  bodyUpdater(bodies).then(bodies => {
+  bodyUpdater(bodies).then(nextBodies => {
     dispatcher.dispatch({
       type: 'update',
-      bodies,
+      bodies: nextBodies,
     })
   })
 }

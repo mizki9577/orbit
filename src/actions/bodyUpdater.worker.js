@@ -23,7 +23,7 @@ self.onmessage = ({ data }) => {
     return { ...self, x, y, vx, vy, locus }
   })
 
-  postMessage(result)
+  self.postMessage(result)
 }
 
 // vim: set ts=2 sw=2 et:
