@@ -1,18 +1,6 @@
 /* @flow */
 import dispatcher from '../dispatcher.js'
-import store from '../store.js'
-import bodyUpdater from './bodyUpdater.js'
-
-export const update = () => {
-  const { bodies, isRunning } = store.getState()
-  if (!isRunning) return
-  bodyUpdater(bodies).then(nextBodies => {
-    dispatcher.dispatch({
-      type: 'update',
-      bodies: nextBodies,
-    })
-  })
-}
+import * as bodyUpdater from './bodyUpdater.js'
 
 export const selectBody = (selectedBodyId: number) => {
   dispatcher.dispatch({
@@ -48,6 +36,7 @@ export const stopFollowing = () => {
 }
 
 export const toggleRunPause = () => {
+  bodyUpdater.toggleRun()
   dispatcher.dispatch({
     type: 'toggle_run_pause',
   })

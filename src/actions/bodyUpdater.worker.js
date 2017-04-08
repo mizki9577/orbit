@@ -1,29 +1,49 @@
 /* @flow */
-self.onmessage = ({ data }) => {
-  const bodies = data
+let bodies = []
+let isRunning = true
 
-  const result = bodies.map(self => {
+self.onmessage = ({ data: { type, value } }) => {
+  switch (type) {
+    case 'init':
+      bodies = value
+      update()
+      break
+
+    case 'toggle_run':
+      isRunning = !isRunning
+      if (isRunning) {
+        update()
+      }
+      break
+
+    case 'get_bodies':
+      self.postMessage(bodies)
+      break
+  }
+}
+
+const update = () => {
+  const length = bodies.length
+  for (let i = 0; i < length; ++i) {
     let ax = 0
     let ay = 0
 
-    for (const other of bodies) {
-      if (self === other) continue
-      const coefficient = -other.mass * ((self.x - other.x) ** 2 + (self.y - other.y) ** 2) ** -1.5
-      ax += coefficient * (self.x - other.x)
-      ay += coefficient * (self.y - other.y)
+    for (let j = 0; j < length; ++j) {
+      if (i === j) continue
+      const coefficient = -bodies[j].mass * ((bodies[i].x - bodies[j].x) ** 2 + (bodies[i].y - bodies[j].y) ** 2) ** -1.5
+      ax += coefficient * (bodies[i].x - bodies[j].x)
+      ay += coefficient * (bodies[i].y - bodies[j].y)
     }
 
-    const vx = self.vx + ax
-    const vy = self.vy + ay
-    const x = self.x + vx
-    const y = self.y + vy
+    bodies[i].vx += ax
+    bodies[i].vy += ay
+    bodies[i].x += bodies[i].vx
+    bodies[i].y += bodies[i].vy
+  }
 
-    //const locus = [[self.x, self.y], ...self.locus]
-    const locus = []
-    return { ...self, x, y, vx, vy, locus }
-  })
-
-  self.postMessage(result)
+  if (isRunning) {
+    setTimeout(update)
+  }
 }
 
 // vim: set ts=2 sw=2 et:

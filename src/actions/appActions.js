@@ -1,12 +1,17 @@
 /* @flow */
+import type { Body } from '../types'
+
 import screenfull from 'screenfull'
+import store from '../store.js'
 import dispatcher from '../dispatcher.js'
-import { update } from '../actions.js'
+import * as bodyUpdater from './bodyUpdater.js'
 
 export const applicationStarted = () => {
   window.requestAnimationFrame(frame)
   window.addEventListener('resize', windowResized)
   document.addEventListener(screenfull.raw.fullscreenchange, fullscreenChanged)
+
+  bodyUpdater.init(store.getState().bodies)
 
   dispatcher.dispatch({
     type: 'application_started',
@@ -19,12 +24,22 @@ export const applicationStarted = () => {
   })
 }
 
+export const update = (bodies: Body[]) => {
+  dispatcher.dispatch({
+    type: 'update',
+    bodies,
+  })
+}
+
 export const frame = (timestamp: number) => {
   dispatcher.dispatch({
     type: 'frame',
     timestamp,
   })
-  update()
+
+  if (store.getState().isRunning) {
+    bodyUpdater.getBodies().then(update)
+  }
 
   window.requestAnimationFrame(frame)
 }
