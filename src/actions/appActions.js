@@ -24,24 +24,17 @@ export const applicationStarted = () => {
   })
 }
 
-export const update = (bodies: Body[]) => {
-  dispatcher.dispatch({
-    type: 'update',
-    bodies,
-  })
-}
-
 export const frame = (timestamp: number) => {
-  dispatcher.dispatch({
-    type: 'frame',
-    timestamp,
-  })
-
   if (store.getState().isRunning) {
-    bodyUpdater.getBodies().then(update)
+    bodyUpdater.getBodies().then(bodies => {
+      dispatcher.dispatch({
+        type: 'update',
+        bodies,
+        timestamp,
+      })
+      window.requestAnimationFrame(frame)
+    })
   }
-
-  window.requestAnimationFrame(frame)
 }
 
 export const windowResized = () => {

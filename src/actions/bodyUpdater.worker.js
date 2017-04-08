@@ -1,17 +1,20 @@
 /* @flow */
-let bodies = []
+let bodies
 let isRunning = true
+let lastUpdate
 
 self.onmessage = ({ data: { type, value } }) => {
   switch (type) {
     case 'init':
       bodies = value
+      lastUpdate = performance.now()
       update()
       break
 
     case 'toggle_run':
       isRunning = !isRunning
       if (isRunning) {
+        lastUpdate = performance.now()
         update()
       }
       break
@@ -23,6 +26,10 @@ self.onmessage = ({ data: { type, value } }) => {
 }
 
 const update = () => {
+  const now = performance.now()
+  const elapsed = (now - lastUpdate) * 60 / 1000
+  lastUpdate = now
+
   const length = bodies.length
   for (let i = 0; i < length; ++i) {
     let ax = 0
@@ -35,10 +42,10 @@ const update = () => {
       ay += coefficient * (bodies[i].y - bodies[j].y)
     }
 
-    bodies[i].vx += ax
-    bodies[i].vy += ay
-    bodies[i].x += bodies[i].vx
-    bodies[i].y += bodies[i].vy
+    bodies[i].vx += ax * elapsed
+    bodies[i].vy += ay * elapsed
+    bodies[i].x += bodies[i].vx * elapsed
+    bodies[i].y += bodies[i].vy * elapsed
   }
 
   if (isRunning) {
