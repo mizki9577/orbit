@@ -12,6 +12,7 @@ export const applicationStarted = () => {
   document.addEventListener(screenfull.raw.fullscreenchange, fullscreenChanged)
 
   bodyUpdater.init(store.getState().bodies)
+  bodyUpdater.run()
 
   dispatcher.dispatch({
     type: 'application_started',

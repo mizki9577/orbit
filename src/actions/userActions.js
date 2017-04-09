@@ -1,4 +1,5 @@
 /* @flow */
+import store from '../store.js'
 import dispatcher from '../dispatcher.js'
 import * as bodyUpdater from './bodyUpdater.js'
 
@@ -36,7 +37,12 @@ export const stopFollowing = () => {
 }
 
 export const toggleRunPause = () => {
-  bodyUpdater.toggleRun()
+  if (store.getState().isRunning) {
+    bodyUpdater.pause()
+  } else {
+    bodyUpdater.run()
+  }
+
   dispatcher.dispatch({
     type: 'toggle_run_pause',
   })

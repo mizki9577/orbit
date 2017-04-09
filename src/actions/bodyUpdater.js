@@ -9,8 +9,12 @@ export const init = (bodies: Body[]) => {
   worker.postMessage({ type: 'init', value: bodies })
 }
 
-export const toggleRun = () => {
-  worker.postMessage({ type: 'toggle_run' })
+export const run = () => {
+  worker.postMessage({ type: 'run' })
+}
+
+export const pause = () => {
+  worker.postMessage({ type: 'pause' })
 }
 
 export const getBodies = () => (

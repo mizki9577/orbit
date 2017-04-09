@@ -1,22 +1,22 @@
 /* @flow */
 let bodies
-let isRunning = true
+let isRunning = false
 let lastUpdate
 
 self.onmessage = ({ data: { type, value } }) => {
   switch (type) {
     case 'init':
       bodies = value
+      break
+
+    case 'run':
+      isRunning = true
       lastUpdate = performance.now()
       update()
       break
 
-    case 'toggle_run':
-      isRunning = !isRunning
-      if (isRunning) {
-        lastUpdate = performance.now()
-        update()
-      }
+    case 'pause':
+      isRunning = false
       break
 
     case 'get_bodies':
