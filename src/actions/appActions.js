@@ -32,9 +32,9 @@ export const frame = (timestamp: number) => {
         bodies,
         timestamp,
       })
-      window.requestAnimationFrame(frame)
     })
   }
+  window.requestAnimationFrame(frame)
 }
 
 export const windowResized = () => {
