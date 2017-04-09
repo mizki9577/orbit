@@ -5,7 +5,6 @@ import chroma from 'chroma-js'
 import { ReduceStore } from 'flux/utils'
 
 import dispatcher from './dispatcher.js'
-import initialBodies from './initialBodies.js'
 
 class Store extends ReduceStore {
   getInitialState(): State {
@@ -30,7 +29,7 @@ class Store extends ReduceStore {
       isFullscreen: null,
       showState: false,
       operationMode: 'move',
-      bodies: initialBodies,
+      bodies: [],
       newBody: null,
     }
   }

@@ -5,13 +5,14 @@ import screenfull from 'screenfull'
 import store from '../store.js'
 import dispatcher from '../dispatcher.js'
 import * as bodyUpdater from './bodyUpdater.js'
+import initialBodies from '../initialBodies.js'
 
 export const applicationStarted = () => {
   window.requestAnimationFrame(frame)
   window.addEventListener('resize', windowResized)
   document.addEventListener(screenfull.raw.fullscreenchange, fullscreenChanged)
 
-  bodyUpdater.init(store.getState().bodies)
+  bodyUpdater.init(initialBodies)
   bodyUpdater.run()
 
   dispatcher.dispatch({
