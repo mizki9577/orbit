@@ -1,7 +1,7 @@
 /* @flow */
-let bodies
-let lastUpdate
-let intervalId
+let bodies = []
+let lastUpdate = 0
+let intervalId = null
 
 self.onmessage = ({ data: { type, value } }) => {
   switch (type) {

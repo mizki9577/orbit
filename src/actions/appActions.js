@@ -1,6 +1,4 @@
 /* @flow */
-import type { Body } from '../types'
-
 import screenfull from 'screenfull'
 import store from '../store.js'
 import dispatcher from '../dispatcher.js'
