@@ -12,7 +12,7 @@
     "check": "eslint ./src/&&flow",
     "build:development": "webpack --env.development",
     "build:production": "webpack --env.production",
-    "deploy": "./bin/deploy.sh"
+    "deploy": "./scripts/deploy.sh"
   },
   "dependencies": {
     "antd": "^2.9.1",
