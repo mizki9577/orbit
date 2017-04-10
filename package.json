@@ -15,6 +15,7 @@
     "deploy": "./bin/deploy.sh"
   },
   "dependencies": {
+    "antd": "^2.9.1",
     "bootstrap": "^3.3.7",
     "chroma-js": "^1.2.1",
     "flux": "^3.1.0",
