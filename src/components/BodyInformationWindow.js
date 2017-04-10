@@ -4,11 +4,6 @@ import type { State } from '../types.js'
 import React, { Component } from 'react'
 import { Container } from 'flux/utils'
 
-import Panel from 'react-bootstrap/es/Panel'
-import Button from 'react-bootstrap/es/Button'
-import ButtonGroup from 'react-bootstrap/es/ButtonGroup'
-import Glyphicon from 'react-bootstrap/es/Glyphicon'
-
 import store from '../store.js'
 import * as actions from '../actions.js'
 
