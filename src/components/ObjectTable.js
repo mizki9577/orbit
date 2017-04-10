@@ -1,8 +1,6 @@
 /* @flow */
 import React from 'react'
 
-import styles from './ObjectTable.css'
-
 const ObjectTable = ({ obj, exclude={}, show=true }: { obj: Object, exclude?: Object, show?: boolean }) => (
   !show ? null:
   <table className={ styles.table }>

@@ -9,8 +9,6 @@ import * as actions from '../actions.js'
 
 import Body from './Body.js'
 
-import './Drawer.css'
-
 class Drawer extends Component {
   state: State
 

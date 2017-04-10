@@ -12,8 +12,6 @@ import Glyphicon from 'react-bootstrap/es/Glyphicon'
 import store from '../store.js'
 import * as actions from '../actions.js'
 
-import styles from './BodyInformationWindow.css'
-
 class BodyInformationWindow extends Component {
   state: State
 
