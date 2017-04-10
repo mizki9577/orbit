@@ -1,0 +1,13 @@
+#root, [data-reactroot] {
+    height: 100%;
+}
+
+.ant-layout-footer {
+    padding: 0;
+}
+
+.ant-layout-footer, .ant-layout-sider {
+    z-index: 1;
+}
+
+/* vim: set ts=4 sw=4 et: */

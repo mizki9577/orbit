@@ -1,5 +1,6 @@
 /* @flow */
 import type { State } from '../types.js'
+import styles from './Drawer.module.css'
 
 import React, { Component } from 'react'
 import { Container } from 'flux/utils'
@@ -71,7 +72,7 @@ class Drawer extends Component {
     if (windowWidth == null || windowHeight == null) return null
 
     return (
-      <svg
+      <svg className={ styles.drawer }
         width={ windowWidth } height={ windowHeight } viewBox={ `${-windowWidth/2} ${-windowHeight/2} ${windowWidth} ${windowHeight}` }
         onMouseMove={ ev => this.handleMouseMove(ev) }
         onMouseDown={ ev => this.handleMouseDown(ev) }

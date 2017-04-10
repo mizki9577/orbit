@@ -1,6 +1,6 @@
 /* @flow */
-
 import type { State } from '../types.js'
+import './App.css'
 
 import React, { Component } from 'react'
 import { Container } from 'flux/utils'
@@ -8,10 +8,9 @@ import { Container } from 'flux/utils'
 import store from '../store.js'
 import * as actions from '../actions.js'
 
-import BodyInformationWindow from './BodyInformationWindow.js'
+import { Layout, Menu, Icon } from 'antd'
+
 import Drawer from './Drawer.js'
-import ObjectTable from './ObjectTable.js'
-import Toolbar from './Toolbar.js'
 
 class App extends Component {
   state: State
@@ -30,12 +29,26 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <ObjectTable obj={ this.state } exclude={{ bodies: null }} show={ this.state.showState } />
-        <Drawer />
-        <BodyInformationWindow />
-        <Toolbar />
-      </div>
+      <Layout>
+        <Layout.Sider collapsible collapsed trigger={ null } width={ 400 } collapsedWidth={ 0 } />
+
+        <Layout>
+          <Layout.Content>
+            <Drawer />
+          </Layout.Content>
+
+          <Layout.Footer>
+            <Menu theme="dark" mode="horizontal">
+              <Menu.Item>
+                <Icon type="menu-unfold" />
+              </Menu.Item>
+              <Menu.Item>
+                <Icon type="caret-right" />
+              </Menu.Item>
+            </Menu>
+          </Layout.Footer>
+        </Layout>
+      </Layout>
     )
   }
 }
