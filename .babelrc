@@ -12,5 +12,14 @@
     'react',
     'stage-0',
   ],
+
+  plugins: [
+    [
+      'import', {
+        libraryName: 'antd',
+        style: 'css',
+      },
+    ],
+  ],
 }
 // vim: set ts=2 sw=2 et:
