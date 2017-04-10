@@ -1,5 +1,7 @@
 /* @flow */
+import store from '../store.js'
 import dispatcher from '../dispatcher.js'
+import * as bodyUpdater from './bodyUpdater.js'
 
 export const mouseMoved = (mouseX: number, mouseY: number) => {
   dispatcher.dispatch({
@@ -18,6 +20,21 @@ export const mouseButtonPushed = () => {
 }
 
 export const mouseButtonReleased = () => {
+  const state = store.getState()
+  if (state.operationMode === 'create') {
+    const newBody = state.newBody
+    newBody.vx = (newBody.x - state.mouseSvgX) / 30
+    newBody.vy = (newBody.y - state.mouseSvgY) / 30
+
+    if (state.followingBodyId !== null) {
+      const followingBody = state.bodies[state.followingBodyIndex]
+      newBody.vx += followingBody.vx
+      newBody.vy += followingBody.vy
+    }
+
+    bodyUpdater.addBody(newBody)
+  }
+
   dispatcher.dispatch({
     type: 'mouse_button_released',
   })

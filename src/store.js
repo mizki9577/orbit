@@ -96,7 +96,7 @@ class Store extends ReduceStore {
           vx: 0,
           vy: 0,
           locus: [],
-          color: chroma.hcl(Math.random() * 360, 150, 50),
+          color: chroma.hcl(Math.random() * 360, 150, 50).css(),
         }
         return nextState
       }
@@ -108,17 +108,7 @@ class Store extends ReduceStore {
         }
 
         if (state.operationMode !== 'create' || state.newBody === null) return nextState
-
-        const newBody = state.newBody
-        nextState.bodies.push(newBody)
         nextState.newBody = null
-        newBody.vx = (newBody.x - state.mouseSvgX) / 30
-        newBody.vy = (newBody.y - state.mouseSvgY) / 30
-
-        if (state.followingBodyId === null) return nextState
-        const followingBody = state.bodies[state.followingBodyIndex]
-        newBody.vx += followingBody.vx
-        newBody.vy += followingBody.vy
         return nextState
       }
 

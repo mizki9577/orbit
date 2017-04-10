@@ -21,6 +21,10 @@ self.onmessage = ({ data: { type, value } }) => {
     case 'get_bodies':
       self.postMessage(bodies)
       break
+
+    case 'add_body':
+      bodies.push(value)
+      break
   }
 }
 

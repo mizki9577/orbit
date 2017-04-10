@@ -17,6 +17,10 @@ export const pause = () => {
   worker.postMessage({ type: 'pause' })
 }
 
+export const addBody = (body: Body) => {
+  worker.postMessage({ type: 'add_body', value: body })
+}
+
 export const getBodies = () => (
   new Promise(resolve => {
     worker.onmessage = resolve
