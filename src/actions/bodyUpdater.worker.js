@@ -1,7 +1,7 @@
 /* @flow */
 let bodies
-let isRunning = false
 let lastUpdate
+let intervalId
 
 self.onmessage = ({ data: { type, value } }) => {
   switch (type) {
@@ -10,13 +10,12 @@ self.onmessage = ({ data: { type, value } }) => {
       break
 
     case 'run':
-      isRunning = true
       lastUpdate = performance.now()
-      update()
+      intervalId = self.setInterval(update)
       break
 
     case 'pause':
-      isRunning = false
+      self.clearInterval(intervalId)
       break
 
     case 'get_bodies':
@@ -46,10 +45,6 @@ const update = () => {
     bodies[i].vy += ay * elapsed
     bodies[i].x += bodies[i].vx * elapsed
     bodies[i].y += bodies[i].vy * elapsed
-  }
-
-  if (isRunning) {
-    setTimeout(update)
   }
 }
 
