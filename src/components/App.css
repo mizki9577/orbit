@@ -1,5 +1,6 @@
 #root, [data-reactroot] {
     height: 100%;
+    touch-action: none;
 }
 
 .ant-layout-footer {
