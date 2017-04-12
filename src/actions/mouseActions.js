@@ -51,7 +51,7 @@ export const wheelMoved = (delta: number) => {
                     : delta < 0 ? 1.1
                                 : 1
   dispatcher.dispatch({
-    type: 'change_scale',
+    type: 'multiply_scale',
     coefficient,
   })
 }

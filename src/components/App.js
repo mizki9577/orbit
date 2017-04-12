@@ -9,7 +9,7 @@ import { Container } from 'flux/utils'
 import store from '../store.js'
 import * as actions from '../actions.js'
 
-import { Layout, Menu, Icon, Row, Col, Switch, Card } from 'antd'
+import { Layout, Menu, Icon, Row, Col, Switch, Card, Slider, InputNumber } from 'antd'
 
 import Drawer from './Drawer.js'
 
@@ -32,7 +32,21 @@ class App extends Component {
     actions.changeFullscreen(value)
   }
 
+  handleScaleChange(value) {
+    actions.changeScale(value)
+  }
+
+  handleScaleSliderChange(value, scaleBasis) {
+    actions.changeScaleSlider(value, scaleBasis)
+  }
+
+  handleAfterScaleChange() {
+    actions.scalingFinished()
+  }
+
   render() {
+    const { scale, scaleBasis, scaleSliderValue } = this.state
+
     return (
       <Layout>
         <Layout>
@@ -42,6 +56,23 @@ class App extends Component {
                 <Col span={ 12 }>Fullscreen</Col>
                 <Col className={ styles.optionsValue } span={ 12 }>
                   <Switch onChange={ value => this.handleFullscreenChange(value) } />
+                </Col>
+              </Row>
+
+              <Row>
+                <Col span={ 6 }>Scale</Col>
+                <Col className={ styles.optionsValue } span={ 12 }>
+                  <Slider min={ -1 } max={ 1 } step={ 0.01 }
+                          value={ scaleSliderValue }
+                          tipFormatter={ null }
+                          onChange={ value => this.handleScaleSliderChange(value, scaleBasis) }
+                          onAfterChange={ () => this.handleAfterScaleChange() } />
+                </Col>
+
+                <Col className={ styles.optionsValue } span={ 6 }>
+                  <InputNumber min={ 0 } value={ scale }
+                          onChange={ value => this.handleScaleChange(value) }
+                          onAfterChange={ () => this.handleAfterScaleChange() } />
                 </Col>
               </Row>
             </Card>

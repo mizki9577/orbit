@@ -66,4 +66,25 @@ export const selectCreateMode = () => {
   })
 }
 
+export const changeScale = (scale: number) => {
+  dispatcher.dispatch({
+    type: 'change_scale',
+    scale,
+  })
+}
+
+export const changeScaleSlider = (scaleSliderValue: number, scaleBasis: number) => {
+  dispatcher.dispatch({
+    type: 'change_scale_slider',
+    scale: scaleBasis * 10 ** scaleSliderValue,
+    scaleSliderValue,
+  })
+}
+
+export const scalingFinished = () => {
+  dispatcher.dispatch({
+    type: 'update_scale_range',
+  })
+}
+
 // vim: set ts=2 sw=2 et:
