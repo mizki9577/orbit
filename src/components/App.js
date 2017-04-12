@@ -28,6 +28,14 @@ class App extends Component {
     actions.applicationStarted()
   }
 
+  handleMenuClink({ key }) {
+    switch (key) {
+      case 'runpause':
+        actions.toggleRunPause()
+        break
+    }
+  }
+
   handleFullscreenChange(value) {
     actions.changeFullscreen(value)
   }
@@ -45,7 +53,7 @@ class App extends Component {
   }
 
   render() {
-    const { scale, scaleBasis, scaleSliderValue } = this.state
+    const { isRunning, scale, scaleBasis, scaleSliderValue } = this.state
 
     return (
       <Layout>
@@ -84,9 +92,9 @@ class App extends Component {
         </Layout>
 
         <Layout.Footer>
-          <Menu theme="dark" mode="horizontal">
-            <Menu.Item>
-              <Icon type="caret-right" />
+          <Menu theme="dark" mode="horizontal" onClick={ params => this.handleMenuClink(params) }>
+            <Menu.Item key="runpause">
+              <Icon type={ isRunning ? 'pause' : 'caret-right' }/>
             </Menu.Item>
           </Menu>
         </Layout.Footer>
