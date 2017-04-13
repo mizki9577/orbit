@@ -32,8 +32,7 @@ export type State = {|
   mouseSvgY: ?number,
 
   scale: number,
-  scaleBasis: number,
-  scaleSliderValue: number,
+  speed: number,
 
   followingBodyId: ?number,
   followingBodyIndex: ?number,

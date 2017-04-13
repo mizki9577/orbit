@@ -32,6 +32,9 @@ module.exports = {
     'no-shadow'            : 'error',
     'no-undef-init'        : 'warn',
     'no-undefined'         : 'error',
+
+    // React
+    'react/prop-types': 'off',
   },
 }
 
