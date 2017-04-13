@@ -11,6 +11,7 @@ import * as actions from '../actions.js'
 
 import { Layout, Menu, Icon, Row, Col, Switch, Card, Slider, InputNumber } from 'antd'
 
+import LogarithmicSlider from './LogarithmicSlider.js'
 import Drawer from './Drawer.js'
 
 class App extends Component {
@@ -44,20 +45,12 @@ class App extends Component {
     actions.changeScale(value)
   }
 
-  handleScaleSliderChange(value, scaleBasis) {
-    actions.changeScaleSlider(value, scaleBasis)
-  }
-
-  handleAfterScaleChange() {
-    actions.scalingFinished()
-  }
-
   handleSpeedChange(value) {
     actions.changeSpeed(value)
   }
 
   render() {
-    const { isRunning, scale, scaleBasis, scaleSliderValue, speed } = this.state
+    const { isRunning, speed } = this.state
 
     return (
       <Layout>
@@ -73,17 +66,10 @@ class App extends Component {
 
               <Row>
                 <Col span={ 6 }>Scale</Col>
-                <Col className={ styles.optionsValue } span={ 12 }>
-                  <Slider min={ -1 } max={ 1 } step={ 0.01 }
-                          value={ scaleSliderValue }
-                          tipFormatter={ null }
-                          onChange={ value => this.handleScaleSliderChange(value, scaleBasis) }
-                          onAfterChange={ () => this.handleAfterScaleChange() } />
-                </Col>
-                <Col className={ styles.optionsValue } span={ 6 }>
-                  <InputNumber min={ 0 } value={ scale }
-                          onChange={ value => this.handleScaleChange(value) }
-                          onAfterChange={ () => this.handleAfterScaleChange() } />
+
+                <Col className={ styles.optionsValue } span={ 18 }>
+                  <LogarithmicSlider onChange={ value => this.handleScaleChange(value) }
+                                     tipFormatter={ value => 'x' + value.toPrecision(4) }/>
                 </Col>
               </Row>
 

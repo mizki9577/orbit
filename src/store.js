@@ -31,9 +31,6 @@ class Store extends ReduceStore {
       showState: false,
       bodies: [],
       newBody: null,
-
-      scaleBasis: 1,
-      scaleSliderValue: 0,
       speed: 1
     }
   }
@@ -140,20 +137,6 @@ class Store extends ReduceStore {
         return {
           ...state,
           scale: action.scale,
-        }
-
-      case 'change_scale_slider':
-        return {
-          ...state,
-          scale: action.scale,
-          scaleSliderValue: action.scaleSliderValue,
-        }
-
-      case 'update_scale_range':
-        return {
-          ...state,
-          scaleBasis: state.scale,
-          scaleSliderValue: 0,
         }
 
       case 'pinch_start':
