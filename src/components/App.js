@@ -58,11 +58,11 @@ class App extends Component {
     return (
       <Layout>
         <Layout>
-          <Layout.Sider collapsible defaultCollapsed width={ 400 } collapsedWidth={ 0 }>
+          <Layout.Sider collapsible defaultCollapsed width={ 300 } collapsedWidth={ 0 }>
             <Card>
               <Row>
-                <Col span={ 12 }>Fullscreen</Col>
-                <Col className={ styles.optionsValue } span={ 12 }>
+                <Col span={ 6 }>Fullscreen</Col>
+                <Col className={ styles.optionsValue } span={ 18 }>
                   <Switch onChange={ value => this.handleFullscreenChange(value) } />
                 </Col>
               </Row>
