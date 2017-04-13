@@ -2,6 +2,7 @@
 let bodies = []
 let lastUpdate = 0
 let intervalId = null
+let speed = 1
 
 self.onmessage = ({ data: { type, value } }) => {
   switch (type) {
@@ -25,12 +26,16 @@ self.onmessage = ({ data: { type, value } }) => {
     case 'add_body':
       bodies.push(value)
       break
+
+    case 'set_speed':
+      speed = value
+      break
   }
 }
 
 const update = () => {
   const now = performance.now()
-  const elapsed = (now - lastUpdate) * 60 / 1000
+  const elapsed = now - lastUpdate
   lastUpdate = now
 
   const length = bodies.length
@@ -45,10 +50,10 @@ const update = () => {
       ay += coefficient * (bodies[i].y - bodies[j].y)
     }
 
-    bodies[i].vx += ax * elapsed
-    bodies[i].vy += ay * elapsed
-    bodies[i].x += bodies[i].vx * elapsed
-    bodies[i].y += bodies[i].vy * elapsed
+    bodies[i].vx += ax * elapsed * speed
+    bodies[i].vy += ay * elapsed * speed
+    bodies[i].x += bodies[i].vx * elapsed * speed
+    bodies[i].y += bodies[i].vy * elapsed * speed
   }
 }
 

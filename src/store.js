@@ -34,6 +34,7 @@ class Store extends ReduceStore {
 
       scaleBasis: 1,
       scaleSliderValue: 0,
+      speed: 1
     }
   }
 
@@ -229,6 +230,12 @@ class Store extends ReduceStore {
         return {
           ...state,
           showState: !state.showState,
+        }
+
+      case 'change_speed':
+        return {
+          ...state,
+          speed: action.speed,
         }
 
       default:

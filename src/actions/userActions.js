@@ -87,4 +87,12 @@ export const scalingFinished = () => {
   })
 }
 
+export const changeSpeed = (speed: number) => {
+  bodyUpdater.setSpeed(speed)
+  dispatcher.dispatch({
+    type: 'change_speed',
+    speed,
+  })
+}
+
 // vim: set ts=2 sw=2 et:

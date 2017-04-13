@@ -21,6 +21,10 @@ export const addBody = (body: Body) => {
   worker.postMessage({ type: 'add_body', value: body })
 }
 
+export const setSpeed = (speed: number) => {
+  worker.postMessage({ type: 'set_speed', value: speed })
+}
+
 export const getBodies = () => (
   new Promise(resolve => {
     worker.onmessage = resolve

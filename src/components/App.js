@@ -52,8 +52,12 @@ class App extends Component {
     actions.scalingFinished()
   }
 
+  handleSpeedChange(value) {
+    actions.changeSpeed(value)
+  }
+
   render() {
-    const { isRunning, scale, scaleBasis, scaleSliderValue } = this.state
+    const { isRunning, scale, scaleBasis, scaleSliderValue, speed } = this.state
 
     return (
       <Layout>
@@ -76,11 +80,22 @@ class App extends Component {
                           onChange={ value => this.handleScaleSliderChange(value, scaleBasis) }
                           onAfterChange={ () => this.handleAfterScaleChange() } />
                 </Col>
-
                 <Col className={ styles.optionsValue } span={ 6 }>
                   <InputNumber min={ 0 } value={ scale }
                           onChange={ value => this.handleScaleChange(value) }
                           onAfterChange={ () => this.handleAfterScaleChange() } />
+                </Col>
+              </Row>
+
+              <Row>
+                <Col span={ 6 }>Speed</Col>
+                <Col className={ styles.optionsValue } span={ 12 }>
+                  <Slider min={ 0 } max={ 1 } step={ 0.001 } value={ speed }
+                          onChange={ value => this.handleSpeedChange(value) } />
+                </Col>
+                <Col className={ styles.optionsValue } span={ 6 }>
+                  <InputNumber min={ 0 } step={ 0.001 } value={ speed }
+                               onChange={ value => this.handleSpeedChange(value) } />
                 </Col>
               </Row>
             </Card>
