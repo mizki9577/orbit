@@ -50,7 +50,7 @@ class App extends Component {
   }
 
   render() {
-    const { isRunning, speed } = this.state
+    const { isRunning, isFullscreen, speed } = this.state
 
     return (
       <Layout>
@@ -60,7 +60,7 @@ class App extends Component {
               <Row>
                 <Col span={ 6 }>Fullscreen</Col>
                 <Col className={ styles.optionsValue } span={ 18 }>
-                  <Switch onChange={ value => this.handleFullscreenChange(value) } />
+                  <Switch checked={ isFullscreen } onChange={ value => this.handleFullscreenChange(value) } />
                 </Col>
               </Row>
 
