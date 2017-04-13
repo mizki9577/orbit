@@ -2,7 +2,7 @@
 import type { Body } from './types.js'
 import chroma from 'chroma-js'
 
-const n = 16, m = 0.1, c = 5, r = 200
+const n = 16, m = 0.01, c = 5, r = 200
 const M = 10, C = 10
 
 const initialBodies: Body[] = [{
