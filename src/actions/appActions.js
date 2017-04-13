@@ -11,6 +11,7 @@ export const applicationStarted = () => {
   document.addEventListener(screenfull.raw.fullscreenchange, fullscreenChanged)
 
   bodyUpdater.init(initialBodies)
+  bodyUpdater.setSpeed(1)
   bodyUpdater.run()
 
   dispatcher.dispatch({

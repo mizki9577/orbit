@@ -2,7 +2,7 @@
 let bodies = []
 let lastUpdate = 0
 let intervalId = null
-let speed = 1
+let speed = 0
 
 self.onmessage = ({ data: { type, value } }) => {
   switch (type) {
