@@ -25,7 +25,8 @@ export type State = {|
 
   mouseX: ?number,
   mouseY: ?number,
-  mousePressed: bool,
+  leftButtonPressed: bool,
+  rightButtonPressed: bool,
 
   mouseSvgX: ?number,
   mouseSvgY: ?number,
@@ -42,8 +43,6 @@ export type State = {|
   isRunning: boolean,
   isFullscreen: ?boolean,
   showState: boolean,
-
-  operationMode: string,
 
   loop: number,
 |}

@@ -13,33 +13,42 @@ export const mouseMoved = (mouseX: number, mouseY: number) => {
   })
 }
 
-export const mouseButtonPushed = () => {
+export const leftButtonPushed = () => {
   dispatcher.dispatch({
-    type: 'mouse_button_pushed',
+    type: 'left_button_pushed',
   })
 }
 
-export const mouseButtonReleased = () => {
+export const rightButtonPushed = () => {
+  dispatcher.dispatch({
+    type: 'right_button_pushed',
+  })
+}
+
+export const leftButtonReleased = () => {
   const state = store.getState()
-  if (state.operationMode === 'create') {
-    const newBody = state.newBody
-    newBody.vx = (newBody.x - state.mouseSvgX) / 30
-    newBody.vy = (newBody.y - state.mouseSvgY) / 30
+  const newBody = state.newBody
+  newBody.vx = (newBody.x - state.mouseSvgX) / 30
+  newBody.vy = (newBody.y - state.mouseSvgY) / 30
 
-    if (state.followingBodyId !== null) {
-      const followingBody = state.bodies[state.followingBodyIndex]
-      newBody.vx += followingBody.vx
-      newBody.vy += followingBody.vy
-    }
-
-    bodyUpdater.addBody(newBody)
+  if (state.followingBodyId !== null) {
+    const followingBody = state.bodies[state.followingBodyIndex]
+    newBody.vx += followingBody.vx
+    newBody.vy += followingBody.vy
   }
 
+  bodyUpdater.addBody(newBody)
+
   dispatcher.dispatch({
-    type: 'mouse_button_released',
+    type: 'left_button_released',
   })
 }
 
+export const rightButtonReleased = () => {
+  dispatcher.dispatch({
+    type: 'right_button_released',
+  })
+}
 export const mouseLeft = () => {
   dispatcher.dispatch({
     type: 'mouse_left',

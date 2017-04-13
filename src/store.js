@@ -13,7 +13,8 @@ class Store extends ReduceStore {
       windowHeight: null,
       centerX: 0,
       centerY: 0,
-      mousePressed: false,
+      leftButtonPressed: false,
+      rightButtonPressed: false,
       mouseX: null,
       mouseY: null,
       mouseSvgX: null,
@@ -28,7 +29,6 @@ class Store extends ReduceStore {
       isRunning: true,
       isFullscreen: null,
       showState: false,
-      operationMode: 'move',
       bodies: [],
       newBody: null,
 
@@ -75,50 +75,55 @@ class Store extends ReduceStore {
           mouseSvgY: (action.payload.mouseY - state.windowHeight / 2) / state.scale + state.centerY,
         }
 
-        if (!state.mousePressed || state.operationMode !== 'move') return nextState
+        if (!state.rightButtonPressed) return nextState
 
         nextState.centerX += (state.mouseX - nextState.mouseX) / state.scale
         nextState.centerY += (state.mouseY - nextState.mouseY) / state.scale
         return nextState
       }
 
-      case 'mouse_button_pushed': {
-        const nextState = {
+      case 'left_button_pushed': {
+        return {
           ...state,
-          mousePressed: true,
+          leftButtonPressed: true,
+          newBody : {
+            id: performance.now(),
+            mass: 100,
+            radius: 10,
+            x: state.mouseSvgX,
+            y: state.mouseSvgY,
+            vx: 0,
+            vy: 0,
+            locus: [],
+            color: chroma.hcl(Math.random() * 360, 150, 50).css(),
+          }
         }
-
-        if (state.operationMode !== 'create') return nextState
-
-        nextState.newBody = {
-          id: performance.now(),
-          mass: 100,
-          radius: 10,
-          x: state.mouseSvgX,
-          y: state.mouseSvgY,
-          vx: 0,
-          vy: 0,
-          locus: [],
-          color: chroma.hcl(Math.random() * 360, 150, 50).css(),
-        }
-        return nextState
       }
 
-      case 'mouse_button_released': {
-        const nextState = {
+      case 'right_button_pushed':
+        return {
           ...state,
-          mousePressed: false,
+          rightButtonPressed: true,
         }
 
-        if (state.operationMode !== 'create' || state.newBody === null) return nextState
-        nextState.newBody = null
-        return nextState
-      }
+      case 'left_button_released':
+        return {
+          ...state,
+          leftButtonPressed: false,
+          newBody: null,
+        }
+
+      case 'right_button_released':
+        return {
+          ...state,
+          rightButtonPressed: false,
+        }
 
       case 'mouse_left':
         return {
           ...state,
-          mousePressed: false,
+          leftButtonPressed: false,
+          rightButtonPressed: false,
           mouseX: null,
           mouseY: null,
           touches: [],
@@ -171,7 +176,6 @@ class Store extends ReduceStore {
       }
 
       case 'select_body':
-        if (state.operationMode === 'create') return state
         return {
           ...state,
           ...action.payload,
@@ -225,18 +229,6 @@ class Store extends ReduceStore {
         return {
           ...state,
           showState: !state.showState,
-        }
-
-      case 'select_move_mode':
-        return {
-          ...state,
-          operationMode: 'move',
-        }
-
-      case 'select_create_mode':
-        return {
-          ...state,
-          operationMode: 'create',
         }
 
       default:

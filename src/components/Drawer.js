@@ -27,12 +27,22 @@ class Drawer extends Component {
 
   handleMouseDown(ev) {
     actions.mouseMoved(ev.clientX, ev.clientY)
-    actions.mouseButtonPushed()
+    if (ev.buttons & 1) {
+      actions.leftButtonPushed()
+    } else if (ev.buttons & 2) {
+      actions.rightButtonPushed()
+    }
   }
 
   handleMouseUp(ev) {
+    const { leftButtonPressed, rightButtonPressed } = this.state
     actions.mouseMoved(ev.clientX, ev.clientY)
-    actions.mouseButtonReleased()
+    if (leftButtonPressed && !(ev.buttons & 1)) {
+      actions.leftButtonReleased()
+    }
+    if (rightButtonPressed && !(ev.buttons & 2)) {
+      actions.rightButtonReleased()
+    }
   }
 
   handleMouseLeave() {
@@ -42,7 +52,7 @@ class Drawer extends Component {
   handleTouchStart(ev) {
     if (ev.touches.length === 1) {
       actions.mouseMoved(ev.touches[0].clientX, ev.touches[0].clientY)
-      actions.mouseButtonPushed()
+      actions.leftButtonPushed()
     } else if (ev.touches.length === 2) {
       actions.pinchStart(ev.touches)
     }
@@ -58,7 +68,7 @@ class Drawer extends Component {
   }
 
   handleTouchEnd() {
-    actions.mouseButtonReleased()
+    actions.leftButtonReleased()
     actions.mouseLeft()
   }
 
@@ -82,6 +92,7 @@ class Drawer extends Component {
         onTouchMove={ ev => this.handleTouchMove(ev) }
         onTouchEnd={ () => this.handleTouchEnd() }
         onWheel={ ev => this.handleWheel(ev) }
+        onContextMenu={ ev => ev.preventDefault() }
       >
         <g transform={`scale(${scale}) translate(${-centerX} ${-centerY})`}>
           { bodies.map(b => <Body key={ b.id } {...b} />) }
