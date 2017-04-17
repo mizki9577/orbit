@@ -9,7 +9,7 @@ import { Container } from 'flux/utils'
 import store from '../store.js'
 import * as actions from '../actions.js'
 
-import { Layout, Menu, Icon, Row, Col, Switch, Card, Slider, InputNumber } from 'antd'
+import { Layout, Menu, Icon, Row, Col, Switch, Card } from 'antd'
 
 import LogarithmicSlider from './LogarithmicSlider.js'
 import Drawer from './Drawer.js'
@@ -50,7 +50,7 @@ class App extends Component {
   }
 
   render() {
-    const { isRunning, isFullscreen, speed } = this.state
+    const { isRunning, isFullscreen, scale, speed } = this.state
 
     return (
       <Layout>
@@ -68,16 +68,20 @@ class App extends Component {
                 <Col span={ 6 }>Scale</Col>
 
                 <Col className={ styles.optionsValue } span={ 18 }>
-                  <LogarithmicSlider onChange={ value => this.handleScaleChange(value) }
-                                     tipFormatter={ value => 'x' + value.toPrecision(4) }/>
+                  <LogarithmicSlider min={ 2**-16 } max={ 2**16 }
+                                     value={ scale }
+                                     onChange={ value => this.handleScaleChange(value) }
+                                     tipFormatter={ value => 'x' + value.toPrecision(2) }/>
                 </Col>
               </Row>
 
               <Row>
                 <Col span={ 6 }>Speed</Col>
                 <Col className={ styles.optionsValue } span={ 18 }>
-                  <LogarithmicSlider onChange={ value => this.handleSpeedChange(value) }
-                                     tipFormatter={ value => 'x' + value.toPrecision(4) }/>
+                  <LogarithmicSlider min={ 2**-16 } max={ 2**16 }
+                                     value={ speed }
+                                     onChange={ value => this.handleSpeedChange(value) }
+                                     tipFormatter={ value => 'x' + value.toPrecision(2) }/>
                 </Col>
               </Row>
             </Card>

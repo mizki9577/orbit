@@ -3,64 +3,48 @@ import React, { Component } from 'react'
 import { Slider } from 'antd'
 
 type Props = {
-  step: ?number,
-  defaultValue: ?number,
-  onChange: ?(number) => any,
+  resolution: ?number,
+  value: number,
+  onChange: (number) => any,
   tipFormatter: ?(number) => string,
 }
 
 type State = {
-  sliderValue: number,
-  sliderBasis: number,
-  trueValue: number,
+  sliderMin: number,
+  sliderMax: number,
+  sliderStep: number,
 }
 
 class LogarithmicSlider extends Component {
   state: State
 
   static defaultProps = {
-    step: 0.01,
-    defaultValue: 1,
+    resolution: 1000,
   }
 
   constructor(props: Props) {
     super(props)
+    const sliderMin = Math.log(this.props.min)
+    const sliderMax = Math.log(this.props.max)
+    const sliderStep = (sliderMax - sliderMin) / this.props.resolution
     this.state = {
-      sliderValue: 0,
-      sliderBasis: this.props.defaultValue,
-      trueValue: this.props.defaultValue,
+      sliderMin,
+      sliderMax,
+      sliderStep,
     }
   }
 
-  handleChange(value: number) {
-    this.setState({
-      sliderValue: value,
-      trueValue: this.state.sliderBasis * 10 ** value,
-    })
-    if (typeof this.props.onChange === 'function') {
-      this.props.onChange(this.state.trueValue)
-    }
-  }
-
-  handleAfterChange() {
-    this.setState({
-      sliderValue: 0,
-      sliderBasis: this.state.trueValue,
-    })
-  }
-
-  tipFormatter() {
-    if (typeof this.props.tipFormatter === 'function') return this.props.tipFormatter(this.state.trueValue)
-    else return this.state.trueValue
+  tipFormatter(sliderValue: number) {
+    if (typeof this.props.tipFormatter === 'function') return this.props.tipFormatter(Math.E ** sliderValue)
+    else return Math.E ** sliderValue
   }
 
   render() {
     return (
-      <Slider min={ -1 } max={ 1 } step={ this.props.step }
-              value={ this.state.sliderValue }
-              tipFormatter={ this.props.tipFormatter === null ? null : () => this.tipFormatter(this.state.trueValue) }
-              onChange={ value => this.handleChange(value) }
-              onAfterChange={ () => this.handleAfterChange() } />
+      <Slider min={ this.state.sliderMin } max={ this.state.sliderMax } step={ this.state.sliderStep }
+              value={ Math.log(this.props.value) }
+              tipFormatter={ this.props.tipFormatter === null ? null : sliderValue => this.tipFormatter(sliderValue) }
+              onChange={ sliderValue => this.props.onChange(Math.E ** sliderValue) } />
     )
   }
 }
