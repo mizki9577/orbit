@@ -15,10 +15,10 @@ class Store extends ReduceStore {
       centerY: 0,
       leftButtonPressed: false,
       rightButtonPressed: false,
-      mouseX: null,
-      mouseY: null,
-      mouseSvgX: null,
-      mouseSvgY: null,
+      mouseX: 0,
+      mouseY: 0,
+      mouseSvgX: 0,
+      mouseSvgY: 0,
       touches: [],
       selectedBodyId: null,
       selectedBodyIndex: null,
@@ -41,7 +41,7 @@ class Store extends ReduceStore {
         return { ...state, ...action.payload }
 
       case 'update': {
-        const nextState = {
+        const nextState: State = {
           ...state,
           bodies: action.bodies,
           loop: state.loop + 1,
@@ -58,7 +58,7 @@ class Store extends ReduceStore {
         nextState.mouseSvgX += nextFollowingBody.x - followingBody.x
         nextState.mouseSvgY += nextFollowingBody.y - followingBody.y
 
-        if (state.newBody === null) return nextState
+        if (nextState.newBody == null) return nextState
 
         nextState.newBody.x += nextFollowingBody.x - followingBody.x
         nextState.newBody.y += nextFollowingBody.y - followingBody.y
@@ -66,7 +66,7 @@ class Store extends ReduceStore {
       }
 
       case 'mouse_moved': {
-        const nextState = {
+        const nextState: State = {
           ...state,
           ...action.payload,
           mouseSvgX: (action.payload.mouseX - state.windowWidth  / 2) / state.scale + state.centerX,
@@ -122,8 +122,6 @@ class Store extends ReduceStore {
           ...state,
           leftButtonPressed: false,
           rightButtonPressed: false,
-          mouseX: null,
-          mouseY: null,
           touches: [],
         }
 

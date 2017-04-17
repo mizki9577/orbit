@@ -23,13 +23,13 @@ export type State = {|
   centerX: number,
   centerY: number,
 
-  mouseX: ?number,
-  mouseY: ?number,
+  mouseX: number,
+  mouseY: number,
   leftButtonPressed: bool,
   rightButtonPressed: bool,
 
-  mouseSvgX: ?number,
-  mouseSvgY: ?number,
+  mouseSvgX: number,
+  mouseSvgY: number,
 
   scale: number,
   speed: number,
