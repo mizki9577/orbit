@@ -28,8 +28,8 @@ export const rightButtonPushed = () => {
 export const leftButtonReleased = () => {
   const state = store.getState()
   const newBody = state.newBody
-  newBody.vx = (newBody.x - state.mouseSvgX) / 30
-  newBody.vy = (newBody.y - state.mouseSvgY) / 30
+  newBody.vx = (newBody.x - state.mouseSvgX) / state.scale / state.speed / 100
+  newBody.vy = (newBody.y - state.mouseSvgY) / state.scale / state.speed / 100
 
   if (state.followingBodyId !== null) {
     const followingBody = state.bodies[state.followingBodyIndex]
