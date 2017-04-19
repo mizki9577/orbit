@@ -54,51 +54,48 @@ class App extends Component {
 
     return (
       <Layout>
-        <Layout>
-          <Layout.Sider collapsible defaultCollapsed width={ 300 } collapsedWidth={ 0 }>
-            <Card>
-              <Row>
-                <Col span={ 6 }>Fullscreen</Col>
-                <Col className={ styles.optionsValue } span={ 18 }>
-                  <Switch checked={ isFullscreen } onChange={ value => this.handleFullscreenChange(value) } />
-                </Col>
-              </Row>
-
-              <Row>
-                <Col span={ 6 }>Scale</Col>
-
-                <Col className={ styles.optionsValue } span={ 18 }>
-                  <LogarithmicSlider min={ 2**-16 } max={ 2**16 }
-                                     value={ scale }
-                                     onChange={ value => this.handleScaleChange(value) }
-                                     tipFormatter={ value => 'x' + value.toPrecision(2) }/>
-                </Col>
-              </Row>
-
-              <Row>
-                <Col span={ 6 }>Speed</Col>
-                <Col className={ styles.optionsValue } span={ 18 }>
-                  <LogarithmicSlider min={ 2**-16 } max={ 2**16 }
-                                     value={ speed }
-                                     onChange={ value => this.handleSpeedChange(value) }
-                                     tipFormatter={ value => 'x' + value.toPrecision(2) }/>
-                </Col>
-              </Row>
-            </Card>
-          </Layout.Sider>
-
-          <Layout.Content>
-            <Drawer />
-          </Layout.Content>
-        </Layout>
-
-        <Layout.Footer>
-          <Menu theme="dark" mode="horizontal" onClick={ params => this.handleMenuClink(params) }>
+        <Layout.Sider collapsible defaultCollapsed width={ 300 } breakpoint="xs">
+          <Menu theme="dark" onClick={ params => this.handleMenuClink(params) }>
             <Menu.Item key="runpause">
               <Icon type={ isRunning ? 'pause' : 'caret-right' }/>
+              <span className="menu-label">{ isRunning ? 'Pause' : 'Run' }</span>
             </Menu.Item>
           </Menu>
-        </Layout.Footer>
+
+          <Card>
+            <Row>
+              <Col span={ 6 }>Fullscreen</Col>
+              <Col className={ styles.optionsValue } span={ 18 }>
+                <Switch checked={ isFullscreen } onChange={ value => this.handleFullscreenChange(value) } />
+              </Col>
+            </Row>
+
+            <Row>
+              <Col span={ 6 }>Scale</Col>
+
+              <Col className={ styles.optionsValue } span={ 18 }>
+                <LogarithmicSlider min={ 2**-16 } max={ 2**16 }
+                                    value={ scale }
+                                    onChange={ value => this.handleScaleChange(value) }
+                                    tipFormatter={ value => 'x' + value.toPrecision(2) }/>
+              </Col>
+            </Row>
+
+            <Row>
+              <Col span={ 6 }>Speed</Col>
+              <Col className={ styles.optionsValue } span={ 18 }>
+                <LogarithmicSlider min={ 2**-16 } max={ 2**16 }
+                                    value={ speed }
+                                    onChange={ value => this.handleSpeedChange(value) }
+                                    tipFormatter={ value => 'x' + value.toPrecision(2) }/>
+              </Col>
+            </Row>
+          </Card>
+        </Layout.Sider>
+
+        <Layout.Content>
+          <Drawer />
+        </Layout.Content>
       </Layout>
     )
   }

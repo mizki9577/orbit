@@ -11,4 +11,13 @@
     z-index: 1;
 }
 
+.ant-layout-sider-collapsed .ant-card,
+.ant-layout-sider-collapsed span.menu-label {
+    display: none;
+}
+
+.ant-layout-sider-collapsed .anticon {
+    margin-left: 8px;
+}
+
 /* vim: set ts=4 sw=4 et: */
