@@ -49,8 +49,16 @@ class App extends Component {
     actions.changeSpeed(value)
   }
 
+  handleNewBodyRadiusChange(value) {
+    actions.changeNewBodyRadius(value)
+  }
+
+  handleNewBodyMassChange(value) {
+    actions.changeNewBodyMass(value)
+  }
+
   render() {
-    const { isRunning, isFullscreen, scale, speed } = this.state
+    const { isRunning, isFullscreen, scale, speed, newBodyRadius, newBodyMass } = this.state
 
     return (
       <Layout>
@@ -88,6 +96,26 @@ class App extends Component {
                                     value={ speed }
                                     onChange={ value => this.handleSpeedChange(value) }
                                     tipFormatter={ value => 'x' + value.toPrecision(2) }/>
+              </Col>
+            </Row>
+
+            <Row>
+              <Col span={ 6 }>Radius</Col>
+              <Col className={ styles.optionsValue } span={ 18 }>
+                <LogarithmicSlider min={ 2**-16 } max={ 2**16 }
+                                    value={ newBodyRadius }
+                                    onChange={ value => this.handleNewBodyRadiusChange(value) }
+                                    tipFormatter={ value => value.toPrecision(2) }/>
+              </Col>
+            </Row>
+
+            <Row>
+              <Col span={ 6 }>Mass</Col>
+              <Col className={ styles.optionsValue } span={ 18 }>
+                <LogarithmicSlider min={ 2**-16 } max={ 2**16 }
+                                    value={ newBodyMass }
+                                    onChange={ value => this.handleNewBodyMassChange(value) }
+                                    tipFormatter={ value => value.toPrecision(2) }/>
               </Col>
             </Row>
           </Card>

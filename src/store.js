@@ -31,7 +31,9 @@ class Store extends ReduceStore {
       showState: false,
       bodies: [],
       newBody: null,
-      speed: 1
+      speed: 1,
+      newBodyMass: 1,
+      newBodyRadius: 1,
     }
   }
 
@@ -86,8 +88,8 @@ class Store extends ReduceStore {
           leftButtonPressed: true,
           newBody : {
             id: performance.now(),
-            mass: 100,
-            radius: 10,
+            mass: state.newBodyMass,
+            radius: state.newBodyRadius,
             x: state.mouseSvgX,
             y: state.mouseSvgY,
             vx: 0,
@@ -217,6 +219,18 @@ class Store extends ReduceStore {
         return {
           ...state,
           speed: action.speed,
+        }
+
+      case 'change_new_body_radius':
+        return {
+          ...state,
+          newBodyRadius: action.radius,
+        }
+
+      case 'change_new_body_mass':
+        return {
+          ...state,
+          newBodyMass: action.mass,
         }
 
       default:

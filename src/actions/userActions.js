@@ -81,4 +81,18 @@ export const changeSpeed = (speed: number) => {
   })
 }
 
+export const changeNewBodyRadius = (radius: number) => {
+  dispatcher.dispatch({
+    type: 'change_new_body_radius',
+    radius,
+  })
+}
+
+export const changeNewBodyMass = (mass: number) => {
+  dispatcher.dispatch({
+    type: 'change_new_body_mass',
+    mass,
+  })
+}
+
 // vim: set ts=2 sw=2 et:

@@ -16,6 +16,8 @@ export type State = {|
   touches: Touch[],
 
   newBody: ?Body,
+  newBodyMass: number,
+  newBodyRadius: number,
 
   windowHeight: ?number,
   windowWidth: ?number,
