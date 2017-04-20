@@ -1,9 +1,7 @@
 /* @flow */
 import type { Body } from '../types'
-import UpdateWorker from './bodyUpdater.worker.js'
 
-// $FlowFixMe: fuck
-const worker = new UpdateWorker()
+const worker = new Worker('./bodyUpdater.worker.bundle.js')
 
 export const init = (bodies: Body[]) => {
   worker.postMessage({ type: 'init', value: bodies })

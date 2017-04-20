@@ -6,21 +6,21 @@ export default env => {
   const isDevelopment = env.development || !env.production
   const config = {}
 
-  config.entry = './src/main.js'
+  config.entry = {
+    'main': './src/main.js',
+    'bodyUpdater.worker': './src/actions/bodyUpdater.worker.js',
+    'sw': './src/sw.js',
+  }
+
   config.devtool = isDevelopment ? 'inline-source-map' : false
 
   config.output = {
     path: path.resolve(__dirname, 'public'),
-    filename: 'bundle.js',
+    filename: '[name].bundle.js',
   }
 
   config.module = {}
   config.module.rules = [
-    {
-      test: /\.worker\.js$/,
-      loader: 'worker-loader',
-    },
-
     {
       test: /\.js$/,
       exclude: /node_modules/,
