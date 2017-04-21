@@ -2,10 +2,10 @@
 self.oninstall = ev => {
   ev.waitUntil(
     caches.open('orbit').then(cache => cache.addAll([
-      '/',
-      '/index.html',
-      '/main.bundle.js',
-      '/bodyUpdater.worker.bundle.js',
+      '/orbit/',
+      '/orbit/index.html',
+      '/orbit/main.bundle.js',
+      '/orbit/bodyUpdater.worker.bundle.js',
     ]))
   )
 }

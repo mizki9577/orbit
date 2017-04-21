@@ -1,5 +1,6 @@
 import { DefinePlugin } from 'webpack'
 import BabiliPlugin from 'babili-webpack-plugin'
+import HtmlPlugin from 'html-webpack-plugin'
 import path from 'path'
 
 export default env => {
@@ -58,14 +59,20 @@ export default env => {
     },
   ]
 
-  config.plugins = []
-  config.plugins.push(
+  config.plugins = [
     new DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify(!isDevelopment ? 'production' : 'development'),
       }
-    })
-  )
+    }),
+
+    new HtmlPlugin({
+      template: './src/index.ejs',
+      minify: !isDevelopment,
+      chunks: ['main'],
+      xhtml: true,
+    }),
+  ]
 
   if (!isDevelopment) {
     config.plugins.push(new BabiliPlugin(!isDevelopment))
@@ -73,6 +80,7 @@ export default env => {
 
   config.devServer = {
     contentBase: path.join(__dirname, 'public'),
+    publicPath: '/orbit/',
     host: '0.0.0.0',
     port: 8080,
   }
