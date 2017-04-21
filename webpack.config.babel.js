@@ -68,7 +68,7 @@ export default env => {
 
     new HtmlPlugin({
       template: './src/index.ejs',
-      minify: !isDevelopment,
+      minify: isDevelopment ? false : {},
       chunks: ['main'],
       xhtml: true,
     }),
