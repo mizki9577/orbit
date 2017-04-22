@@ -1,4 +1,7 @@
 /* @flow */
+import '../manifest.json'
+import '../icon.png'
+
 import React from 'react'
 import ReactDOM from 'react-dom'
 

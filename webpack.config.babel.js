@@ -16,7 +16,6 @@ export default env => {
   config.devtool = isDevelopment ? 'inline-source-map' : false
 
   config.output = {
-    path: path.resolve(__dirname, 'public'),
     filename: '[name].bundle.js',
   }
 
@@ -57,6 +56,19 @@ export default env => {
         },
       ],
     },
+
+    {
+      test: [
+        /manifest\.json$/,
+        /icon\.png$/,
+      ],
+      use: {
+        loader: 'file-loader',
+        options: {
+          name: '[name].[ext]',
+        },
+      },
+    }
   ]
 
   config.plugins = [
@@ -79,7 +91,6 @@ export default env => {
   }
 
   config.devServer = {
-    contentBase: path.join(__dirname, 'public'),
     publicPath: '/orbit/',
     host: '0.0.0.0',
     port: 8080,
