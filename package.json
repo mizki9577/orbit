@@ -15,7 +15,6 @@
     "deploy": "./scripts/deploy.sh"
   },
   "dependencies": {
-    "antd": "^2.9.1",
     "chroma-js": "^1.2.1",
     "flux": "^3.1.0",
     "react": "^15.4.1",
@@ -25,7 +24,6 @@
   "devDependencies": {
     "babel-eslint": "^7.1.1",
     "babel-loader": "^6.4.1",
-    "babel-plugin-import": "^1.1.1",
     "babel-preset-env": "^1.1.8",
     "babel-preset-react": "^6.16.0",
     "babel-preset-stage-0": "^6.16.0",
