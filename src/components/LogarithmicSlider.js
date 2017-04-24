@@ -1,12 +1,11 @@
 /* @flow */
 import React, { Component } from 'react'
-import { Slider } from 'antd'
+import { Slider } from 'react-mdl'
 
 type Props = {
   resolution: ?number,
   value: number,
   onChange: (number) => any,
-  tipFormatter: ?(number) => string,
 }
 
 type State = {
@@ -34,17 +33,11 @@ class LogarithmicSlider extends Component {
     }
   }
 
-  tipFormatter(sliderValue: number) {
-    if (typeof this.props.tipFormatter === 'function') return this.props.tipFormatter(Math.E ** sliderValue)
-    else return Math.E ** sliderValue
-  }
-
   render() {
     return (
       <Slider min={ this.state.sliderMin } max={ this.state.sliderMax } step={ this.state.sliderStep }
               value={ Math.log(this.props.value) }
-              tipFormatter={ this.props.tipFormatter === null ? null : sliderValue => this.tipFormatter(sliderValue) }
-              onChange={ sliderValue => this.props.onChange(Math.E ** sliderValue) } />
+              onChange={ ev => this.props.onChange(Math.E ** ev.target.value) } />
     )
   }
 }

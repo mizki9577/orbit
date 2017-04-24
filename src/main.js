@@ -1,4 +1,7 @@
 /* @flow */
+import 'react-mdl/extra/material.min.css'
+import 'react-mdl/extra/material.min.js'
+
 import '../manifest.json'
 import '../icon.png'
 

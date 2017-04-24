@@ -48,12 +48,8 @@ export const windowResized = () => {
   })
 }
 
-export const changeFullscreen = (value: boolean) => {
-  if (value) {
-    screenfull.request()
-  } else {
-    screenfull.exit()
-  }
+export const toggleFullscreen = () => {
+  screenfull.toggle()
 }
 
 export const fullscreenChanged = () => {

@@ -1,7 +1,6 @@
 /* @flow */
 import type { State } from '../types.js'
 import './App.css'
-import styles from './App.module.css'
 
 import React, { Component } from 'react'
 import { Container } from 'flux/utils'
@@ -9,10 +8,10 @@ import { Container } from 'flux/utils'
 import store from '../store.js'
 import * as actions from '../actions.js'
 
-import { Layout, Menu, Icon, Row, Col, Switch, Card } from 'antd'
+import { Layout, Drawer, Navigation, Content, Header, Switch, IconToggle, List, ListItem, ListItemContent, ListItemAction } from 'react-mdl'
 
 import LogarithmicSlider from './LogarithmicSlider.js'
-import Drawer from './Drawer.js'
+import MyDrawer from './Drawer.js'
 
 class App extends Component {
   state: State
@@ -29,16 +28,12 @@ class App extends Component {
     actions.applicationStarted()
   }
 
-  handleMenuClink({ key }) {
-    switch (key) {
-      case 'runpause':
-        actions.toggleRunPause()
-        break
-    }
+  handleRunPauseChange() {
+    actions.toggleRunPause()
   }
 
-  handleFullscreenChange(value) {
-    actions.changeFullscreen(value)
+  handleFullscreenChange() {
+    actions.toggleFullscreen()
   }
 
   handleScaleChange(value) {
@@ -62,68 +57,58 @@ class App extends Component {
 
     return (
       <Layout>
-        <Layout.Sider collapsible defaultCollapsed width={ 300 } breakpoint="xs">
-          <Menu theme="dark" onClick={ params => this.handleMenuClink(params) }>
-            <Menu.Item key="runpause">
-              <Icon type={ isRunning ? 'pause' : 'caret-right' }/>
-              <span className="menu-label">{ isRunning ? 'Pause' : 'Run' }</span>
-            </Menu.Item>
-          </Menu>
+        <Header transparent style={{ color: 'black' }} />
+        <Drawer title="Orbit">
+          <List>
+            <ListItem onClick={ () => this.handleRunPauseChange() }>
+              <ListItemContent icon={ isRunning ? 'pause' : 'play_arrow' }>{ isRunning ? 'Pause' : 'Run' }</ListItemContent>
+            </ListItem>
 
-          <Card>
-            <Row>
-              <Col span={ 6 }>Fullscreen</Col>
-              <Col className={ styles.optionsValue } span={ 18 }>
-                <Switch checked={ isFullscreen } onChange={ value => this.handleFullscreenChange(value) } />
-              </Col>
-            </Row>
+            <ListItem onClick={ () => this.handleFullscreenChange() }>
+              <ListItemContent icon={ isFullscreen ? 'fullscreen_exit' : 'fullscreen' }>{ isFullscreen ? 'Exit Fullscreen' : 'Enter Fullscreen' }</ListItemContent>
+            </ListItem>
 
-            <Row>
-              <Col span={ 6 }>Scale</Col>
-
-              <Col className={ styles.optionsValue } span={ 18 }>
+            <ListItem>
+              <ListItemContent>Scale</ListItemContent>
+              <ListItemAction>
                 <LogarithmicSlider min={ 2**-16 } max={ 2**16 }
-                                    value={ scale }
-                                    onChange={ value => this.handleScaleChange(value) }
-                                    tipFormatter={ value => 'x' + value.toPrecision(2) }/>
-              </Col>
-            </Row>
+                                  value={ scale }
+                                  onChange={ value => this.handleScaleChange(value) } />
+              </ListItemAction>
+            </ListItem>
 
-            <Row>
-              <Col span={ 6 }>Speed</Col>
-              <Col className={ styles.optionsValue } span={ 18 }>
+            <ListItem>
+              <ListItemContent>Speed</ListItemContent>
+              <ListItemAction>
                 <LogarithmicSlider min={ 2**-16 } max={ 2**16 }
-                                    value={ speed }
-                                    onChange={ value => this.handleSpeedChange(value) }
-                                    tipFormatter={ value => 'x' + value.toPrecision(2) }/>
-              </Col>
-            </Row>
+                                  value={ speed }
+                                  onChange={ value => this.handleSpeedChange(value) } />
+              </ListItemAction>
+            </ListItem>
 
-            <Row>
-              <Col span={ 6 }>Radius</Col>
-              <Col className={ styles.optionsValue } span={ 18 }>
+            <ListItem>
+              <ListItemContent>Radius</ListItemContent>
+              <ListItemAction>
                 <LogarithmicSlider min={ 2**-16 } max={ 2**16 }
-                                    value={ newBodyRadius }
-                                    onChange={ value => this.handleNewBodyRadiusChange(value) }
-                                    tipFormatter={ value => value.toPrecision(2) }/>
-              </Col>
-            </Row>
+                                  value={ newBodyRadius }
+                                  onChange={ value => this.handleNewBodyRadiusChange(value) } />
+              </ListItemAction>
+            </ListItem>
 
-            <Row>
-              <Col span={ 6 }>Mass</Col>
-              <Col className={ styles.optionsValue } span={ 18 }>
+            <ListItem>
+              <ListItemContent>Mass</ListItemContent>
+              <ListItemAction>
                 <LogarithmicSlider min={ 2**-16 } max={ 2**16 }
-                                    value={ newBodyMass }
-                                    onChange={ value => this.handleNewBodyMassChange(value) }
-                                    tipFormatter={ value => value.toPrecision(2) }/>
-              </Col>
-            </Row>
-          </Card>
-        </Layout.Sider>
+                                  value={ newBodyMass }
+                                  onChange={ value => this.handleNewBodyMassChange(value) } />
+              </ListItemAction>
+            </ListItem>
+          </List>
+        </Drawer>
 
-        <Layout.Content>
-          <Drawer />
-        </Layout.Content>
+        <Content>
+          <MyDrawer />
+        </Content>
       </Layout>
     )
   }
