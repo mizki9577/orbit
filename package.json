@@ -12,7 +12,8 @@
     "check": "eslint ./src/&&flow",
     "build:development": "webpack --env.development",
     "build:production": "webpack --env.production",
-    "deploy": "./scripts/deploy.sh"
+    "deploy": "./scripts/deploy.sh",
+    "deploy:powershell": "powershell ./scripts/deploy.ps1"
   },
   "dependencies": {
     "chroma-js": "^1.2.1",
