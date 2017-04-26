@@ -1,0 +1,16 @@
+{
+  "background_color": "white",
+  "description": "Orbital simulator written in JavaScript",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "./icon.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    }
+  ],
+  "name": "Orbit",
+  "scope": "/orbit/",
+  "start_url": "/orbit/",
+  "short_name": "Orbit"
+}
