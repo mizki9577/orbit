@@ -10,7 +10,9 @@ import ReactDOM from 'react-dom'
 
 import App from './components/App.js'
 
-navigator.serviceWorker.register('./sw.bundle.js')
+if (typeof navigator.serviceWorker !== 'undefined') {
+  navigator.serviceWorker.register('./sw.bundle.js')
+}
 
 ReactDOM.render(
   <App />,

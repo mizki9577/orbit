@@ -8,7 +8,7 @@ import { Container } from 'flux/utils'
 import store from '../store.js'
 import * as actions from '../actions.js'
 
-import { Layout, Drawer, Navigation, Content, Header, Switch, IconToggle, List, ListItem, ListItemContent, ListItemAction } from 'react-mdl'
+import { Layout, Drawer, Content, Header, List, ListItem, ListItemContent, ListItemAction } from 'react-mdl'
 
 import LogarithmicSlider from './LogarithmicSlider.js'
 import MyDrawer from './Drawer.js'
