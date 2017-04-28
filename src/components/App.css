@@ -11,4 +11,8 @@
     width: 8em;
 }
 
+.mdl-layout__obfuscator {
+    display: none;
+}
+
 /* vim: set ts=4 sw=4 et: */
