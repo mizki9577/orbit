@@ -14,5 +14,23 @@
 .mdl-layout__obfuscator {
     display: none;
 }
+.mdl-data-table {
+    width: 100%;
+}
+
+.mdl-data-table tr,
+.mdl-data-table td {
+    height: 24px !important;
+    width: 8em;
+    padding: 0px;
+}
+
+.mdl-data-table thead {
+    display: none;
+}
+
+.mdl-data-table td {
+    font-family: monospace;
+}
 
 /* vim: set ts=4 sw=4 et: */

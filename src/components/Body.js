@@ -5,7 +5,10 @@ import { selectBody } from '../actions.js'
 
 const Body = (props: BodyType) => (
   <circle r={ props.radius } cx={ props.x } cy={ props.y } style={{ fill: props.color }}
-          onMouseDown={ () => selectBody(props.id) } />
+          onMouseDown={ ev => {
+            ev.stopPropagation()
+            selectBody(props.id)
+          } } />
 )
 
 export default Body
