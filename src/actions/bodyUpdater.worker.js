@@ -52,6 +52,8 @@ const update = () => {
 
     bodies[i].vx += ax * elapsed * speed
     bodies[i].vy += ay * elapsed * speed
+  }
+  for (let i = 0; i < length; ++i) {
     bodies[i].x += bodies[i].vx * elapsed * speed
     bodies[i].y += bodies[i].vy * elapsed * speed
   }
